@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F03B495283F88FC0047E456 /* Citiy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F03B494283F88FC0047E456 /* Citiy.swift */; };
+		6F03B497283FB35E0047E456 /* NetworkErrors+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F03B496283FB35E0047E456 /* NetworkErrors+Extensions.swift */; };
+		6F03B49A283FB4130047E456 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F03B499283FB4130047E456 /* String+Extensions.swift */; };
+		6F03B49C283FB4710047E456 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F03B49B283FB4710047E456 /* Localizable.strings */; };
+		6F03B49E283FC6DE0047E456 /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F03B49D283FC6DE0047E456 /* Collection+Extensions.swift */; };
+		6F6E6395283F794B004347DE /* NetworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E6394283F794B004347DE /* NetworkRepository.swift */; };
+		6F6E6397283F79AF004347DE /* GetCharacters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E6396283F79AF004347DE /* GetCharacters.swift */; };
+		6F6E639A283F7AAE004347DE /* NetworkRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E6399283F7AAE004347DE /* NetworkRepositoryProtocol.swift */; };
+		6F6E639D283F8324004347DE /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E639C283F8324004347DE /* Character.swift */; };
+		6F6E63A1283F8447004347DE /* NetworkErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E63A0283F8447004347DE /* NetworkErrors.swift */; };
 		6FD09EE2283F724B0015567C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD09EE1283F724B0015567C /* AppDelegate.swift */; };
 		6FD09EE4283F724B0015567C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD09EE3283F724B0015567C /* SceneDelegate.swift */; };
 		6FD09EE6283F724B0015567C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD09EE5283F724B0015567C /* ViewController.swift */; };
@@ -36,6 +46,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F03B494283F88FC0047E456 /* Citiy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Citiy.swift; sourceTree = "<group>"; };
+		6F03B496283FB35E0047E456 /* NetworkErrors+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkErrors+Extensions.swift"; sourceTree = "<group>"; };
+		6F03B499283FB4130047E456 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		6F03B49B283FB4710047E456 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		6F03B49D283FC6DE0047E456 /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
+		6F6E6394283F794B004347DE /* NetworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepository.swift; sourceTree = "<group>"; };
+		6F6E6396283F79AF004347DE /* GetCharacters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCharacters.swift; sourceTree = "<group>"; };
+		6F6E6399283F7AAE004347DE /* NetworkRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryProtocol.swift; sourceTree = "<group>"; };
+		6F6E639C283F8324004347DE /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		6F6E63A0283F8447004347DE /* NetworkErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrors.swift; sourceTree = "<group>"; };
 		6FD09EDE283F724B0015567C /* AxaTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AxaTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FD09EE1283F724B0015567C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FD09EE3283F724B0015567C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,10 +96,77 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F03B498283FB4030047E456 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6F03B499283FB4130047E456 /* String+Extensions.swift */,
+				6F03B49D283FC6DE0047E456 /* Collection+Extensions.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		6F6E638A283F7794004347DE /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				6FD09EEF283F724B0015567C /* Info.plist */,
+				6FD09EEA283F724B0015567C /* Assets.xcassets */,
+				6F03B49B283FB4710047E456 /* Localizable.strings */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
+		6F6E638B283F77B6004347DE /* views */ = {
+			isa = PBXGroup;
+			children = (
+				6FD09EE5283F724B0015567C /* ViewController.swift */,
+				6F03B496283FB35E0047E456 /* NetworkErrors+Extensions.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		6F6E638C283F77D3004347DE /* models */ = {
+			isa = PBXGroup;
+			children = (
+				6F6E639C283F8324004347DE /* Character.swift */,
+				6F03B494283F88FC0047E456 /* Citiy.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		6F6E6392283F7911004347DE /* repositories */ = {
+			isa = PBXGroup;
+			children = (
+				6F6E6393283F7924004347DE /* network */,
+			);
+			path = repositories;
+			sourceTree = "<group>";
+		};
+		6F6E6393283F7924004347DE /* network */ = {
+			isa = PBXGroup;
+			children = (
+				6F6E63A0283F8447004347DE /* NetworkErrors.swift */,
+				6F6E6399283F7AAE004347DE /* NetworkRepositoryProtocol.swift */,
+				6F6E6394283F794B004347DE /* NetworkRepository.swift */,
+				6F6E6396283F79AF004347DE /* GetCharacters.swift */,
+			);
+			path = network;
+			sourceTree = "<group>";
+		};
+		6F6E639B283F82DF004347DE /* xibs */ = {
+			isa = PBXGroup;
+			children = (
+				6FD09EE7283F724B0015567C /* Main.storyboard */,
+				6FD09EEC283F724B0015567C /* LaunchScreen.storyboard */,
+			);
+			path = xibs;
+			sourceTree = "<group>";
+		};
 		6FD09ED5283F724B0015567C = {
 			isa = PBXGroup;
 			children = (
 				6FD09EE0283F724B0015567C /* AxaTest */,
+				6FD09EE1283F724B0015567C /* AppDelegate.swift */,
+				6FD09EE3283F724B0015567C /* SceneDelegate.swift */,
 				6FD09EF7283F724B0015567C /* AxaTestTests */,
 				6FD09F01283F724B0015567C /* AxaTestUITests */,
 				6FD09EDF283F724B0015567C /* Products */,
@@ -99,13 +186,12 @@
 		6FD09EE0283F724B0015567C /* AxaTest */ = {
 			isa = PBXGroup;
 			children = (
-				6FD09EE1283F724B0015567C /* AppDelegate.swift */,
-				6FD09EE3283F724B0015567C /* SceneDelegate.swift */,
-				6FD09EE5283F724B0015567C /* ViewController.swift */,
-				6FD09EE7283F724B0015567C /* Main.storyboard */,
-				6FD09EEA283F724B0015567C /* Assets.xcassets */,
-				6FD09EEC283F724B0015567C /* LaunchScreen.storyboard */,
-				6FD09EEF283F724B0015567C /* Info.plist */,
+				6F03B498283FB4030047E456 /* extensions */,
+				6F6E639B283F82DF004347DE /* xibs */,
+				6F6E638A283F7794004347DE /* resources */,
+				6F6E638C283F77D3004347DE /* models */,
+				6F6E638B283F77B6004347DE /* views */,
+				6F6E6392283F7911004347DE /* repositories */,
 			);
 			path = AxaTest;
 			sourceTree = "<group>";
@@ -232,6 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6FD09EEE283F724B0015567C /* LaunchScreen.storyboard in Resources */,
+				6F03B49C283FB4710047E456 /* Localizable.strings in Resources */,
 				6FD09EEB283F724B0015567C /* Assets.xcassets in Resources */,
 				6FD09EE9283F724B0015567C /* Main.storyboard in Resources */,
 			);
@@ -258,9 +345,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F6E6397283F79AF004347DE /* GetCharacters.swift in Sources */,
+				6F03B49A283FB4130047E456 /* String+Extensions.swift in Sources */,
 				6FD09EE6283F724B0015567C /* ViewController.swift in Sources */,
+				6F6E639D283F8324004347DE /* Character.swift in Sources */,
+				6F03B495283F88FC0047E456 /* Citiy.swift in Sources */,
+				6F03B49E283FC6DE0047E456 /* Collection+Extensions.swift in Sources */,
 				6FD09EE2283F724B0015567C /* AppDelegate.swift in Sources */,
+				6F6E6395283F794B004347DE /* NetworkRepository.swift in Sources */,
+				6F6E639A283F7AAE004347DE /* NetworkRepositoryProtocol.swift in Sources */,
 				6FD09EE4283F724B0015567C /* SceneDelegate.swift in Sources */,
+				6F6E63A1283F8447004347DE /* NetworkErrors.swift in Sources */,
+				6F03B497283FB35E0047E456 /* NetworkErrors+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,8 +533,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X7FQ3DUR48;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AxaTest/Info.plist;
+				INFOPLIST_FILE = AxaTest/resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -464,8 +561,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X7FQ3DUR48;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AxaTest/Info.plist;
+				INFOPLIST_FILE = AxaTest/resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

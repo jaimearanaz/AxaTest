@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  AxaTest
+
+  Created by Jaime Aranaz on 26/5/22.
+  
+*/
+
+"NETWORK_ERROR_GENERAL" = "There was a network error, please try again";
+"NETWORK_ERROR_NO_NETWORL" = "There is no network conection";
+"NETWORK_ERROR_TIMEOUT" = "The server is not responding";
+"NETWORK_ERROR_URL" = "The URL is not well formed";
+"NETWORK_ERROR_STATUS" = "The server responded with status error %d";
+"NETWORK_ERROR_JSON" = "The JSON data is not well formed";
