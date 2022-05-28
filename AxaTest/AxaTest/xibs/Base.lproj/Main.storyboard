@@ -1,24 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dV8-Ra-kHW">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="8YI-FL-rVT">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4qb-6F-jH1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController storyboardIdentifier="NavigationViewController" id="dV8-Ra-kHW" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JUR-mL-LNX">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Pwy-lX-91T"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-941" y="117"/>
+        </scene>
+        <!--Grid View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GridViewController" id="BYZ-38-t0r" customClass="GridViewController" customModule="AxaTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grid View Controller" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7aA-iA-bly">
+                                <rect key="frame" x="130.5" y="464.5" width="153" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="63i-47-qOb">
+                                <rect key="frame" x="159" y="517.5" width="96" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Go to Filter"/>
+                                <connections>
+                                    <action selector="didSelectFilter" destination="BYZ-38-t0r" eventType="touchUpInside" id="sy0-55-Ovq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lBb-Bi-tP9">
+                                <rect key="frame" x="176.5" y="580.5" width="61" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Reset"/>
+                                <connections>
+                                    <action selector="didSelectReset" destination="BYZ-38-t0r" eventType="touchUpInside" id="LfF-eC-kAa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZ0-xX-5nA">
+                                <rect key="frame" x="163" y="643.5" width="88" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Character"/>
+                                <connections>
+                                    <action selector="didSelectCharacter" destination="BYZ-38-t0r" eventType="touchUpInside" id="ktM-ca-0i7"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7aA-iA-bly" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="1gW-8W-Fx9"/>
+                            <constraint firstItem="63i-47-qOb" firstAttribute="top" secondItem="7aA-iA-bly" secondAttribute="bottom" constant="32" id="4de-Gv-UUc"/>
+                            <constraint firstItem="63i-47-qOb" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Cxr-nq-2Vp"/>
+                            <constraint firstItem="cZ0-xX-5nA" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="RPA-YB-3Fu"/>
+                            <constraint firstItem="cZ0-xX-5nA" firstAttribute="top" secondItem="lBb-Bi-tP9" secondAttribute="bottom" constant="32" id="XPn-Jz-JrR"/>
+                            <constraint firstItem="lBb-Bi-tP9" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="cbT-XM-QKF"/>
+                            <constraint firstItem="lBb-Bi-tP9" firstAttribute="top" secondItem="63i-47-qOb" secondAttribute="bottom" constant="32" id="ci9-Zd-sS6"/>
+                            <constraint firstItem="7aA-iA-bly" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="yJ5-Hd-zvI"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="dkY-G9-tsg"/>
+                    <connections>
+                        <outlet property="goToFilterBt" destination="63i-47-qOb" id="pyA-k8-fKe"/>
+                        <segue destination="Czl-xE-fQm" kind="show" identifier="toFilter" id="OTe-2u-D0v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-9" y="117"/>
+        </scene>
+        <!--Filter View Controller-->
+        <scene sceneID="GIe-b5-aT1">
+            <objects>
+                <viewController storyboardIdentifier="FilterViewController" id="Czl-xE-fQm" customClass="FilterViewController" customModule="AxaTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="X6s-CZ-sbY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter View Controller" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SzB-Jy-IDG">
+                                <rect key="frame" x="127.5" y="464.5" width="159" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="yHH-gu-8g0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="SzB-Jy-IDG" firstAttribute="centerX" secondItem="yHH-gu-8g0" secondAttribute="centerX" id="FAE-1h-ozH"/>
+                            <constraint firstItem="SzB-Jy-IDG" firstAttribute="centerY" secondItem="yHH-gu-8g0" secondAttribute="centerY" id="LYA-0M-zHA"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Zh2-c4-cEf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nrx-vj-WZz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="880" y="117"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

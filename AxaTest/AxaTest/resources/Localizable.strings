@@ -6,9 +6,14 @@
   
 */
 
-"NETWORK_ERROR_GENERAL" = "There was a network error, please try again";
-"NETWORK_ERROR_NO_NETWORL" = "There is no network conection";
+"NETWORK_ERROR_GENERAL" = "There was an unknown network error";
+"NETWORK_ERROR_NO_NETWORL" = "There is no network connection";
 "NETWORK_ERROR_TIMEOUT" = "The server is not responding";
 "NETWORK_ERROR_URL" = "The URL is not well formed";
 "NETWORK_ERROR_STATUS" = "The server responded with status error %d";
 "NETWORK_ERROR_JSON" = "The JSON data is not well formed";
+
+"NON_PERSISTENT_ERROR_NO_DATA" = "The requested data is not stored";
+
+"ERROR_MESSAGE_TITLE" = "Error";
+"ERROR_MESSAGE_BUTTON" = "OK";

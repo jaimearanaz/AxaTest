@@ -20,8 +20,8 @@ extension NetworkErrors: LocalizedError {
             return "NETWORK_ERROR_TIMEOUT".localized
         case .wrongUrl:
             return "NETWORK_ERROR_URL".localized
-        case .statusError(_):
-            return "NETWORK_ERROR_STATUS".localized
+        case .statusError(let statusCode):
+            return String(format: "NETWORK_ERROR_STATUS".localized, statusCode)
         case .wrongJson:
             return "NETWORK_ERROR_JSON".localized
         }
