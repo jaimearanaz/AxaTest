@@ -34,6 +34,8 @@ protocol GridViewModel: BaseViewModel, GridViewModelOutput, GridViewModelInput {
     var getCharactersUseCase: GetCharactersUseCase { get set }
     var getActiveFilterUseCase: GetActiveFilterUseCase { get set }
     var getFilteredCharactersUseCase: GetFilteredCharactersUseCase { get set }
+    var resetActiveFilterUserCase: ResetActiveFilterUseCase { get set }
+    var saveSelectedCharacter: SaveSelectedCharacterUseCase { get set }
 }
 
 class DefaultGridViewModel: BaseViewModel, GridViewModel {
@@ -45,19 +47,24 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
     var getCharactersUseCase: GetCharactersUseCase
     var getActiveFilterUseCase: GetActiveFilterUseCase
     var getFilteredCharactersUseCase: GetFilteredCharactersUseCase
+    var resetActiveFilterUserCase: ResetActiveFilterUseCase
+    var saveSelectedCharacter: SaveSelectedCharacterUseCase
     
     init(getCharactersUseCase: GetCharactersUseCase,
          getActiveFilterUseCase: GetActiveFilterUseCase,
-         getFilteredCharactersUseCase: GetFilteredCharactersUseCase) {
+         getFilteredCharactersUseCase: GetFilteredCharactersUseCase,
+         resetActiveFilterUserCase: ResetActiveFilterUseCase,
+         saveSelectedCharacter: SaveSelectedCharacterUseCase) {
         
         self.getCharactersUseCase = getCharactersUseCase
         self.getActiveFilterUseCase = getActiveFilterUseCase
         self.getFilteredCharactersUseCase = getFilteredCharactersUseCase
+        self.resetActiveFilterUserCase = resetActiveFilterUserCase
+        self.saveSelectedCharacter = saveSelectedCharacter
     }
     
     override func viewDidLoad() {
-        print("viewDidLoad")
-        
+
         isLoading.value = true
         getCharactersUseCase.execute { result in
             
@@ -67,41 +74,57 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
                 self.characters.value = characters.map { $0.toCharacterGrid() }
             case .failure(let error):
                 self.errorMessage.value = error.localizedDescription
-                break
             }
         }
     }
     
     override func viewDidAppear() {
-        print("viewDidAppear")
-        
+
         if !isLoading.value {
-            
-            isLoading.value = true
-            getFilteredCharactersUseCase.execute { result in
-                
-                self.isLoading.value = false
-                switch result {
-                case .success(let characters):
-                    self.characters.value = characters.map { $0.toCharacterGrid() }
-                case .failure(let error):
-                    self.errorMessage.value = error.localizedDescription
-                    break
-                }
-            }
+            updateCharacters()
         }
     }
-    
+        
     func didSelectFilter() {
-        print("didSelectFilter")
         transitionTo.value = .toFilter
     }
     
     func didSelectReset() {
-        print("didSelectReset")
+        
+        resetActiveFilterUserCase.execute { result in
+            
+            switch result {
+            case .success():
+                self.updateCharacters()
+            case .failure(let error):
+                self.errorMessage.value = error.localizedDescription
+            }
+        }
     }
     
     func didSelectCharacter(id: Int) {
-        print("didSelectCharacter id \(id)")
+        
+        saveSelectedCharacter.execute(id: id) { result in
+            
+            switch result {
+            case .success():
+                self.transitionTo.value = .toCharacter
+            case .failure(let error):
+                self.errorMessage.value = error.localizedDescription
+            }
+        }
+    }
+    
+    private func updateCharacters() {
+        
+        getFilteredCharactersUseCase.execute { result in
+            
+            switch result {
+            case .success(let characters):
+                self.characters.value = characters.map { $0.toCharacterGrid() }
+            case .failure(let error):
+                self.errorMessage.value = error.localizedDescription
+            }
+        }
     }
 }

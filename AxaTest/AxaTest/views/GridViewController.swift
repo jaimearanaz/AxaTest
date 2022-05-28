@@ -14,7 +14,6 @@ class GridViewController: BaseViewController {
 
     var viewModel: GridViewModel? { didSet { baseViewModel = viewModel } }
     var navigationFlow: GridNavigationFlow?
-    var subscribers = Set<AnyCancellable>()
 
     override func binds() {
 
@@ -63,16 +62,4 @@ class GridViewController: BaseViewController {
     func stopLoading() {
         print("stopLoading")
     }
-    
-    private func showAlert(withMessage message: String) {
-        
-        let alert = UIAlertController(title: "ERROR_MESSAGE_TITLE".localized,
-                                      message: message,
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "ERROR_MESSAGE_BUTTON".localized,
-                                      style: .default,
-                                      handler: nil))
-        self.present(alert, animated: true)
-    }
-    
 }

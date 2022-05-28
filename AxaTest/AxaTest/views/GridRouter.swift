@@ -9,7 +9,9 @@ import Foundation
 import UIKit
 
 protocol GridNavigationFlow {
+    
     func injectFilter(withSegue segue: UIStoryboardSegue)
+    func injectCharacter(withSegue segue: UIStoryboardSegue)
 }
 
 extension GridViewController {
@@ -17,8 +19,13 @@ extension GridViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
         switch (segue.identifier) {
+            
         case GridTransitions.toFilter.rawValue:
             navigationFlow?.injectFilter(withSegue: segue)
+            
+        case GridTransitions.toCharacter.rawValue:
+            navigationFlow?.injectCharacter(withSegue: segue)
+            
         default:
             break
         }

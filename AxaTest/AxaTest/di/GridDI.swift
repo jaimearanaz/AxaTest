@@ -15,9 +15,13 @@ extension DependencyInjector {
         let getCharactersUseCase = DefaultGetCharactersUseCase(networkRepository: networkRepository, nonPersistentRepository: nonPersistentRepository)
         let getActiveFilterUseCase = DefaultGetActiveFilterUseCase(nonPersistentRepository: nonPersistentRepository)
         let getFilteredCharactersUseCase = DefaultGetFilteredCharactersUseCase(nonPersistentRepository: nonPersistentRepository)
+        let resetActiveFilterUseCase = DefaultResetActiveFilterUseCase(nonPersistentRepository: nonPersistentRepository)
+        let saveSelectedCharacter = DefaultSaveSelectedCharacterUseCase(nonPersistentRepository: nonPersistentRepository)
         let viewModel = DefaultGridViewModel(getCharactersUseCase: getCharactersUseCase,
                                              getActiveFilterUseCase: getActiveFilterUseCase,
-                                             getFilteredCharactersUseCase: getFilteredCharactersUseCase)
+                                             getFilteredCharactersUseCase: getFilteredCharactersUseCase,
+                                             resetActiveFilterUserCase: resetActiveFilterUseCase,
+                                             saveSelectedCharacter: saveSelectedCharacter)
         
         viewController.viewModel = viewModel
         viewController.navigationFlow = self

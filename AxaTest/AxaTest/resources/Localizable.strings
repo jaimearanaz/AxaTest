@@ -17,3 +17,5 @@
 
 "ERROR_MESSAGE_TITLE" = "Error";
 "ERROR_MESSAGE_BUTTON" = "OK";
+
+"PROFESSION_NONE" = "Not employed";

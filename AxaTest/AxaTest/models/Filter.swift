@@ -9,9 +9,9 @@ import Foundation
 
 struct Filter {
     
-    var age: ClosedRange<Int>
-    var weight: ClosedRange<Int>
-    var height: ClosedRange<Int>
-    var hairColor: [String]
-    var profession: [String]
+    var age: ClosedRange<Int> = 0...0
+    var weight: ClosedRange<Int> = 0...0
+    var height: ClosedRange<Int> = 0...0
+    var hairColor = [String]()
+    var profession = [String]()
 }

@@ -11,7 +11,7 @@ protocol SaveActiveFilterUseCase {
     
     var nonPersistentRepository: NonPersistentRepositoryProtocol { get set }
     
-    func execute(filter: Filter, completion: @escaping (Result<Bool, Error>) -> Void)
+    func execute(filter: Filter, completion: @escaping (Result<Void, Error>) -> Void)
 }
 
 class DefaultSaveActiveFilterUseCase: SaveActiveFilterUseCase {
@@ -22,9 +22,9 @@ class DefaultSaveActiveFilterUseCase: SaveActiveFilterUseCase {
         self.nonPersistentRepository = nonPersistentRepository
     }
     
-    func execute(filter: Filter, completion: @escaping (Result<Bool, Error>) -> Void) {
+    func execute(filter: Filter, completion: @escaping (Result<Void, Error>) -> Void) {
         
         nonPersistentRepository.saveActiveFilter(filter)
-        completion(.success(true))
+        completion(.success(Void()))
     }
 }
