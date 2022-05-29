@@ -25,10 +25,10 @@ class DefaultGetFilteredCharactersUseCase: GetFilteredCharactersUseCase {
     func execute(completion: @escaping (Result<[Character], Error>) -> Void) {
 
         let characters = nonPersistentRepository.getSavedCharacters()
-        let activeFilter = nonPersistentRepository.getActiveFilter()
+        let filterActive = nonPersistentRepository.getFilterActive()
         
-        if let activeFilter = activeFilter, characters.isNotEmpty {
-            let filtered = filterCharacters(characters, withFilter: activeFilter)
+        if let filterActive = filterActive, characters.isNotEmpty {
+            let filtered = filterCharacters(characters, withFilter: filterActive)
             completion(.success(filtered))
         } else {
             completion(.failure(NonPersistentErrors.noData))

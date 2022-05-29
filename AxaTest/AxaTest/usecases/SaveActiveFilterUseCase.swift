@@ -1,5 +1,5 @@
 //
-//  SaveActiveFilterUseCase.swift
+//  SaveFilterActiveUseCase.swift
 //  AxaTest
 //
 //  Created by Jaime Aranaz on 28/5/22.
@@ -7,14 +7,14 @@
 
 import Foundation
 
-protocol SaveActiveFilterUseCase {
+protocol SaveFilterActiveUseCase {
     
     var nonPersistentRepository: NonPersistentRepositoryProtocol { get set }
     
     func execute(filter: Filter, completion: @escaping (Result<Void, Error>) -> Void)
 }
 
-class DefaultSaveActiveFilterUseCase: SaveActiveFilterUseCase {
+class DefaultSaveFilterActiveUseCase: SaveFilterActiveUseCase {
 
     var nonPersistentRepository: NonPersistentRepositoryProtocol
     
@@ -24,7 +24,7 @@ class DefaultSaveActiveFilterUseCase: SaveActiveFilterUseCase {
     
     func execute(filter: Filter, completion: @escaping (Result<Void, Error>) -> Void) {
         
-        nonPersistentRepository.saveActiveFilter(filter)
+        nonPersistentRepository.saveFilterActive(filter)
         completion(.success(Void()))
     }
 }

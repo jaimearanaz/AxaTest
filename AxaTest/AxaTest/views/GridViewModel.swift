@@ -18,7 +18,7 @@ protocol GridViewModelOutput: BaseViewModelOutput {
     
     var isLoading: Box<Bool> { get set }
     var errorMessage: Box<String> { get set }
-    var characters: Box<[CharacterGrid]> { get set }
+    var characters: Box<[CharacterGridUi]> { get set }
     var transitionTo: Box<GridTransitions> { get set }
 }
 
@@ -32,9 +32,9 @@ protocol GridViewModelInput: BaseViewModelInput {
 protocol GridViewModel: BaseViewModel, GridViewModelOutput, GridViewModelInput {
  
     var getCharactersUseCase: GetCharactersUseCase { get set }
-    var getActiveFilterUseCase: GetActiveFilterUseCase { get set }
+    var getFilterActiveUseCase: GetFilterActiveUseCase { get set }
     var getFilteredCharactersUseCase: GetFilteredCharactersUseCase { get set }
-    var resetActiveFilterUserCase: ResetActiveFilterUseCase { get set }
+    var resetFilterActiveUserCase: ResetFilterActiveUseCase { get set }
     var saveSelectedCharacter: SaveSelectedCharacterUseCase { get set }
 }
 
@@ -42,24 +42,24 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
     
     var isLoading = Box(false)
     var errorMessage = Box("")
-    var characters = Box([CharacterGrid]())
+    var characters = Box([CharacterGridUi]())
     var transitionTo = Box(GridTransitions.none)
     var getCharactersUseCase: GetCharactersUseCase
-    var getActiveFilterUseCase: GetActiveFilterUseCase
+    var getFilterActiveUseCase: GetFilterActiveUseCase
     var getFilteredCharactersUseCase: GetFilteredCharactersUseCase
-    var resetActiveFilterUserCase: ResetActiveFilterUseCase
+    var resetFilterActiveUserCase: ResetFilterActiveUseCase
     var saveSelectedCharacter: SaveSelectedCharacterUseCase
     
     init(getCharactersUseCase: GetCharactersUseCase,
-         getActiveFilterUseCase: GetActiveFilterUseCase,
+         getFilterActiveUseCase: GetFilterActiveUseCase,
          getFilteredCharactersUseCase: GetFilteredCharactersUseCase,
-         resetActiveFilterUserCase: ResetActiveFilterUseCase,
+         resetFilterActiveUserCase: ResetFilterActiveUseCase,
          saveSelectedCharacter: SaveSelectedCharacterUseCase) {
         
         self.getCharactersUseCase = getCharactersUseCase
-        self.getActiveFilterUseCase = getActiveFilterUseCase
+        self.getFilterActiveUseCase = getFilterActiveUseCase
         self.getFilteredCharactersUseCase = getFilteredCharactersUseCase
-        self.resetActiveFilterUserCase = resetActiveFilterUserCase
+        self.resetFilterActiveUserCase = resetFilterActiveUserCase
         self.saveSelectedCharacter = saveSelectedCharacter
     }
     
@@ -71,7 +71,7 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
             self.isLoading.value = false
             switch result {
             case .success(let characters):
-                self.characters.value = characters.map { $0.toCharacterGrid() }
+                self.characters.value = characters.map { $0.toCharacterGridUi() }
             case .failure(let error):
                 self.errorMessage.value = error.localizedDescription
             }
@@ -91,7 +91,7 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
     
     func didSelectReset() {
         
-        resetActiveFilterUserCase.execute { result in
+        resetFilterActiveUserCase.execute { result in
             
             switch result {
             case .success():
@@ -121,7 +121,7 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
             
             switch result {
             case .success(let characters):
-                self.characters.value = characters.map { $0.toCharacterGrid() }
+                self.characters.value = characters.map { $0.toCharacterGridUi() }
             case .failure(let error):
                 self.errorMessage.value = error.localizedDescription
             }

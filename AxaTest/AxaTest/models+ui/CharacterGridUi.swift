@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CharacterGrid {
+struct CharacterGridUi {
     
     var id: Int
     var name: String

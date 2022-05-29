@@ -15,8 +15,7 @@ enum FilterTransitions: String {
 
 protocol FilterViewModelOutput: BaseViewModelOutput {
     
-    var filterValues: Box<Filter> { get set }
-    var activeFilter: Box<Filter> { get set }
+    var filterConfig: Box<FilterConfigUi> { get set }
     var transitionTo: Box<FilterTransitions> { get set }
     var errorMessage: Box<String> { get set }
 }
@@ -24,33 +23,34 @@ protocol FilterViewModelOutput: BaseViewModelOutput {
 protocol FilterViewModelInput: BaseViewModelInput {
     
     func didSelectReset()
-    func didSelectApplyFilter(_ filter: Filter)
+    func didSelectApplyFilter(_ filter: FilterUi)
 }
 
 protocol FilterViewModel: BaseViewModel, FilterViewModelOutput, FilterViewModelInput {
  
     var getFilterValuesUseCase: GetFilterValuesUseCase { get set }
-    var getActiveFilterUseCase: GetActiveFilterUseCase { get set }
-    var saveActiveFilterUserCase: SaveActiveFilterUseCase { get set }
+    var getFilterActiveUseCase: GetFilterActiveUseCase { get set }
+    var saveFilterActiveUserCase: SaveFilterActiveUseCase { get set }
 }
 
 class DefaultFilterViewModel: BaseViewModel, FilterViewModel {
 
-    var filterValues = Box(Filter())
-    var activeFilter = Box(Filter())
+    var filterConfig = Box(FilterConfigUi(filterValues: FilterUi(), filterActive: FilterUi()))
     var transitionTo = Box(FilterTransitions.none)
     var errorMessage = Box("")
     var getFilterValuesUseCase: GetFilterValuesUseCase
-    var getActiveFilterUseCase: GetActiveFilterUseCase
-    var saveActiveFilterUserCase: SaveActiveFilterUseCase
+    var getFilterActiveUseCase: GetFilterActiveUseCase
+    var saveFilterActiveUserCase: SaveFilterActiveUseCase
+    
+    private var filterValues = Filter()
 
     internal init(getFilterValuesUseCase: GetFilterValuesUseCase,
-                  getActiveFilterUseCase: GetActiveFilterUseCase,
-                  saveActiveFilterUserCase: SaveActiveFilterUseCase) {
+                  getFilterActiveUseCase: GetFilterActiveUseCase,
+                  saveFilterActiveUserCase: SaveFilterActiveUseCase) {
         
         self.getFilterValuesUseCase = getFilterValuesUseCase
-        self.getActiveFilterUseCase = getActiveFilterUseCase
-        self.saveActiveFilterUserCase = saveActiveFilterUserCase
+        self.getFilterActiveUseCase = getFilterActiveUseCase
+        self.saveFilterActiveUserCase = saveFilterActiveUserCase
     }
     
     override func viewDidLoad() {
@@ -60,34 +60,47 @@ class DefaultFilterViewModel: BaseViewModel, FilterViewModel {
         getFilterValuesUseCase.execute { result in
             
             switch result {
-                
             case .success(let filterValues):
                 
-                self.filterValues.value = filterValues
-                self.getActiveFilterUseCase.execute { result in
+                self.filterValues = filterValues
+                self.getFilterActiveUseCase.execute { result in
                     
                     switch result {
-                        
-                    case .success(let activeFilter):
-                        self.activeFilter.value = activeFilter
+                    case .success(let filterActive):
+                        self.filterConfig.value = FilterConfigUi(filterValues: filterValues.toFilterUi(),
+                                                                 filterActive: filterActive.toFilterUi())
                     case .failure(let error):
-                        self.errorMessage.value = error.localizedDescription
+                        self.showErrorAndDismiss(error: error)
                     }
                 }
 
             case .failure(let error):
-                self.errorMessage.value = error.localizedDescription
+                self.showErrorAndDismiss(error: error)
             }
         }
-        
-        
     }
     
     func didSelectReset() {
-        print("didSelectReset")
+        filterConfig.value = FilterConfigUi(filterValues: filterValues.toFilterUi(),
+                                            filterActive: filterValues.toFilterUi())
     }
     
-    func didSelectApplyFilter(_ filter: Filter) {
-        print("didSelecApplyFilter")
+    func didSelectApplyFilter(_ filter: FilterUi) {
+
+        saveFilterActiveUserCase.execute(filter: filter.toFilter()) { result in
+            
+            switch result {
+            case .success():
+                self.transitionTo.value = .dismiss
+            case .failure(let error):
+                self.showErrorAndDismiss(error: error)
+            }
+        }
+    }
+    
+    private func showErrorAndDismiss(error: Error) {
+        
+        errorMessage.value = error.localizedDescription
+        transitionTo.value = .dismiss
     }
 }

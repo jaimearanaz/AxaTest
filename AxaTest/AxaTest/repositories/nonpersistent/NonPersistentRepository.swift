@@ -12,7 +12,7 @@ class NonPersistentRepository: NonPersistentRepositoryProtocol {
     var characters = [Character]()
     var selectedCharacter: Int?
     var filterValues: Filter?
-    var activeFilter: Filter?
+    var filterActive: Filter?
 
     func saveCharacters(_ characters: [Character]) {
         self.characters = characters
@@ -22,12 +22,12 @@ class NonPersistentRepository: NonPersistentRepositoryProtocol {
         return characters
     }
     
-    func saveActiveFilter(_ filter: Filter) {
-        activeFilter = filter
+    func saveFilterActive(_ filter: Filter) {
+        filterActive = filter
     }
     
-    func getActiveFilter() -> Filter? {
-        return activeFilter
+    func getFilterActive() -> Filter? {
+        return filterActive
     }
     
     func saveFilterValues(_ filter: Filter) {

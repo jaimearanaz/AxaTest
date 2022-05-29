@@ -48,7 +48,7 @@ class DefaultGetCharactersUseCase: GetCharactersUseCase {
                     self.nonPersistentRepository.saveCharacters(characters)
                     let filterValues = self.getFilterValues(fromCharacters: characters)
                     self.nonPersistentRepository.saveFilterValues(filterValues)
-                    self.nonPersistentRepository.saveActiveFilter(filterValues)
+                    self.nonPersistentRepository.saveFilterActive(filterValues)
                     completion(.success(characters))
                 }
                 .store(in: &subscribers)
@@ -74,7 +74,7 @@ class DefaultGetCharactersUseCase: GetCharactersUseCase {
         let maxWeight = Int(characters.max { $0.weight < $1.weight }?.weight ?? 0)
         let minHeight = Int(characters.min { $0.height < $1.height }?.height ?? 0)
         let maxHeight = Int(characters.max { $0.height < $1.height }?.height ?? 0)
-        
+
         return Filter(age: minAge...maxAge,
                       weight: minWeight...maxWeight,
                       height: minHeight...maxHeight,
