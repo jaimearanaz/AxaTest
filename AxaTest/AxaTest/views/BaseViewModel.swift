@@ -8,7 +8,7 @@
 import Foundation
 
 protocol BaseViewModelOutput {
-    
+    var errorMessage: Box<String> { get set }
 }
 
 protocol BaseViewModelInput {
@@ -23,13 +23,9 @@ protocol BaseViewModelProtocol: BaseViewModelOutput, BaseViewModelInput {
 
 class BaseViewModel: BaseViewModelProtocol {
 
+    var errorMessage = Box("")
     
+    func viewDidLoad() { }
     
-    func viewDidLoad() {
-
-    }
-    
-    func viewDidAppear() {
-
-    }
+    func viewDidAppear() { }
 }

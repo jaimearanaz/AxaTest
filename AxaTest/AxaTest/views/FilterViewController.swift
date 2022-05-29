@@ -26,6 +26,7 @@ class FilterViewController: BaseViewController, FilterTableDelegate {
 
     override func binds() {
 
+        super.binds()
         viewModel?.transitionTo.bind({ transitionTo in
             switch transitionTo {
             case .none:
@@ -38,6 +39,12 @@ class FilterViewController: BaseViewController, FilterTableDelegate {
         viewModel?.filterConfig.bind({ filterConfig in
             self.filterActive = filterConfig.filterActive
             // TODO: build UI with filter values and filter active
+        })
+        
+        viewModel?.errorMessage.bind({ errorMessage in
+            DispatchQueue.main.async {
+                self.showAlert(withMessage: errorMessage)
+            }
         })
     }
     

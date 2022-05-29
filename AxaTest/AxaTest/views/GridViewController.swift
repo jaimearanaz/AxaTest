@@ -17,6 +17,7 @@ class GridViewController: BaseViewController {
 
     override func binds() {
 
+        super.binds()
         viewModel?.isLoading.bind({ isLoading in
             
             switch isLoading {

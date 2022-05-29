@@ -62,10 +62,12 @@ class DefaultGetCharactersUseCase: GetCharactersUseCase {
         
         var professions = Set<String>()
         var hairColors = Set<String>()
+        var names = Set<String>()
         
         characters.forEach ({
             $0.professions.forEach { professions.insert($0) }
             hairColors.insert($0.hairColor)
+            names.insert($0.name)
         })
         
         let minAge = characters.min { $0.age < $1.age }?.age ?? 0

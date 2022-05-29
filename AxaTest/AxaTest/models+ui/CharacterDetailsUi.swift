@@ -9,13 +9,13 @@ import Foundation
 
 struct CharacterDetailsUi {
     
-    var id: Int
-    var name: String
-    var thumbnail: String
-    var age: Int
-    var weight: Double
-    var height: Double
-    var hairColor: String
-    var professions: [String]
-    var friends: [String]
+    var id = 0
+    var name = ""
+    var thumbnail = ""
+    var age = 0
+    var weight = 0.0
+    var height = 0.0
+    var hairColor = ""
+    var professions = [String]()
+    var friends = [String]()
 }

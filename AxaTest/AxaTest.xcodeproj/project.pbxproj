@@ -43,6 +43,8 @@
 		6F03B4E42843C0DB0047E456 /* FilterConfigUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F03B4E32843C0DB0047E456 /* FilterConfigUi.swift */; };
 		6F03B4E72843C3B90047E456 /* CharacterDetailsUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F03B4E62843C3B90047E456 /* CharacterDetailsUi.swift */; };
 		6F03B4EC2843C7660047E456 /* Filter+Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F03B4EB2843C7660047E456 /* Filter+Mapper.swift */; };
+		6F03B4F02843CCB00047E456 /* CharacterDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F03B4EF2843CCB00047E456 /* CharacterDetailsViewModel.swift */; };
+		6F03B4F62843D1C20047E456 /* GetCharacterByIdUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F03B4F52843D1C20047E456 /* GetCharacterByIdUseCase.swift */; };
 		6F6E6395283F794B004347DE /* NetworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E6394283F794B004347DE /* NetworkRepository.swift */; };
 		6F6E6397283F79AF004347DE /* GetCharacters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E6396283F79AF004347DE /* GetCharacters.swift */; };
 		6F6E639A283F7AAE004347DE /* NetworkRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E6399283F7AAE004347DE /* NetworkRepositoryProtocol.swift */; };
@@ -113,6 +115,8 @@
 		6F03B4E32843C0DB0047E456 /* FilterConfigUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterConfigUi.swift; sourceTree = "<group>"; };
 		6F03B4E62843C3B90047E456 /* CharacterDetailsUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsUi.swift; sourceTree = "<group>"; };
 		6F03B4EB2843C7660047E456 /* Filter+Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Filter+Mapper.swift"; sourceTree = "<group>"; };
+		6F03B4EF2843CCB00047E456 /* CharacterDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewModel.swift; sourceTree = "<group>"; };
+		6F03B4F52843D1C20047E456 /* GetCharacterByIdUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCharacterByIdUseCase.swift; sourceTree = "<group>"; };
 		6F6E6394283F794B004347DE /* NetworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepository.swift; sourceTree = "<group>"; };
 		6F6E6396283F79AF004347DE /* GetCharacters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCharacters.swift; sourceTree = "<group>"; };
 		6F6E6399283F7AAE004347DE /* NetworkRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -198,6 +202,7 @@
 				6F03B4BE284237050047E456 /* ResetActiveFilterUseCase.swift */,
 				6F03B4CE2842422E0047E456 /* SaveSelectedCharacter.swift */,
 				6F03B4CC284242210047E456 /* GetSelectedCharacter.swift */,
+				6F03B4F52843D1C20047E456 /* GetCharacterByIdUseCase.swift */,
 			);
 			path = usecases;
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 				6F03B49F2840E6280047E456 /* FilterViewController.swift */,
 				6F03B4E128427FB50047E456 /* FilterViewModel.swift */,
 				6F03B4DC2842777E0047E456 /* CharacterViewController.swift */,
+				6F03B4EF2843CCB00047E456 /* CharacterDetailsViewModel.swift */,
 				6F03B496283FB35E0047E456 /* NetworkErrors+Extensions.swift */,
 				6F03B4D828424E0A0047E456 /* NonPersistentErrors+Extensions.swift */,
 			);
@@ -487,6 +493,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F6E6397283F79AF004347DE /* GetCharacters.swift in Sources */,
+				6F03B4F62843D1C20047E456 /* GetCharacterByIdUseCase.swift in Sources */,
 				6F03B4B7284236B40047E456 /* GetFilteredCharactersUseCase.swift in Sources */,
 				6F03B4E228427FB50047E456 /* FilterViewModel.swift in Sources */,
 				6F03B49A283FB4130047E456 /* String+Extensions.swift in Sources */,
@@ -509,6 +516,7 @@
 				6F03B4D328424ADB0047E456 /* Filter.swift in Sources */,
 				6F03B4E42843C0DB0047E456 /* FilterConfigUi.swift in Sources */,
 				6F03B4BB284236EA0047E456 /* GetActiveFilterUseCase.swift in Sources */,
+				6F03B4F02843CCB00047E456 /* CharacterDetailsViewModel.swift in Sources */,
 				6F03B4AF284230C80047E456 /* GridDI.swift in Sources */,
 				6F03B49E283FC6DE0047E456 /* Collection+Extensions.swift in Sources */,
 				6F03B4D928424E0A0047E456 /* NonPersistentErrors+Extensions.swift in Sources */,

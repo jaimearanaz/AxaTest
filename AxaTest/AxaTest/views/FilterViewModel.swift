@@ -17,7 +17,6 @@ protocol FilterViewModelOutput: BaseViewModelOutput {
     
     var filterConfig: Box<FilterConfigUi> { get set }
     var transitionTo: Box<FilterTransitions> { get set }
-    var errorMessage: Box<String> { get set }
 }
 
 protocol FilterViewModelInput: BaseViewModelInput {
@@ -37,7 +36,6 @@ class DefaultFilterViewModel: BaseViewModel, FilterViewModel {
 
     var filterConfig = Box(FilterConfigUi(filterValues: FilterUi(), filterActive: FilterUi()))
     var transitionTo = Box(FilterTransitions.none)
-    var errorMessage = Box("")
     var getFilterValuesUseCase: GetFilterValuesUseCase
     var getFilterActiveUseCase: GetFilterActiveUseCase
     var saveFilterActiveUserCase: SaveFilterActiveUseCase

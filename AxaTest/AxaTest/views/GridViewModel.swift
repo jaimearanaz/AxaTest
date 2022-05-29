@@ -17,7 +17,6 @@ enum GridTransitions: String {
 protocol GridViewModelOutput: BaseViewModelOutput {
     
     var isLoading: Box<Bool> { get set }
-    var errorMessage: Box<String> { get set }
     var characters: Box<[CharacterGridUi]> { get set }
     var transitionTo: Box<GridTransitions> { get set }
 }
@@ -41,7 +40,6 @@ protocol GridViewModel: BaseViewModel, GridViewModelOutput, GridViewModelInput {
 class DefaultGridViewModel: BaseViewModel, GridViewModel {
     
     var isLoading = Box(false)
-    var errorMessage = Box("")
     var characters = Box([CharacterGridUi]())
     var transitionTo = Box(GridTransitions.none)
     var getCharactersUseCase: GetCharactersUseCase

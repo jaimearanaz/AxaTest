@@ -11,7 +11,7 @@ protocol GetSelectedCharacterUseCase {
     
     var nonPersistentRepository: NonPersistentRepositoryProtocol { get set }
     
-    func execute(completion: @escaping (Result<Int, Error>) -> Void)
+    func execute(completion: @escaping (Result<Character, Error>) -> Void)
 }
 
 class DefaultGetSelectedCharacterUseCase: GetSelectedCharacterUseCase {
@@ -22,10 +22,17 @@ class DefaultGetSelectedCharacterUseCase: GetSelectedCharacterUseCase {
         self.nonPersistentRepository = nonPersistentRepository
     }
     
-    func execute(completion: @escaping (Result<Int, Error>) -> Void) {
+    func execute(completion: @escaping (Result<Character, Error>) -> Void) {
         
         if let id = nonPersistentRepository.getSelectedCharacter() {
-            completion(.success(id))
+            
+            let characters = nonPersistentRepository.getSavedCharacters()
+            if let oneCharacter = (characters.filter { $0.id == id }).first {
+                completion(.success(oneCharacter))
+            } else {
+                completion(.failure(NonPersistentErrors.noData))
+            }
+            
         } else {
             completion(.failure(NonPersistentErrors.noData))
         }
