@@ -14,4 +14,5 @@ struct Filter {
     var height: ClosedRange<Int> = 0...0
     var hairColor = [String]()
     var profession = [String]()
+    var friends: ClosedRange<Int> = 0...0
 }

@@ -14,6 +14,7 @@ struct FilterUi {
     var height: ClosedRange<Int> = 0...0
     var hairColor = [String]()
     var profession = [String]()
+    var friends: ClosedRange<Int> = 0...0
 }
 
 struct FilterConfigUi {

@@ -76,11 +76,14 @@ class DefaultGetCharactersUseCase: GetCharactersUseCase {
         let maxWeight = Int(characters.max { $0.weight < $1.weight }?.weight ?? 0)
         let minHeight = Int(characters.min { $0.height < $1.height }?.height ?? 0)
         let maxHeight = Int(characters.max { $0.height < $1.height }?.height ?? 0)
-
+        let minFriends = Int(characters.min { $0.friends.count < $1.friends.count }?.friends.count ?? 0)
+        let maxFriends = Int(characters.max { $0.friends.count < $1.friends.count }?.friends.count ?? 0)
+    
         return Filter(age: minAge...maxAge,
                       weight: minWeight...maxWeight,
                       height: minHeight...maxHeight,
                       hairColor: Array(hairColors),
-                      profession: Array(professions))
+                      profession: Array(professions),
+                      friends: minFriends...maxFriends)
     }
 }

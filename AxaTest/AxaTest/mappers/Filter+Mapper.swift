@@ -14,7 +14,8 @@ extension Filter {
                         weight: weight,
                         height: height,
                         hairColor: hairColor,
-                        profession: profession)
+                        profession: profession,
+                        friends: friends)
     }
 }
 
@@ -25,6 +26,7 @@ extension FilterUi {
                       weight: weight,
                       height: height,
                       hairColor: hairColor,
-                      profession: profession)
+                      profession: profession,
+                      friends: friends)
     }
 }
