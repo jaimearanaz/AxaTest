@@ -24,7 +24,7 @@ class GridViewController: BaseViewController {
       bottom: 16.0,
       right: 16.0)
     private var cellSize = CGSize(width: 0, height: 0)
-
+    
     override func binds() {
 
         super.binds()
@@ -51,6 +51,7 @@ class GridViewController: BaseViewController {
             DispatchQueue.main.async {
                 self.emptyLb.isHidden = characters.isNotEmpty
                 self.collectionView.reloadData()
+                self.collectionView.setContentOffset(CGPoint.zero, animated: true)
             }
         })
         
@@ -67,9 +68,11 @@ class GridViewController: BaseViewController {
         let resetButton = UIBarButtonItem(title: "FILTER_RESET".localized, style: .plain, target: self, action: #selector(didSelectReset))
         navigationItem.rightBarButtonItems = [filterButton, resetButton]
         
+        title = "Brastlewark"
+        
         activityIndicatorView.isHidden = true
         emptyLb.isHidden = true
-        emptyLb.font = UIFont.regular(withSize: 16)
+        emptyLb.font = UIFont.regular(withSize: 18)
         emptyLb.textColor = UIColor.gray
     }
     

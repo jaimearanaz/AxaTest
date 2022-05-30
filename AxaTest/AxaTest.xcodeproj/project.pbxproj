@@ -67,6 +67,7 @@
 		6FD7173F28452466001202EC /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6FD7173C28452466001202EC /* Lato-Regular.ttf */; };
 		6FD7174028452466001202EC /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6FD7173D28452466001202EC /* Lato-Black.ttf */; };
 		6FD7174428452D0A001202EC /* UIViewShadowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD7174328452D0A001202EC /* UIViewShadowable.swift */; };
+		6FD7174628453CF7001202EC /* BlackCastleMF.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6FD7174528453CF7001202EC /* BlackCastleMF.ttf */; };
 		E77785E24A5ADD8A7CAE2BA1 /* Pods_AxaTest_AxaTestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 620150909DE46FE5C647E2F8 /* Pods_AxaTest_AxaTestUITests.framework */; };
 		F941F6721671F6C5FFF67DD3 /* Pods_AxaTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD34A9E78A22A7D73DDE275 /* Pods_AxaTestTests.framework */; };
 /* End PBXBuildFile section */
@@ -156,6 +157,7 @@
 		6FD7173C28452466001202EC /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		6FD7173D28452466001202EC /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
 		6FD7174328452D0A001202EC /* UIViewShadowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewShadowable.swift; sourceTree = "<group>"; };
+		6FD7174528453CF7001202EC /* BlackCastleMF.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BlackCastleMF.ttf; sourceTree = "<group>"; };
 		95DF631263566C56E8D5AE08 /* Pods-AxaTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxaTestTests.release.xcconfig"; path = "Target Support Files/Pods-AxaTestTests/Pods-AxaTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		B7574474C8C9D2163CF2F809 /* Pods-AxaTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxaTest.release.xcconfig"; path = "Target Support Files/Pods-AxaTest/Pods-AxaTest.release.xcconfig"; sourceTree = "<group>"; };
 		BC1C1C46B8494C47849A8A51 /* Pods-AxaTest-AxaTestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxaTest-AxaTestUITests.release.xcconfig"; path = "Target Support Files/Pods-AxaTest-AxaTestUITests/Pods-AxaTest-AxaTestUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 		6FD7173A2845244C001202EC /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				6FD7174528453CF7001202EC /* BlackCastleMF.ttf */,
 				6FD7173D28452466001202EC /* Lato-Black.ttf */,
 				6FD7173B28452466001202EC /* Lato-Bold.ttf */,
 				6FD7173C28452466001202EC /* Lato-Regular.ttf */,
@@ -539,6 +542,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6FD7174028452466001202EC /* Lato-Black.ttf in Resources */,
+				6FD7174628453CF7001202EC /* BlackCastleMF.ttf in Resources */,
 				6FD09EEE283F724B0015567C /* LaunchScreen.storyboard in Resources */,
 				6FD7173F28452466001202EC /* Lato-Regular.ttf in Resources */,
 				6FD7173E28452466001202EC /* Lato-Bold.ttf in Resources */,
