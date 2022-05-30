@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import UIKit
 
 class CharacterDetailsViewController: BaseViewController {
+    
+    @IBOutlet weak var seeFriendBt: UIButton!
     
     var viewModel: CharacterDetailsViewModel? { didSet { baseViewModel = viewModel } }
     
@@ -23,5 +26,9 @@ class CharacterDetailsViewController: BaseViewController {
                 self.showAlert(withMessage: errorMessage)
             }
         })
+    }
+    
+    @IBAction func didSelectFriend() {
+        viewModel?.didSelectFriend(id: Int.random(in: 1..<2000))
     }
 }

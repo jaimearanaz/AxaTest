@@ -21,7 +21,7 @@ protocol CharacterDetailsViewModelOutput: BaseViewModelOutput {
 
 protocol CharacterDetailsViewModelInput: BaseViewModelInput {
     
-    func didSelectFriend(_ id: Int)
+    func didSelectFriend(id: Int)
 }
 
 protocol CharacterDetailsViewModel: BaseViewModel, CharacterDetailsViewModelOutput, CharacterDetailsViewModelInput {
@@ -57,7 +57,7 @@ class DefaultCharacterDetailsViewModel: BaseViewModel, CharacterDetailsViewModel
         }
     }
     
-    func didSelectFriend(_ id: Int) {
+    func didSelectFriend(id: Int) {
      
         getCharacterByIdUseCase.execute(id: id) { result in
             
