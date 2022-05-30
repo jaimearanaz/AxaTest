@@ -21,5 +21,28 @@
 			</array>
 		</dict>
 	</dict>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>www.publicdomainpictures.net</key>
+            <dict>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+                <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+                <key>NSTemporaryExceptionMinimumTLSVersion</key>
+                <string>1.0</string>
+                <key>NSTemporaryExceptionRequiresForwardSecrecy</key>
+                <false/>
+            </dict>
+        </dict>
+    </dict>
+    <key>UIAppFonts</key>
+    <array>
+        <string>Lato-Regular.ttf</string>
+        <string>Lato-Bold.ttf</string>
+        <string>Lato-Black.ttf</string>
+    </array>
 </dict>
 </plist>
