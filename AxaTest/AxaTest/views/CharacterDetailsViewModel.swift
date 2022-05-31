@@ -9,42 +9,43 @@ import Foundation
 
 enum CharacterDetailsTransitions: String {
     
-    case none
-    case dismiss
+    case toFriend
+    case toGrid
 }
 
 protocol CharacterDetailsViewModelOutput: BaseViewModelOutput {
     
     var character: Box<CharacterDetailsUi> { get set }
-    var transitionTo: Box<CharacterDetailsTransitions> { get set }
+    var transitionTo: Box<CharacterDetailsTransitions?> { get set }
 }
 
 protocol CharacterDetailsViewModelInput: BaseViewModelInput {
     
+    func didSelectBack()
     func didSelectFriend(id: Int)
 }
 
 protocol CharacterDetailsViewModel: BaseViewModel, CharacterDetailsViewModelOutput, CharacterDetailsViewModelInput {
     
     var getSelectedCharacterUseCase: GetSelectedCharacterUseCase { get set }
-    var getCharacterByIdUseCase: GetCharacterByIdUseCase { get set }
+    var saveSelectCharacterUseCase: SaveSelectedCharacterUseCase { get set }
     var getCharactersByNameUseCase: GetCharactersByNameUseCase { get set }
 }
 
 class DefaultCharacterDetailsViewModel: BaseViewModel, CharacterDetailsViewModel {
 
     var character = Box(CharacterDetailsUi())
-    var transitionTo = Box(CharacterDetailsTransitions.none)
+    var transitionTo = Box<CharacterDetailsTransitions?>(nil)
     var getSelectedCharacterUseCase: GetSelectedCharacterUseCase
-    var getCharacterByIdUseCase: GetCharacterByIdUseCase
+    var saveSelectCharacterUseCase: SaveSelectedCharacterUseCase
     var getCharactersByNameUseCase: GetCharactersByNameUseCase
     
     init(getSelectedCharacterUseCase: GetSelectedCharacterUseCase,
-         getCharacterByIdUseCase: GetCharacterByIdUseCase,
+         saveSelectCharacterUseCase: SaveSelectedCharacterUseCase,
          getCharactersByNameUseCase: GetCharactersByNameUseCase) {
         
         self.getSelectedCharacterUseCase = getSelectedCharacterUseCase
-        self.getCharacterByIdUseCase = getCharacterByIdUseCase
+        self.saveSelectCharacterUseCase = saveSelectCharacterUseCase
         self.getCharactersByNameUseCase = getCharactersByNameUseCase
     }
     
@@ -71,22 +72,17 @@ class DefaultCharacterDetailsViewModel: BaseViewModel, CharacterDetailsViewModel
         }
     }
     
+    func didSelectBack() {
+        transitionTo.value = .toGrid
+    }
+    
     func didSelectFriend(id: Int) {
         
-        getCharacterByIdUseCase.execute(id: id) { result in
+        saveSelectCharacterUseCase.execute(id: id) { result in
             
             switch result {
-            case .success(let character):
-                
-                self.getCharacterDetailsUi(fromCharacter: character) { result in
-                    switch result {
-                    case .success(let character):
-                        self.character.value = character
-                    case .failure(let error):
-                        self.showErrorAndDismiss(error: error)
-                    }
-                }
-                
+            case .success():
+                self.transitionTo.value = .toFriend
             case .failure(let error):
                 self.errorMessage.value = error.localizedDescription
             }
@@ -114,6 +110,6 @@ class DefaultCharacterDetailsViewModel: BaseViewModel, CharacterDetailsViewModel
     private func showErrorAndDismiss(error: Error) {
         
         errorMessage.value = error.localizedDescription
-        transitionTo.value = .dismiss
+        transitionTo.value = .toGrid
     }
 }

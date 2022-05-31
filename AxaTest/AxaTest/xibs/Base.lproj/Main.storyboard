@@ -204,7 +204,7 @@
         <!--Character Details View Controller-->
         <scene sceneID="ebu-3d-rAs">
             <objects>
-                <viewController storyboardIdentifier="CharacterViewController" id="EFs-bo-p6S" customClass="CharacterDetailsViewController" customModule="AxaTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CharacterDetailsViewController" id="EFs-bo-p6S" customClass="CharacterDetailsViewController" customModule="AxaTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y6A-hM-GM5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -263,64 +263,59 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RJk-vw-cpL">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ceC-gf-1c0">
                                 <rect key="frame" x="20" y="427.5" width="374" height="434.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="VeG-Me-quI">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="QhA-qT-w1t">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="6Rg-B7-d46">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="EFs-bo-p6S" id="LF5-dp-dj9"/>
-                                    <outlet property="delegate" destination="EFs-bo-p6S" id="Qfo-fy-SAO"/>
+                                    <outlet property="dataSource" destination="EFs-bo-p6S" id="IDq-2c-ACJ"/>
+                                    <outlet property="delegate" destination="EFs-bo-p6S" id="du7-fZ-AEu"/>
                                 </connections>
-                            </collectionView>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pBQ-uu-aFI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="pBQ-uu-aFI" firstAttribute="bottom" secondItem="ceC-gf-1c0" secondAttribute="bottom" id="0Mx-Jl-Krk"/>
                             <constraint firstItem="pBQ-uu-aFI" firstAttribute="trailing" secondItem="wuE-BP-zmD" secondAttribute="trailing" constant="20" id="C7d-Pz-ssa"/>
+                            <constraint firstItem="pBQ-uu-aFI" firstAttribute="trailing" secondItem="ceC-gf-1c0" secondAttribute="trailing" constant="20" id="D89-CA-0Mf"/>
                             <constraint firstItem="yp2-an-0M4" firstAttribute="leading" secondItem="pBQ-uu-aFI" secondAttribute="leading" constant="20" id="VK9-RM-lXZ"/>
                             <constraint firstItem="wuE-BP-zmD" firstAttribute="leading" secondItem="pBQ-uu-aFI" secondAttribute="leading" constant="20" id="aWr-9Z-NBn"/>
-                            <constraint firstItem="pBQ-uu-aFI" firstAttribute="trailing" secondItem="RJk-vw-cpL" secondAttribute="trailing" constant="20" id="fbX-YD-wqh"/>
                             <constraint firstItem="Wh5-zA-oQg" firstAttribute="top" secondItem="pBQ-uu-aFI" secondAttribute="top" constant="16" id="gj4-ew-6mB"/>
+                            <constraint firstItem="ceC-gf-1c0" firstAttribute="top" secondItem="wuE-BP-zmD" secondAttribute="bottom" constant="8" id="hHQ-nd-MMa"/>
                             <constraint firstItem="pBQ-uu-aFI" firstAttribute="trailing" secondItem="yp2-an-0M4" secondAttribute="trailing" constant="20" id="iVr-9O-kD8"/>
                             <constraint firstItem="wuE-BP-zmD" firstAttribute="top" secondItem="yp2-an-0M4" secondAttribute="bottom" constant="16" id="lAi-kQ-oit"/>
                             <constraint firstItem="yp2-an-0M4" firstAttribute="top" secondItem="Wh5-zA-oQg" secondAttribute="bottom" constant="16" id="mdM-xq-yOp"/>
-                            <constraint firstItem="pBQ-uu-aFI" firstAttribute="bottom" secondItem="RJk-vw-cpL" secondAttribute="bottom" id="oiM-ev-hQg"/>
-                            <constraint firstItem="RJk-vw-cpL" firstAttribute="leading" secondItem="pBQ-uu-aFI" secondAttribute="leading" constant="20" id="rVw-Xl-FUf"/>
-                            <constraint firstItem="RJk-vw-cpL" firstAttribute="top" secondItem="wuE-BP-zmD" secondAttribute="bottom" constant="8" id="tbr-Jg-34d"/>
                             <constraint firstItem="Wh5-zA-oQg" firstAttribute="centerX" secondItem="pBQ-uu-aFI" secondAttribute="centerX" id="y3r-0x-ORS"/>
+                            <constraint firstItem="ceC-gf-1c0" firstAttribute="leading" secondItem="pBQ-uu-aFI" secondAttribute="leading" constant="20" id="zmO-TM-xSt"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xRU-gW-maO"/>
                     <connections>
                         <outlet property="ageLb" destination="AXc-UB-uFA" id="bwg-A7-JCY"/>
-                        <outlet property="collectionView" destination="RJk-vw-cpL" id="vAp-tg-9jx"/>
                         <outlet property="friendsLb" destination="p0R-0N-W1w" id="SY0-NJ-pHm"/>
                         <outlet property="hairColorLb" destination="Cgc-ZI-Hlh" id="vos-WU-kv1"/>
                         <outlet property="heightLb" destination="SHq-km-tp2" id="MVu-r0-056"/>
                         <outlet property="imageView" destination="Wh5-zA-oQg" id="WGq-Vo-lRd"/>
                         <outlet property="nameLb" destination="yp2-an-0M4" id="hkI-km-m8w"/>
                         <outlet property="professionsLb" destination="lGg-91-AFP" id="Wrj-DP-Scu"/>
+                        <outlet property="tableView" destination="ceC-gf-1c0" id="b96-jG-hhv"/>
                         <outlet property="weightLb" destination="PAX-7h-eie" id="zkG-D4-yw3"/>
+                        <segue destination="JCo-Vr-21i" kind="show" identifier="toFriend" id="40I-hF-wCX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xwM-QR-WVm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="913" y="491"/>
+        </scene>
+        <!--CharacterDetailsViewController-->
+        <scene sceneID="46t-LX-05F">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Main" storyboardName="Main" referencedIdentifier="CharacterDetailsViewController" id="JCo-Vr-21i" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="kWl-qQ-b9Z"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mvG-yp-hXB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1612" y="491"/>
         </scene>
     </scenes>
     <resources>

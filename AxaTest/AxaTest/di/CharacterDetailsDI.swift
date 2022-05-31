@@ -13,13 +13,14 @@ extension DependencyInjector {
     func injectCharacterDetails(withSegue segue: UIStoryboardSegue) {
         
         let getSelectedCharacterUseCase = DefaultGetSelectedCharacterUseCase(nonPersistentRepository: nonPersistentRepository)
-        let getCharacterByIdUseCase = DefaultGetCharacterByIdUseCase(nonPersistentRepository: nonPersistentRepository)
+        let saveSelectedCharacterUseCase = DefaultSaveSelectedCharacterUseCase(nonPersistentRepository: nonPersistentRepository)
         let getCharactersByNameUseCase = DefaultGetCharactersByNameUseCase(nonPersistentRepository: nonPersistentRepository)
         let viewModel = DefaultCharacterDetailsViewModel(getSelectedCharacterUseCase: getSelectedCharacterUseCase,
-                                                         getCharacterByIdUseCase: getCharacterByIdUseCase,
+                                                         saveSelectCharacterUseCase: saveSelectedCharacterUseCase,
                                                          getCharactersByNameUseCase: getCharactersByNameUseCase)
         
         let viewController = segue.destination as! CharacterDetailsViewController
         viewController.viewModel = viewModel
+        viewController.navigationFlow = self
     }
 }

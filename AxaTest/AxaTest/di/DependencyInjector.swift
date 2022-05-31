@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DependencyInjector: GridNavigationFlow {
+class DependencyInjector: GridNavigationFlow, CharacterDetailsNavigationFlow {
     
     var nonPersistentRepository = NonPersistentRepository()
 }

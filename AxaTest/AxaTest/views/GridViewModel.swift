@@ -9,7 +9,6 @@ import Foundation
 
 enum GridTransitions: String {
     
-    case none
     case toFilter
     case toCharacter
 }
@@ -18,7 +17,7 @@ protocol GridViewModelOutput: BaseViewModelOutput {
     
     var isLoading: Box<Bool> { get set }
     var characters: Box<[CharacterGridUi]> { get set }
-    var transitionTo: Box<GridTransitions> { get set }
+    var transitionTo: Box<GridTransitions?> { get set }
 }
 
 protocol GridViewModelInput: BaseViewModelInput {
@@ -41,7 +40,7 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
     
     var isLoading = Box(false)
     var characters = Box([CharacterGridUi]())
-    var transitionTo = Box(GridTransitions.none)
+    var transitionTo = Box<GridTransitions?>(nil)
     var getCharactersUseCase: GetCharactersUseCase
     var getFilterActiveUseCase: GetFilterActiveUseCase
     var getFilteredCharactersUseCase: GetFilteredCharactersUseCase

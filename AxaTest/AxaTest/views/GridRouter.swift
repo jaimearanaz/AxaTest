@@ -15,6 +15,10 @@ protocol GridNavigationFlow {
 }
 
 extension GridViewController {
+    
+    func route(transitionTo: GridTransitions) {
+        self.performSegue(withIdentifier: transitionTo.rawValue, sender: self)
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     

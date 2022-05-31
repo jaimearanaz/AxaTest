@@ -56,7 +56,9 @@ class GridViewController: BaseViewController {
         })
         
         viewModel?.transitionTo.bind({ transitionTo in
-            self.performSegue(withIdentifier: transitionTo.rawValue, sender: self)
+            if let transitionTo = transitionTo {
+                self.route(transitionTo: transitionTo)
+            }
         })
     }
     

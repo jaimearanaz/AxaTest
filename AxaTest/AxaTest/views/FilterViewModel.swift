@@ -8,15 +8,13 @@
 import Foundation
 
 enum FilterTransitions: String {
-    
-    case none
     case dismiss
 }
 
 protocol FilterViewModelOutput: BaseViewModelOutput {
     
     var filterConfig: Box<FilterConfigUi> { get set }
-    var transitionTo: Box<FilterTransitions> { get set }
+    var transitionTo: Box<FilterTransitions?> { get set }
 }
 
 protocol FilterViewModelInput: BaseViewModelInput {
@@ -35,7 +33,7 @@ protocol FilterViewModel: BaseViewModel, FilterViewModelOutput, FilterViewModelI
 class DefaultFilterViewModel: BaseViewModel, FilterViewModel {
 
     var filterConfig = Box(FilterConfigUi(filterValues: FilterUi(), filterActive: FilterUi()))
-    var transitionTo = Box(FilterTransitions.none)
+    var transitionTo = Box<FilterTransitions?>(nil)
     var getFilterValuesUseCase: GetFilterValuesUseCase
     var getFilterActiveUseCase: GetFilterActiveUseCase
     var saveFilterActiveUserCase: SaveFilterActiveUseCase
