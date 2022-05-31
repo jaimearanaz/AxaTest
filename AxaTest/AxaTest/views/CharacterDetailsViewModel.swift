@@ -28,6 +28,7 @@ protocol CharacterDetailsViewModel: BaseViewModel, CharacterDetailsViewModelOutp
     
     var getSelectedCharacterUseCase: GetSelectedCharacterUseCase { get set }
     var getCharacterByIdUseCase: GetCharacterByIdUseCase { get set }
+    var getCharactersByNameUseCase: GetCharactersByNameUseCase { get set }
 }
 
 class DefaultCharacterDetailsViewModel: BaseViewModel, CharacterDetailsViewModel {
@@ -36,11 +37,15 @@ class DefaultCharacterDetailsViewModel: BaseViewModel, CharacterDetailsViewModel
     var transitionTo = Box(CharacterDetailsTransitions.none)
     var getSelectedCharacterUseCase: GetSelectedCharacterUseCase
     var getCharacterByIdUseCase: GetCharacterByIdUseCase
+    var getCharactersByNameUseCase: GetCharactersByNameUseCase
     
-    init(getSelectedCharacterUseCase: GetSelectedCharacterUseCase, getCharacterByIdUseCase: GetCharacterByIdUseCase) {
+    init(getSelectedCharacterUseCase: GetSelectedCharacterUseCase,
+         getCharacterByIdUseCase: GetCharacterByIdUseCase,
+         getCharactersByNameUseCase: GetCharactersByNameUseCase) {
         
         self.getSelectedCharacterUseCase = getSelectedCharacterUseCase
         self.getCharacterByIdUseCase = getCharacterByIdUseCase
+        self.getCharactersByNameUseCase = getCharactersByNameUseCase
     }
     
     override func viewDidLoad() {
@@ -50,7 +55,16 @@ class DefaultCharacterDetailsViewModel: BaseViewModel, CharacterDetailsViewModel
             
             switch result {
             case .success(let character):
-                self.character.value = character.toCharacterDetailsUi()
+                
+                self.getCharacterDetailsUi(fromCharacter: character) { result in
+                    switch result {
+                    case .success(let character):
+                        self.character.value = character
+                    case .failure(let error):
+                        self.showErrorAndDismiss(error: error)
+                    }
+                }
+                
             case .failure(let error):
                 self.showErrorAndDismiss(error: error)
             }
@@ -58,14 +72,41 @@ class DefaultCharacterDetailsViewModel: BaseViewModel, CharacterDetailsViewModel
     }
     
     func didSelectFriend(id: Int) {
-     
+        
         getCharacterByIdUseCase.execute(id: id) { result in
             
             switch result {
             case .success(let character):
-                self.character.value = character.toCharacterDetailsUi()
+                
+                self.getCharacterDetailsUi(fromCharacter: character) { result in
+                    switch result {
+                    case .success(let character):
+                        self.character.value = character
+                    case .failure(let error):
+                        self.showErrorAndDismiss(error: error)
+                    }
+                }
+                
             case .failure(let error):
                 self.errorMessage.value = error.localizedDescription
+            }
+        }
+    }
+    
+    private func getCharacterDetailsUi(fromCharacter character: Character,
+                                       completion: @escaping (Result<CharacterDetailsUi, Error>) -> Void) {
+        
+        getCharactersByNameUseCase.execute(names: character.friends) { result in
+            
+            switch result {
+                
+            case .success(let friends):
+                let friends = friends.map { $0.toFriendUi() }
+                var characterUi = character.toCharacterDetailsUi()
+                characterUi.friends = friends
+                completion(.success(characterUi))
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }

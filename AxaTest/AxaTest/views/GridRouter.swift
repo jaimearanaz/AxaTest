@@ -11,7 +11,7 @@ import UIKit
 protocol GridNavigationFlow {
     
     func injectFilter(withSegue segue: UIStoryboardSegue)
-    func injectCharacter(withSegue segue: UIStoryboardSegue)
+    func injectCharacterDetails(withSegue segue: UIStoryboardSegue)
 }
 
 extension GridViewController {
@@ -24,7 +24,7 @@ extension GridViewController {
             navigationFlow?.injectFilter(withSegue: segue)
             
         case GridTransitions.toCharacter.rawValue:
-            navigationFlow?.injectCharacter(withSegue: segue)
+            navigationFlow?.injectCharacterDetails(withSegue: segue)
             
         default:
             break

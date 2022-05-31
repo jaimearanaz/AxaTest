@@ -10,12 +10,12 @@ import Foundation
 struct CharacterDetailsUi {
     
     var id = 0
-    var name = ""
+    var name: CharacterName = ""
     var thumbnail = ""
     var age = 0
-    var weight = 0.0
-    var height = 0.0
+    var weight = ""
+    var height = ""
     var hairColor = ""
     var professions = [String]()
-    var friends = [String]()
+    var friends = [FriendUi]()
 }

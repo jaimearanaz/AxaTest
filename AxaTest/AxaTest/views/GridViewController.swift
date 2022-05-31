@@ -68,7 +68,11 @@ class GridViewController: BaseViewController {
         let resetButton = UIBarButtonItem(title: "FILTER_RESET".localized, style: .plain, target: self, action: #selector(didSelectReset))
         navigationItem.rightBarButtonItems = [filterButton, resetButton]
         
-        title = "Brastlewark"
+        let label = UILabel(frame: CGRect.zero)
+        label.translatesAutoresizingMaskIntoConstraints = true
+        label.text = "Brastlewark"
+        label.font = UIFont.castle(withSize: 22)
+        navigationItem.titleView = label
         
         activityIndicatorView.isHidden = true
         emptyLb.isHidden = true
@@ -128,8 +132,8 @@ extension GridViewController: UICollectionViewDataSource {
             fatalError("cell or item is not available")
         }
 
-        cell.firstName.text = character.name.components(separatedBy: CharacterSet(charactersIn: " ")).first
-        cell.surname.text = character.name.components(separatedBy: CharacterSet(charactersIn: " ")).last
+        cell.firstName.text = character.name.firstname()
+        cell.surname.text = character.name.surname()
         if let url = URL(string: character.thumbnail) {
             cell.imageView.sd_setImage(with: url)
         }

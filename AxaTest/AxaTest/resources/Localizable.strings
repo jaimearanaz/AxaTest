@@ -24,3 +24,10 @@
 "FILTER_RESET" = "Reset";
 
 "GRID_EMPTY" = "Sorry, there are no characters 🤷‍♀️";
+
+"CHARACTER_AGE" = "Age";
+"CHARACTER_WEIGHT" = "Weight";
+"CHARACTER_HEIGHT" = "Height";
+"CHARACTER_HAIR_COLOR" = "Hair color";
+"CHARACTER_PROFESSIONS" = "Professions";
+"CHARACTER_FRIENDS" = "Friends";

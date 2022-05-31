@@ -14,14 +14,22 @@ extension Character {
     }
     
     func toCharacterDetailsUi() -> CharacterDetailsUi {
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = 2
+
         return CharacterDetailsUi(id: id,
                                   name: name,
                                   thumbnail: thumbnail,
                                   age: age,
-                                  weight: weight,
-                                  height: height,
+                                  weight: numberFormatter.string(from: NSNumber(value: weight)) ?? "",
+                                  height: numberFormatter.string(from: NSNumber(value: height)) ?? "",
                                   hairColor: hairColor,
-                                  professions: professions,
-                                  friends: friends)
+                                  professions: professions)
+    }
+    
+    func toFriendUi() -> FriendUi {
+        return FriendUi(id: id, name: name, thumbnail: thumbnail)
     }
 }

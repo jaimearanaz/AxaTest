@@ -10,12 +10,14 @@ import UIKit
 
 extension DependencyInjector {
     
-    func injectCharacter(withSegue segue: UIStoryboardSegue) {
+    func injectCharacterDetails(withSegue segue: UIStoryboardSegue) {
         
         let getSelectedCharacterUseCase = DefaultGetSelectedCharacterUseCase(nonPersistentRepository: nonPersistentRepository)
         let getCharacterByIdUseCase = DefaultGetCharacterByIdUseCase(nonPersistentRepository: nonPersistentRepository)
+        let getCharactersByNameUseCase = DefaultGetCharactersByNameUseCase(nonPersistentRepository: nonPersistentRepository)
         let viewModel = DefaultCharacterDetailsViewModel(getSelectedCharacterUseCase: getSelectedCharacterUseCase,
-                                                         getCharacterByIdUseCase: getCharacterByIdUseCase)
+                                                         getCharacterByIdUseCase: getCharacterByIdUseCase,
+                                                         getCharactersByNameUseCase: getCharactersByNameUseCase)
         
         let viewController = segue.destination as! CharacterDetailsViewController
         viewController.viewModel = viewModel

@@ -10,7 +10,7 @@ import Foundation
 struct CharacterGridUi {
     
     var id: Int
-    var name: String
+    var name: CharacterName
     var thumbnail: String
     var age: Int
 }
