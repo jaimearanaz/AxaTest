@@ -6,8 +6,8 @@ target 'AxaTest' do
   use_frameworks!
 
   # Pods for AxaTest
-
   pod 'SDWebImage'
+  pod 'MultiSlider'
 
   target 'AxaTestTests' do
     inherit! :search_paths

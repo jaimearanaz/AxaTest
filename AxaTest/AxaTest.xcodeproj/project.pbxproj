@@ -231,6 +231,8 @@
 		6F03B498283FB4030047E456 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				6F03B496283FB35E0047E456 /* NetworkErrors+Extensions.swift */,
+				6F03B4D828424E0A0047E456 /* NonPersistentErrors+Extensions.swift */,
 				6FD7174D28461AA9001202EC /* NSAttributedString+Extensions.swift */,
 				6F03B499283FB4130047E456 /* String+Extensions.swift */,
 				6F03B49D283FC6DE0047E456 /* Collection+Extensions.swift */,
@@ -323,25 +325,15 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
-		6F6E638B283F77B6004347DE /* views */ = {
+		6F6E638B283F77B6004347DE /* views+viewmodels */ = {
 			isa = PBXGroup;
 			children = (
-				6F03B4A42840EAF70047E456 /* BaseViewController.swift */,
-				6F03B4A62840EB300047E456 /* BaseViewModel.swift */,
-				6F03B4C828423F2F0047E456 /* GridRouter.swift */,
-				6F3BE94E2844D1A100FF619B /* GridViewCell.swift */,
-				6FD09EE5283F724B0015567C /* GridViewController.swift */,
-				6F03B4A22840EACB0047E456 /* GridViewModel.swift */,
-				6F03B49F2840E6280047E456 /* FilterViewController.swift */,
-				6F03B4E128427FB50047E456 /* FilterViewModel.swift */,
-				6FD7175328462BE1001202EC /* FriendViewCell.swift */,
-				6FD7175928463D98001202EC /* CharacterDetailsRouter.swift */,
-				6F03B4DC2842777E0047E456 /* CharacterDetailsViewController.swift */,
-				6F03B4EF2843CCB00047E456 /* CharacterDetailsViewModel.swift */,
-				6F03B496283FB35E0047E456 /* NetworkErrors+Extensions.swift */,
-				6F03B4D828424E0A0047E456 /* NonPersistentErrors+Extensions.swift */,
+				6FD71765284670FA001202EC /* base */,
+				6FD71766284670FF001202EC /* grid */,
+				6FD7176728467105001202EC /* filter */,
+				6FD7176828467110001202EC /* details */,
 			);
-			path = views;
+			path = "views+viewmodels";
 			sourceTree = "<group>";
 		};
 		6F6E638C283F77D3004347DE /* models */ = {
@@ -415,7 +407,7 @@
 				6F03B4E52843C3840047E456 /* models+ui */,
 				6F03B4C528423C080047E456 /* mappers */,
 				6F6E639B283F82DF004347DE /* xibs */,
-				6F6E638B283F77B6004347DE /* views */,
+				6F6E638B283F77B6004347DE /* views+viewmodels */,
 				6F03B4B32842366F0047E456 /* usecases */,
 				6F6E6392283F7911004347DE /* repositories */,
 				6F03B498283FB4030047E456 /* extensions */,
@@ -453,6 +445,46 @@
 				6FD7173C28452466001202EC /* Lato-Regular.ttf */,
 			);
 			path = fonts;
+			sourceTree = "<group>";
+		};
+		6FD71765284670FA001202EC /* base */ = {
+			isa = PBXGroup;
+			children = (
+				6F03B4A42840EAF70047E456 /* BaseViewController.swift */,
+				6F03B4A62840EB300047E456 /* BaseViewModel.swift */,
+			);
+			path = base;
+			sourceTree = "<group>";
+		};
+		6FD71766284670FF001202EC /* grid */ = {
+			isa = PBXGroup;
+			children = (
+				6F03B4C828423F2F0047E456 /* GridRouter.swift */,
+				6F3BE94E2844D1A100FF619B /* GridViewCell.swift */,
+				6FD09EE5283F724B0015567C /* GridViewController.swift */,
+				6F03B4A22840EACB0047E456 /* GridViewModel.swift */,
+			);
+			path = grid;
+			sourceTree = "<group>";
+		};
+		6FD7176728467105001202EC /* filter */ = {
+			isa = PBXGroup;
+			children = (
+				6F03B49F2840E6280047E456 /* FilterViewController.swift */,
+				6F03B4E128427FB50047E456 /* FilterViewModel.swift */,
+			);
+			path = filter;
+			sourceTree = "<group>";
+		};
+		6FD7176828467110001202EC /* details */ = {
+			isa = PBXGroup;
+			children = (
+				6FD7175928463D98001202EC /* CharacterDetailsRouter.swift */,
+				6FD7175328462BE1001202EC /* FriendViewCell.swift */,
+				6F03B4DC2842777E0047E456 /* CharacterDetailsViewController.swift */,
+				6F03B4EF2843CCB00047E456 /* CharacterDetailsViewModel.swift */,
+			);
+			path = details;
 			sourceTree = "<group>";
 		};
 		832A7B90200D1F059DED263B /* Frameworks */ = {
