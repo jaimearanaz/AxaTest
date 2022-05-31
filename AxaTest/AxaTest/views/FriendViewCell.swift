@@ -14,7 +14,7 @@ class FriendViewCell: UITableViewCell {
     static let reuseIdentifier = String(describing: GridViewCell.self)
     static let cellHeight: CGFloat = 60
     
-    @IBOutlet weak var friendImageView: UIImageViewRounded!
+    @IBOutlet weak var avatarView: AvatarImageView!
     @IBOutlet weak var firstnameLb: UILabel!
     @IBOutlet weak var surnameLb: UILabel!
     
@@ -27,11 +27,7 @@ class FriendViewCell: UITableViewCell {
     func setupCell(friend: FriendUi) {
         
         if let url = URL(string: friend.thumbnail) {
-            friendImageView.sd_setImage(with: url) { (image, error, cache, url) in
-                self.friendImageView.image = image
-                self.friendImageView.setNeedsLayout()
-                self.friendImageView.layoutSubviews()
-            }
+            avatarView.setImage(withUrl: url)
         }
         firstnameLb.text = friend.name.firstname()
         surnameLb.text = friend.name.surname()

@@ -11,7 +11,7 @@ import SDWebImage
 
 class CharacterDetailsViewController: BaseViewController {
     
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var avatarView: AvatarImageView!
     @IBOutlet weak var nameLb: UILabel!
     @IBOutlet weak var ageLb: UILabel!
     @IBOutlet weak var weightLb: UILabel!
@@ -81,7 +81,7 @@ class CharacterDetailsViewController: BaseViewController {
     private func configCharacter(_ character: CharacterDetailsUi) {
         
         if let url = URL(string: character.thumbnail) {
-            self.imageView.sd_setImage(with: url)
+            avatarView.setImage(withUrl: url)
         }
         
         nameLb.font = UIFont.castle(withSize: 20)

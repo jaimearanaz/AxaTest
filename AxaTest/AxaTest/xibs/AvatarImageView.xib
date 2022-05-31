@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AvatarImageView" customModule="AxaTest" customModuleProvider="target">
+            <connections>
+                <outlet property="imageView" destination="mq8-Do-e3V" id="NzS-Ue-OBv"/>
+                <outlet property="view" destination="5O7-ki-mbf" id="I1I-Mk-R3y"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="5O7-ki-mbf">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AEy-Ld-kzj" customClass="UIViewShadowable" customModule="AxaTest" customModuleProvider="target">
+                    <rect key="frame" x="3" y="3" width="294" height="294"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mq8-Do-e3V" customClass="UIImageViewRounded" customModule="AxaTest" customModuleProvider="target">
+                    <rect key="frame" x="3" y="3" width="294" height="294"/>
+                    <constraints>
+                        <constraint firstAttribute="height" priority="250" constant="294" id="Tkn-Ce-mhU"/>
+                        <constraint firstAttribute="width" secondItem="mq8-Do-e3V" secondAttribute="height" multiplier="1:1" id="uYM-gH-ElQ"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mq8-Do-e3V" secondAttribute="trailing" constant="3" id="1Er-cj-o9b"/>
+                <constraint firstItem="AEy-Ld-kzj" firstAttribute="width" secondItem="mq8-Do-e3V" secondAttribute="width" id="2Yc-pf-WHO"/>
+                <constraint firstItem="AEy-Ld-kzj" firstAttribute="centerY" secondItem="mq8-Do-e3V" secondAttribute="centerY" id="gVF-No-YH0"/>
+                <constraint firstItem="mq8-Do-e3V" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5O7-ki-mbf" secondAttribute="leading" constant="3" id="gew-JX-OVy"/>
+                <constraint firstItem="mq8-Do-e3V" firstAttribute="centerX" secondItem="5O7-ki-mbf" secondAttribute="centerX" id="ja5-V6-uXG"/>
+                <constraint firstItem="AEy-Ld-kzj" firstAttribute="height" secondItem="mq8-Do-e3V" secondAttribute="height" id="lZK-J1-zNX"/>
+                <constraint firstItem="mq8-Do-e3V" firstAttribute="top" secondItem="5O7-ki-mbf" secondAttribute="top" constant="3" id="v3G-Jd-s0c"/>
+                <constraint firstItem="AEy-Ld-kzj" firstAttribute="centerX" secondItem="mq8-Do-e3V" secondAttribute="centerX" id="xKC-tf-K1Y"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="86.956521739130437" y="119.86607142857142"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
