@@ -33,3 +33,6 @@
 "CHARACTER_FRIENDS" = "Friends";
 
 "BACK_TO_GRID" = "Grid";
+
+"FILTER_APPLY" = "Apply";
+"FILTER_CLEAN" = "Clean";

@@ -51,7 +51,6 @@ class GridViewController: BaseViewController {
             DispatchQueue.main.async {
                 self.emptyLb.isHidden = characters.isNotEmpty
                 self.collectionView.reloadData()
-                self.collectionView.setContentOffset(CGPoint.zero, animated: true)
             }
         })
         

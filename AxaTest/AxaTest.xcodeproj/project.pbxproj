@@ -79,6 +79,7 @@
 		6FD7175C2846614C001202EC /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD7175B2846614C001202EC /* AvatarImageView.swift */; };
 		6FD7175E28466178001202EC /* AvatarImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FD7175D28466178001202EC /* AvatarImageView.xib */; };
 		6FD71762284662CE001202EC /* UIViewFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD71761284662CE001202EC /* UIViewFromNib.swift */; };
+		6FFD342828474C9B0072DEB5 /* FilterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD342728474C9B0072DEB5 /* FilterRouter.swift */; };
 		E77785E24A5ADD8A7CAE2BA1 /* Pods_AxaTest_AxaTestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 620150909DE46FE5C647E2F8 /* Pods_AxaTest_AxaTestUITests.framework */; };
 		F941F6721671F6C5FFF67DD3 /* Pods_AxaTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD34A9E78A22A7D73DDE275 /* Pods_AxaTestTests.framework */; };
 /* End PBXBuildFile section */
@@ -180,6 +181,7 @@
 		6FD7175B2846614C001202EC /* AvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
 		6FD7175D28466178001202EC /* AvatarImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvatarImageView.xib; sourceTree = "<group>"; };
 		6FD71761284662CE001202EC /* UIViewFromNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewFromNib.swift; sourceTree = "<group>"; };
+		6FFD342728474C9B0072DEB5 /* FilterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterRouter.swift; sourceTree = "<group>"; };
 		95DF631263566C56E8D5AE08 /* Pods-AxaTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxaTestTests.release.xcconfig"; path = "Target Support Files/Pods-AxaTestTests/Pods-AxaTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		B7574474C8C9D2163CF2F809 /* Pods-AxaTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxaTest.release.xcconfig"; path = "Target Support Files/Pods-AxaTest/Pods-AxaTest.release.xcconfig"; sourceTree = "<group>"; };
 		BC1C1C46B8494C47849A8A51 /* Pods-AxaTest-AxaTestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxaTest-AxaTestUITests.release.xcconfig"; path = "Target Support Files/Pods-AxaTest-AxaTestUITests/Pods-AxaTest-AxaTestUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -470,6 +472,7 @@
 		6FD7176728467105001202EC /* filter */ = {
 			isa = PBXGroup;
 			children = (
+				6FFD342728474C9B0072DEB5 /* FilterRouter.swift */,
 				6F03B49F2840E6280047E456 /* FilterViewController.swift */,
 				6F03B4E128427FB50047E456 /* FilterViewModel.swift */,
 			);
@@ -767,6 +770,7 @@
 				6F03B4CB284240860047E456 /* FilterDI.swift in Sources */,
 				6F03B495283F88FC0047E456 /* City.swift in Sources */,
 				6F03B4DF284277E60047E456 /* CharacterDetailsDI.swift in Sources */,
+				6FFD342828474C9B0072DEB5 /* FilterRouter.swift in Sources */,
 				6F03B4C928423F2F0047E456 /* GridRouter.swift in Sources */,
 				6FD7174E28461AA9001202EC /* NSAttributedString+Extensions.swift in Sources */,
 				6F03B4DD2842777E0047E456 /* CharacterDetailsViewController.swift in Sources */,

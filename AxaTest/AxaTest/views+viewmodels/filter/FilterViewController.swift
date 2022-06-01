@@ -26,8 +26,6 @@ class FilterViewController: BaseViewController, FilterTableDelegate {
     @IBOutlet weak var weightSlider: MultiSlider!
     @IBOutlet weak var heightSlider: MultiSlider!
     @IBOutlet weak var friendsSlider: MultiSlider!
-    
-    private var filterActive = FilterUi()
 
     var viewModel: FilterViewModel? { didSet { baseViewModel = viewModel } }
 
@@ -35,17 +33,14 @@ class FilterViewController: BaseViewController, FilterTableDelegate {
 
         super.binds()
         viewModel?.transitionTo.bind({ transitionTo in
-            switch transitionTo {
-            case .none:
-                break
-            case .dismiss:
-                self.dismiss(animated: true)
+            if let transitionTo = transitionTo {
+                self.route(transitionTo: transitionTo)
             }
         })
         
         viewModel?.filterConfig.bind({ filterConfig in
-            self.filterActive = filterConfig.filterActive
-            self.configureFilter(withFilter: self.filterActive)
+            self.configureFilter(values: filterConfig.filterValues,
+                                 active: filterConfig.filterActive)
         })
         
         viewModel?.errorMessage.bind({ errorMessage in
@@ -67,30 +62,30 @@ class FilterViewController: BaseViewController, FilterTableDelegate {
     override func customizeView() {
         
         super.customizeView()
-        ageLb.font = UIFont.black(withSize: 16)
-        weightLb.font = UIFont.black(withSize: 16)
-        heightLb.font = UIFont.black(withSize: 16)
-        friendsLb.font = UIFont.black(withSize: 16)
+        
+        let applyButton = UIBarButtonItem(title: "FILTER_APPLY".localized, style: .plain, target: self, action: #selector(didSelectApply))
+        let cleanButton = UIBarButtonItem(title: "FILTER_CLEAN".localized, style: .plain, target: self, action: #selector(didSelectClean))
+        navigationItem.rightBarButtonItems = [applyButton, cleanButton]
+        
+        let labels = [ageLb, weightLb, heightLb, friendsLb]
+        labels.forEach { $0!.font = UIFont.black(withSize: 16) }
+        let sliders = [ageSlider, weightSlider, heightSlider, friendsSlider]
+        sliders.forEach { customizeSlider($0!) }
     }
     
-    @IBAction func didSelectReset() {
+    @objc func didSelectClean() {
         viewModel?.didSelectReset()
     }
     
-    @IBAction func didSelectApply() {
+    @objc func didSelectApply() {
+        
+        let filterActive = FilterUi(age: Int(ageSlider.value.first!)...Int(ageSlider.value.last!),
+                                    weight: Int(weightSlider.value.first!)...Int(weightSlider.value.last!),
+                                    height: Int(heightSlider.value.first!)...Int(heightSlider.value.last!),
+                                    hairColor: viewModel?.filterConfig.value.filterValues.hairColor ?? [String](),
+                                    profession: viewModel?.filterConfig.value.filterValues.profession ?? [String](),
+                                    friends: Int(friendsSlider.value.first!)...Int(friendsSlider.value.last!))
         viewModel?.didSelectApplyFilter(filterActive)
-    }
-    
-    @IBAction func changedAgeSliderValue(_ sender: UISlider) {
-
-    }
-    
-    @IBAction func changedWeightSliderValue(_ sender: UISlider) {
-
-    }
-    
-    @IBAction func changedHeightSliderValue(_ sender: UISlider) {
-
     }
     
     @IBAction func didSelectHairColor() {
@@ -116,20 +111,7 @@ class FilterViewController: BaseViewController, FilterTableDelegate {
         // append all options from `filterValues` to `filterActive`
     }
     
-    private func configureFilter(withFilter filter: FilterUi) {
-        
-        configureSlider(ageSlider, withRange: filter.age)
-        configureSlider(weightSlider, withRange: filter.weight)
-        configureSlider(heightSlider, withRange: filter.height)
-        configureSlider(friendsSlider, withRange: filter.friends)
-
-        ageSlider.value = [CGFloat(filter.age.lowerBound), CGFloat(filter.age.upperBound)]
-        weightSlider.value = [CGFloat(filter.weight.lowerBound), CGFloat(filter.age.upperBound)]
-        heightSlider.value = [CGFloat(filter.height.lowerBound), CGFloat(filter.height.upperBound)]
-        friendsSlider.value = [CGFloat(filter.friends.lowerBound), CGFloat(filter.friends.upperBound)]
-    }
-    
-    private func configureSlider(_ slider: MultiSlider, withRange range: ClosedRange<Int>) {
+    private func customizeSlider(_ slider: MultiSlider) {
         
         slider.isVertical = false
         slider.isContinuous = true
@@ -138,7 +120,20 @@ class FilterViewController: BaseViewController, FilterTableDelegate {
         slider.valueLabelPosition = .top
         slider.outerTrackColor = .lightGray
         slider.distanceBetweenThumbs = 0
-        slider.minimumValue = CGFloat(range.lowerBound)
-        slider.maximumValue = CGFloat(range.upperBound)
+    }
+    
+    private func configureFilter(values filterValues: FilterUi, active filterActive: FilterUi) {
+        
+        configureSlider(ageSlider, values: filterValues.age, active: filterActive.age)
+        configureSlider(weightSlider, values: filterValues.weight, active: filterActive.weight)
+        configureSlider(heightSlider, values: filterValues.height, active: filterActive.height)
+        configureSlider(friendsSlider, values: filterValues.friends, active: filterActive.friends)
+    }
+    
+    private func configureSlider(_ slider: MultiSlider, values: ClosedRange<Int>, active: ClosedRange<Int>) {
+        
+        slider.minimumValue = CGFloat(values.lowerBound)
+        slider.maximumValue = CGFloat(values.upperBound)
+        slider.value = [CGFloat(active.lowerBound), CGFloat(active.upperBound)]
     }
 }

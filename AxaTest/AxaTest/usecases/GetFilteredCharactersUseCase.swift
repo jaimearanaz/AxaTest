@@ -43,5 +43,6 @@ class DefaultGetFilteredCharactersUseCase: GetFilteredCharactersUseCase {
             .filter { filter.height.contains(Int($0.height)) }
             .filter { filter.hairColor.contains($0.hairColor) }
             .filter { filter.profession.containsOneOrMoreOfElements(in: $0.professions) }
+            .filter { filter.friends.contains($0.friends.count) }
     }
 }
