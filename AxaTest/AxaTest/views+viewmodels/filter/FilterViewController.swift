@@ -9,18 +9,24 @@ import Foundation
 import UIKit
 import MultiSlider
 
-class FilterViewController: BaseViewController, FilterOptionsDelegate {
+enum FilterOptionsType {
+    case hair, professions
+}
+
+class FilterViewController: BaseViewController {
 
     @IBOutlet weak var ageLb: UILabel!
     @IBOutlet weak var weightLb: UILabel!
     @IBOutlet weak var heightLb: UILabel!
     @IBOutlet weak var friendsLb: UILabel!
     @IBOutlet weak var hairLb: UILabel!
+    @IBOutlet weak var professionsLb: UILabel!
     @IBOutlet weak var ageSlider: MultiSlider!
     @IBOutlet weak var weightSlider: MultiSlider!
     @IBOutlet weak var heightSlider: MultiSlider!
     @IBOutlet weak var friendsSlider: MultiSlider!
     @IBOutlet weak var hairOptionsLb: UILabel!
+    @IBOutlet weak var professionsOptionsLb: UILabel!
 
     var viewModel: FilterViewModel? { didSet { baseViewModel = viewModel } }
 
@@ -53,6 +59,7 @@ class FilterViewController: BaseViewController, FilterOptionsDelegate {
         heightLb.text = "CHARACTER_HEIGHT".localized
         friendsLb.text = "CHARACTER_FRIENDS".localized
         hairLb.text = "CHARACTER_HAIR".localized
+        professionsLb.text = "CHARACTER_PROFESSIONS".localized
     }
     
     override func customizeView() {
@@ -63,11 +70,11 @@ class FilterViewController: BaseViewController, FilterOptionsDelegate {
         let cleanButton = UIBarButtonItem(title: "FILTER_CLEAN".localized, style: .plain, target: self, action: #selector(didSelectClean))
         navigationItem.rightBarButtonItems = [applyButton, cleanButton]
         
-        let titleLabels = [ageLb, weightLb, heightLb, friendsLb, hairLb]
+        let titleLabels = [ageLb, weightLb, heightLb, friendsLb, hairLb, professionsLb]
         titleLabels.forEach { $0!.font = UIFont.black(withSize: 16) }
         let sliders = [ageSlider, weightSlider, heightSlider, friendsSlider]
         sliders.forEach { customizeSlider($0!) }
-        let optionLabels = [hairOptionsLb]
+        let optionLabels = [hairOptionsLb, professionsOptionsLb]
         optionLabels.forEach { $0!.font = UIFont.regular(withSize: 18) }
         
         let hairLbTapGesture = UITapGestureRecognizer(target: self, action: #selector(didSelectHairColor))
@@ -76,6 +83,13 @@ class FilterViewController: BaseViewController, FilterOptionsDelegate {
         let hairOptionsTapGesture = UITapGestureRecognizer(target: self, action: #selector(didSelectHairColor))
         hairOptionsLb.isUserInteractionEnabled = true
         hairOptionsLb.addGestureRecognizer(hairOptionsTapGesture)
+        
+        let professionsLbTapGesture = UITapGestureRecognizer(target: self, action: #selector(didSelectProfession))
+        professionsLb.isUserInteractionEnabled = true
+        professionsLb.addGestureRecognizer(professionsLbTapGesture)
+        let professionsOptionsTapGesture = UITapGestureRecognizer(target: self, action: #selector(didSelectProfession))
+        professionsOptionsLb.isUserInteractionEnabled = true
+        professionsOptionsLb.addGestureRecognizer(professionsOptionsTapGesture)
     }
     
     @objc func didSelectClean() {
@@ -88,60 +102,23 @@ class FilterViewController: BaseViewController, FilterOptionsDelegate {
                                     weight: Int(weightSlider.value.first!)...Int(weightSlider.value.last!),
                                     height: Int(heightSlider.value.first!)...Int(heightSlider.value.last!),
                                     hairColor: viewModel?.filterConfig.value.filterActive.hairColor ?? [String](),
-                                    profession: viewModel?.filterConfig.value.filterValues.profession ?? [String](),
+                                    profession: viewModel?.filterConfig.value.filterActive.profession ?? [String](),
                                     friends: Int(friendsSlider.value.first!)...Int(friendsSlider.value.last!))
         viewModel?.didSelectApplyFilter(filterActive)
     }
     
     @IBAction func didSelectHairColor() {
+        
+        viewModel?.filterConfig.value.filterValues.hairColor.sort()
         viewModel?.didSelectHairColorOptions()
     }
     
     @IBAction func didSelectProfession() {
-        // move ""PROFESSION_NONE" to first position
-        viewModel?.didSelectProfessionsOptions()
-    }
-    
-    func didSelectOption(title: String, sender: FilterOptionsViewController) {
-
-        if var filterActive = viewModel?.filterConfig.value.filterActive,
-           let filterValues = viewModel?.filterConfig.value.filterValues,
-           var activeHairColor = viewModel?.filterConfig.value.filterActive.hairColor {
-               
-            activeHairColor.append(title)
-            filterActive.hairColor = activeHairColor
-            viewModel?.filterConfig.value.filterActive = filterActive
-            configureHairColors(values: filterValues.hairColor, active: filterActive.hairColor)
-        }
-    }
-    
-    func didUnselectOption(title: String, sender: FilterOptionsViewController) {
-
-        if var filterActive = viewModel?.filterConfig.value.filterActive,
-           let filterValues = viewModel?.filterConfig.value.filterValues,
-           var activeHairColor = viewModel?.filterConfig.value.filterActive.hairColor {
-               
-            activeHairColor.removeAll(where: { $0 == title })
-            filterActive.hairColor = activeHairColor
-            viewModel?.filterConfig.value.filterActive = filterActive
-            configureHairColors(values: filterValues.hairColor, active: filterActive.hairColor)
-        }
-    }
-    
-    func didSelectOptionAll(sender: FilterOptionsViewController) {
         
-        if var filterActive = viewModel?.filterConfig.value.filterActive,
-           let filterValues = viewModel?.filterConfig.value.filterValues,
-           let allHairColors = viewModel?.filterConfig.value.filterValues.hairColor {
-               
-            filterActive.hairColor = allHairColors
-            viewModel?.filterConfig.value.filterActive = filterActive
-            configureHairColors(values: filterValues.hairColor, active: filterActive.hairColor)
-        }
-    }
-    
-    func didUnselectOptionAll(sender: FilterOptionsViewController) {
-        viewModel?.filterConfig.value.filterActive.hairColor = [String]()
+        viewModel?.filterConfig.value.filterValues.profession.sort()
+        viewModel?.filterConfig.value.filterValues.profession.removeAll(where: { $0 == "PROFESSION_NONE".localized } )
+        viewModel?.filterConfig.value.filterValues.profession.insert("PROFESSION_NONE".localized, at: 0)
+        viewModel?.didSelectProfessionsOptions()
     }
     
     private func customizeSlider(_ slider: MultiSlider) {
@@ -162,16 +139,34 @@ class FilterViewController: BaseViewController, FilterOptionsDelegate {
         configureSlider(heightSlider, values: filterValues.height, active: filterActive.height)
         configureSlider(friendsSlider, values: filterValues.friends, active: filterActive.friends)
         
-        configureHairColors(values: filterValues.hairColor, active: filterActive.hairColor)
+        updateSelectedHairColors()
+        updateSelectedProfessions()
     }
     
-    private func configureHairColors(values: [String], active: [String]) {
+    private func updateSelectedHairColors() {
+        configureOptions(label: hairOptionsLb,
+                         values: viewModel?.filterConfig.value.filterValues.hairColor,
+                         active: viewModel?.filterConfig.value.filterActive.hairColor)
+    }
+    
+    private func updateSelectedProfessions() {
+        configureOptions(label: professionsOptionsLb,
+                         values: viewModel?.filterConfig.value.filterValues.profession,
+                         active: viewModel?.filterConfig.value.filterActive.profession)
+    }
+    
+    private func configureOptions(label: UILabel, values: [String]?, active: [String]?) {
+        
+        guard let values = values,
+              let active = active else {
+            return
+        }
         
         let allOptionsSelected = (values.count == active.count)
         if allOptionsSelected {
-            hairOptionsLb.text = "FILTER_OPTION_ALL".localized
+            label.text = "FILTER_OPTION_ALL".localized
         } else {
-            hairOptionsLb.text = active.joined(separator: ",  ")
+            label.text = active.joined(separator: ",  ")
         }
     }
     
@@ -206,6 +201,15 @@ class FilterViewController: BaseViewController, FilterOptionsDelegate {
         return getFilterOptions(withValues: viewModel.filterConfig.value.filterValues.hairColor,
                                 active: viewModel.filterConfig.value.filterActive.hairColor)
     }
+    
+    internal func getFilterOptionForProfessions() -> [FilterOptionUi] {
+        
+        guard let viewModel = viewModel else {
+            fatalError("view model is no set in view controller")
+        }
+        return getFilterOptions(withValues: viewModel.filterConfig.value.filterValues.profession,
+                                active: viewModel.filterConfig.value.filterActive.profession)
+    }
 
     internal func getFilterOptions(withValues values: [String], active: [String]) -> [FilterOptionUi] {
         
@@ -216,5 +220,77 @@ class FilterViewController: BaseViewController, FilterOptionsDelegate {
             filterOptions.append(option)
         })
         return filterOptions
+    }
+}
+
+extension FilterViewController: FilterOptionsDelegate {
+    
+    
+    func didSelectOption(title: String, identifier: FilterOptionsType?) {
+        
+        guard let identifier = identifier else {
+            return
+        }
+        
+        switch identifier {
+            
+        case .hair:
+            viewModel?.filterConfig.value.filterActive.hairColor.append(title)
+            updateSelectedHairColors()
+        case .professions:
+            viewModel?.filterConfig.value.filterActive.profession.append(title)
+            updateSelectedProfessions()
+        }
+    }
+    
+    func didUnselectOption(title: String, identifier: FilterOptionsType?) {
+        
+        guard let identifier = identifier else {
+            return
+        }
+        
+        switch identifier {
+            
+        case .hair:
+            viewModel?.filterConfig.value.filterActive.hairColor.removeAll(where: { $0 == title })
+            updateSelectedHairColors()
+        case .professions:
+            viewModel?.filterConfig.value.filterActive.profession.removeAll(where: { $0 == title })
+            updateSelectedProfessions()
+        }
+    }
+    
+    func didSelectOptionAll(identifier: FilterOptionsType?) {
+        
+        guard let identifier = identifier else {
+            return
+        }
+        
+        switch identifier {
+        case .hair:
+            if let values = viewModel?.filterConfig.value.filterValues.hairColor {
+                viewModel?.filterConfig.value.filterActive.hairColor = values
+            }
+            updateSelectedHairColors()
+        case .professions:
+            if let values = viewModel?.filterConfig.value.filterValues.profession {
+                viewModel?.filterConfig.value.filterActive.profession = values
+            }
+            updateSelectedProfessions()
+        }
+    }
+    
+    func didUnselectOptionAll(identifier: FilterOptionsType?) {
+        
+        guard let identifier = identifier else {
+            return
+        }
+        
+        switch identifier {
+        case .hair:
+            viewModel?.filterConfig.value.filterActive.hairColor = [String]()
+        case .professions:
+            viewModel?.filterConfig.value.filterActive.profession = [String]()
+        }
     }
 }

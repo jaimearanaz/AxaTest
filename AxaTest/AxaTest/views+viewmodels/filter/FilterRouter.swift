@@ -31,9 +31,14 @@ extension FilterViewController {
             let hairOptions = getFilterOptionForHairColors()
             viewController.setItems(hairOptions)
             viewController.delegate = self
+            viewController.identifier = FilterOptionsType.hair
             
         case FilterTransitions.toFilterProfession.rawValue:
-            break
+            let viewController = segue.destination as! FilterOptionsViewController
+            let professionsOptions = getFilterOptionForProfessions()
+            viewController.setItems(professionsOptions)
+            viewController.delegate = self
+            viewController.identifier = FilterOptionsType.professions
             
         default:
             break

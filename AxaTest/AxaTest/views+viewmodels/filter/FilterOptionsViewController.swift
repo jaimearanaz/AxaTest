@@ -10,10 +10,10 @@ import UIKit
 
 protocol FilterOptionsDelegate {
     
-    func didSelectOption(title: String, sender: FilterOptionsViewController)
-    func didUnselectOption(title: String, sender: FilterOptionsViewController)
-    func didSelectOptionAll(sender: FilterOptionsViewController)
-    func didUnselectOptionAll(sender: FilterOptionsViewController)
+    func didSelectOption(title: String, identifier: FilterOptionsType?)
+    func didUnselectOption(title: String, identifier: FilterOptionsType?)
+    func didSelectOptionAll(identifier: FilterOptionsType?)
+    func didUnselectOptionAll(identifier: FilterOptionsType?)
 }
 
 class FilterOptionsViewController: UITableViewController {
@@ -22,6 +22,7 @@ class FilterOptionsViewController: UITableViewController {
     private let optionAllTitle = "FILTER_OPTION_ALL".localized
     
     var delegate: FilterOptionsDelegate?
+    var identifier: FilterOptionsType?
     private var items = [FilterOptionUi]()
     
     func setItems(_ items: [FilterOptionUi]) {
@@ -84,20 +85,20 @@ class FilterOptionsViewController: UITableViewController {
     private func handleSelectionOfItemAll() {
         
         selectOptionAll()
-        delegate?.didSelectOptionAll(sender: self)
+        delegate?.didSelectOptionAll(identifier: identifier)
     }
     
     private func handlSelectionOfItem(_ item: FilterOptionUi) {
         
         if (item.isSelected) {
             unselectOption(title: item.title)
-            delegate?.didUnselectOption(title: item.title, sender: self)
+            delegate?.didUnselectOption(title: item.title, identifier: identifier)
         } else {
             if unselectOptionAllIfNeeded() {
-                delegate?.didUnselectOptionAll(sender: self)
+                delegate?.didUnselectOptionAll(identifier: identifier)
             }
             selectOption(title: item.title)
-            delegate?.didSelectOption(title: item.title, sender: self)
+            delegate?.didSelectOption(title: item.title, identifier: identifier)
         }
     }
     
