@@ -29,6 +29,7 @@
 "CHARACTER_WEIGHT" = "Weight";
 "CHARACTER_HEIGHT" = "Height";
 "CHARACTER_HAIR_COLOR" = "Hair color";
+"CHARACTER_HAIR" = "Hair";
 "CHARACTER_PROFESSIONS" = "Professions";
 "CHARACTER_FRIENDS" = "Friends";
 
@@ -36,3 +37,4 @@
 
 "FILTER_APPLY" = "Apply";
 "FILTER_CLEAN" = "Clean";
+"FILTER_OPTION_ALL" = "All";

@@ -80,6 +80,8 @@
 		6FD7175E28466178001202EC /* AvatarImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FD7175D28466178001202EC /* AvatarImageView.xib */; };
 		6FD71762284662CE001202EC /* UIViewFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD71761284662CE001202EC /* UIViewFromNib.swift */; };
 		6FFD342828474C9B0072DEB5 /* FilterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD342728474C9B0072DEB5 /* FilterRouter.swift */; };
+		6FFD342A284755A50072DEB5 /* FilterOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD3429284755A50072DEB5 /* FilterOptionsViewController.swift */; };
+		6FFD342C284756A50072DEB5 /* FilterOptionUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD342B284756A50072DEB5 /* FilterOptionUi.swift */; };
 		E77785E24A5ADD8A7CAE2BA1 /* Pods_AxaTest_AxaTestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 620150909DE46FE5C647E2F8 /* Pods_AxaTest_AxaTestUITests.framework */; };
 		F941F6721671F6C5FFF67DD3 /* Pods_AxaTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD34A9E78A22A7D73DDE275 /* Pods_AxaTestTests.framework */; };
 /* End PBXBuildFile section */
@@ -182,6 +184,8 @@
 		6FD7175D28466178001202EC /* AvatarImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvatarImageView.xib; sourceTree = "<group>"; };
 		6FD71761284662CE001202EC /* UIViewFromNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewFromNib.swift; sourceTree = "<group>"; };
 		6FFD342728474C9B0072DEB5 /* FilterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterRouter.swift; sourceTree = "<group>"; };
+		6FFD3429284755A50072DEB5 /* FilterOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptionsViewController.swift; sourceTree = "<group>"; };
+		6FFD342B284756A50072DEB5 /* FilterOptionUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptionUi.swift; sourceTree = "<group>"; };
 		95DF631263566C56E8D5AE08 /* Pods-AxaTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxaTestTests.release.xcconfig"; path = "Target Support Files/Pods-AxaTestTests/Pods-AxaTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		B7574474C8C9D2163CF2F809 /* Pods-AxaTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxaTest.release.xcconfig"; path = "Target Support Files/Pods-AxaTest/Pods-AxaTest.release.xcconfig"; sourceTree = "<group>"; };
 		BC1C1C46B8494C47849A8A51 /* Pods-AxaTest-AxaTestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxaTest-AxaTestUITests.release.xcconfig"; path = "Target Support Files/Pods-AxaTest-AxaTestUITests/Pods-AxaTest-AxaTestUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -312,6 +316,7 @@
 				6F03B4E62843C3B90047E456 /* CharacterDetailsUi.swift */,
 				6FD7174F28461F45001202EC /* FriendUi.swift */,
 				6F03B4E32843C0DB0047E456 /* FilterConfigUi.swift */,
+				6FFD342B284756A50072DEB5 /* FilterOptionUi.swift */,
 			);
 			path = "models+ui";
 			sourceTree = "<group>";
@@ -473,6 +478,7 @@
 			isa = PBXGroup;
 			children = (
 				6FFD342728474C9B0072DEB5 /* FilterRouter.swift */,
+				6FFD3429284755A50072DEB5 /* FilterOptionsViewController.swift */,
 				6F03B49F2840E6280047E456 /* FilterViewController.swift */,
 				6F03B4E128427FB50047E456 /* FilterViewModel.swift */,
 			);
@@ -766,6 +772,7 @@
 				6F03B4A52840EAF70047E456 /* BaseViewController.swift in Sources */,
 				6F03B4C2284237B70047E456 /* NonPersistentRepositoryProtocol.swift in Sources */,
 				6FD71737284518D1001202EC /* UIImageViewRounded.swift in Sources */,
+				6FFD342A284755A50072DEB5 /* FilterOptionsViewController.swift in Sources */,
 				6F03B4CD284242210047E456 /* GetSelectedCharacter.swift in Sources */,
 				6F03B4CB284240860047E456 /* FilterDI.swift in Sources */,
 				6F03B495283F88FC0047E456 /* City.swift in Sources */,
@@ -800,6 +807,7 @@
 				6F03B4AA2840EB630047E456 /* Box.swift in Sources */,
 				6F03B4E72843C3B90047E456 /* CharacterDetailsUi.swift in Sources */,
 				6FD09EE4283F724B0015567C /* SceneDelegate.swift in Sources */,
+				6FFD342C284756A50072DEB5 /* FilterOptionUi.swift in Sources */,
 				6F6E63A1283F8447004347DE /* NetworkErrors.swift in Sources */,
 				6F03B4B52842368E0047E456 /* GetCharactersUseCase.swift in Sources */,
 				6FD7174428452D0A001202EC /* UIViewShadowable.swift in Sources */,

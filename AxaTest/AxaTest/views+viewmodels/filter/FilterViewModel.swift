@@ -8,7 +8,10 @@
 import Foundation
 
 enum FilterTransitions: String {
+    
     case dismiss
+    case toFilterHair
+    case toFilterProfession
 }
 
 protocol FilterViewModelOutput: BaseViewModelOutput {
@@ -21,6 +24,8 @@ protocol FilterViewModelInput: BaseViewModelInput {
     
     func didSelectReset()
     func didSelectApplyFilter(_ filter: FilterUi)
+    func didSelectHairColorOptions()
+    func didSelectProfessionsOptions()
 }
 
 protocol FilterViewModel: BaseViewModel, FilterViewModelOutput, FilterViewModelInput {
@@ -92,6 +97,14 @@ class DefaultFilterViewModel: BaseViewModel, FilterViewModel {
                 self.showErrorAndDismiss(error: error)
             }
         }
+    }
+    
+    func didSelectHairColorOptions() {
+        transitionTo.value = .toFilterHair
+    }
+    
+    func didSelectProfessionsOptions() {
+        transitionTo.value = .toFilterProfession
     }
     
     private func showErrorAndDismiss(error: Error) {

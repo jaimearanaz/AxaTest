@@ -221,6 +221,18 @@
                                     <constraint firstAttribute="height" constant="44" id="KP7-DB-UWE"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hair" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nNZ-KE-02f" userLabel="Hair Lb">
+                                <rect key="frame" x="20" y="346.5" width="80" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" text="Hair options" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hU4-TV-eKq" userLabel="Hair options Lb">
+                                <rect key="frame" x="100" y="346.5" width="294" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yHH-gu-8g0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -234,9 +246,13 @@
                             <constraint firstItem="X2D-n0-ses" firstAttribute="top" secondItem="RnZ-MU-eps" secondAttribute="bottom" constant="8" symbolic="YES" id="8gr-JQ-Lfd"/>
                             <constraint firstItem="Apf-ra-c4n" firstAttribute="centerY" secondItem="RnZ-MU-eps" secondAttribute="centerY" id="EiB-W4-Tvo"/>
                             <constraint firstItem="yHH-gu-8g0" firstAttribute="trailing" secondItem="UOc-Sh-jcD" secondAttribute="trailing" constant="20" id="HZj-hi-Jsa"/>
+                            <constraint firstItem="nNZ-KE-02f" firstAttribute="trailing" secondItem="LSG-gG-9h2" secondAttribute="trailing" id="Ikr-jc-6Yr"/>
                             <constraint firstItem="dAD-u6-ivu" firstAttribute="leading" secondItem="yHH-gu-8g0" secondAttribute="leading" constant="20" id="J6p-jz-eXj"/>
+                            <constraint firstItem="yHH-gu-8g0" firstAttribute="trailing" secondItem="hU4-TV-eKq" secondAttribute="trailing" constant="20" id="KbU-us-Eub"/>
+                            <constraint firstItem="hU4-TV-eKq" firstAttribute="leading" secondItem="yHH-gu-8g0" secondAttribute="leading" constant="100" id="Kzk-Pd-7tR"/>
                             <constraint firstItem="X2D-n0-ses" firstAttribute="leading" secondItem="LSG-gG-9h2" secondAttribute="trailing" id="NAc-Fb-Co3"/>
                             <constraint firstItem="YgM-PW-ZV6" firstAttribute="leading" secondItem="yHH-gu-8g0" secondAttribute="leading" constant="100" id="OXr-41-g7q"/>
+                            <constraint firstItem="nNZ-KE-02f" firstAttribute="leading" secondItem="yHH-gu-8g0" secondAttribute="leading" constant="20" id="Pjl-Tf-XMp"/>
                             <constraint firstItem="UOc-Sh-jcD" firstAttribute="top" secondItem="YgM-PW-ZV6" secondAttribute="bottom" constant="8" symbolic="YES" id="R98-Bj-zi7"/>
                             <constraint firstItem="oJY-6o-sLW" firstAttribute="leading" secondItem="yHH-gu-8g0" secondAttribute="leading" constant="20" id="Rmc-DC-xN7"/>
                             <constraint firstItem="yHH-gu-8g0" firstAttribute="trailing" secondItem="RnZ-MU-eps" secondAttribute="trailing" constant="20" id="SHQ-rm-9gI"/>
@@ -244,9 +260,12 @@
                             <constraint firstItem="Apf-ra-c4n" firstAttribute="leading" secondItem="yHH-gu-8g0" secondAttribute="leading" constant="20" id="c5l-qN-NgX"/>
                             <constraint firstItem="RnZ-MU-eps" firstAttribute="leading" secondItem="yHH-gu-8g0" secondAttribute="leading" constant="100" id="cCw-KY-XXz"/>
                             <constraint firstItem="LSG-gG-9h2" firstAttribute="centerY" secondItem="X2D-n0-ses" secondAttribute="centerY" id="cP9-wL-g0E"/>
+                            <constraint firstItem="nNZ-KE-02f" firstAttribute="top" secondItem="LSG-gG-9h2" secondAttribute="bottom" constant="50" id="fHx-DP-Wv0"/>
                             <constraint firstItem="YgM-PW-ZV6" firstAttribute="leading" secondItem="dAD-u6-ivu" secondAttribute="trailing" id="fhq-4d-3O1"/>
                             <constraint firstItem="dAD-u6-ivu" firstAttribute="centerY" secondItem="YgM-PW-ZV6" secondAttribute="centerY" id="g42-Zc-qyS"/>
+                            <constraint firstItem="LSG-gG-9h2" firstAttribute="width" secondItem="Apf-ra-c4n" secondAttribute="width" id="hix-oU-1Xq"/>
                             <constraint firstItem="LSG-gG-9h2" firstAttribute="leading" secondItem="yHH-gu-8g0" secondAttribute="leading" constant="20" id="o8I-Ep-rfI"/>
+                            <constraint firstItem="hU4-TV-eKq" firstAttribute="top" secondItem="nNZ-KE-02f" secondAttribute="top" id="w4k-pU-WEf"/>
                             <constraint firstItem="yHH-gu-8g0" firstAttribute="trailing" secondItem="X2D-n0-ses" secondAttribute="trailing" constant="20" id="zXw-Tm-9yG"/>
                             <constraint firstItem="oJY-6o-sLW" firstAttribute="centerY" secondItem="UOc-Sh-jcD" secondAttribute="centerY" id="zkD-ce-uO9"/>
                         </constraints>
@@ -257,15 +276,47 @@
                         <outlet property="ageSlider" destination="YgM-PW-ZV6" id="T0e-50-IvZ"/>
                         <outlet property="friendsLb" destination="LSG-gG-9h2" id="ALx-1q-up8"/>
                         <outlet property="friendsSlider" destination="X2D-n0-ses" id="IdQ-qQ-i4O"/>
+                        <outlet property="hairLb" destination="nNZ-KE-02f" id="yO5-aE-nN2"/>
+                        <outlet property="hairOptionsLb" destination="hU4-TV-eKq" id="Bhl-dE-BNx"/>
                         <outlet property="heightLb" destination="Apf-ra-c4n" id="voa-tj-nOS"/>
                         <outlet property="heightSlider" destination="RnZ-MU-eps" id="Dtx-Ua-eBb"/>
                         <outlet property="weightLb" destination="oJY-6o-sLW" id="CT6-gK-4s4"/>
                         <outlet property="weightSlider" destination="UOc-Sh-jcD" id="V5N-3D-i7p"/>
+                        <segue destination="kGq-lP-haY" kind="presentation" identifier="toFilterHair" id="RQ1-Ey-kqm"/>
+                        <segue destination="kGq-lP-haY" kind="presentation" identifier="toFilterProfession" id="p0z-be-5na"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nrx-vj-WZz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="913.04347826086962" y="-223.66071428571428"/>
+        </scene>
+        <!--Filter Options View Controller-->
+        <scene sceneID="2Om-Ke-vJd">
+            <objects>
+                <tableViewController id="kGq-lP-haY" customClass="FilterOptionsViewController" customModule="AxaTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="gzv-BD-s9D">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="FilterOptionViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FilterOptionViewCell" id="fs9-5V-yfW">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fs9-5V-yfW" id="QxR-8W-W9c">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="kGq-lP-haY" id="N3e-5t-LDL"/>
+                            <outlet property="delegate" destination="kGq-lP-haY" id="9UF-Kf-9hh"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GiQ-2x-KnA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1729" y="-224"/>
         </scene>
         <!--Character Details View Controller-->
         <scene sceneID="ebu-3d-rAs">
@@ -399,6 +450,9 @@
             <size key="intrinsicContentSize" width="63" height="-1"/>
         </designable>
     </designables>
+    <inferredMetricsTieBreakers>
+        <segue reference="RQ1-Ey-kqm"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
