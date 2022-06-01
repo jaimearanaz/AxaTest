@@ -17,4 +17,5 @@ protocol NonPersistentRepositoryProtocol {
     func getFilterValues() -> Filter?
     func saveSelectedCharacter(id: Int)
     func getSelectedCharacter() -> Int?
+    func invalidateData()
 }

@@ -38,3 +38,5 @@
 "FILTER_APPLY" = "Apply";
 "FILTER_CLEAN" = "Clean";
 "FILTER_OPTION_ALL" = "All";
+
+"GRID_PULL_TO_REFRESH" = "Pull to update characters from remote";

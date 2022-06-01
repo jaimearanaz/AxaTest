@@ -45,4 +45,12 @@ class NonPersistentRepository: NonPersistentRepositoryProtocol {
     func getSelectedCharacter() -> Int? {
         return selectedCharacter
     }
+    
+    func invalidateData() {
+        
+        characters = nil
+        selectedCharacter = nil
+        filterValues = nil
+        filterActive = nil
+    }
 }

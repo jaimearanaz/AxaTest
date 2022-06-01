@@ -83,6 +83,7 @@
 		6FFD342C284756A50072DEB5 /* FilterOptionUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD342B284756A50072DEB5 /* FilterOptionUi.swift */; };
 		6FFD342E2847A86F0072DEB5 /* CachedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD342D2847A86F0072DEB5 /* CachedRepository.swift */; };
 		6FFD34302847AAAD0072DEB5 /* CachedRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD342F2847AAAD0072DEB5 /* CachedRepositoryProtocol.swift */; };
+		6FFD34322847C0100072DEB5 /* InvalidateCachedDataUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD34312847C0100072DEB5 /* InvalidateCachedDataUseCase.swift */; };
 		E77785E24A5ADD8A7CAE2BA1 /* Pods_AxaTest_AxaTestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 620150909DE46FE5C647E2F8 /* Pods_AxaTest_AxaTestUITests.framework */; };
 		F941F6721671F6C5FFF67DD3 /* Pods_AxaTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD34A9E78A22A7D73DDE275 /* Pods_AxaTestTests.framework */; };
 /* End PBXBuildFile section */
@@ -188,6 +189,7 @@
 		6FFD342B284756A50072DEB5 /* FilterOptionUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptionUi.swift; sourceTree = "<group>"; };
 		6FFD342D2847A86F0072DEB5 /* CachedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedRepository.swift; sourceTree = "<group>"; };
 		6FFD342F2847AAAD0072DEB5 /* CachedRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedRepositoryProtocol.swift; sourceTree = "<group>"; };
+		6FFD34312847C0100072DEB5 /* InvalidateCachedDataUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvalidateCachedDataUseCase.swift; sourceTree = "<group>"; };
 		95DF631263566C56E8D5AE08 /* Pods-AxaTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxaTestTests.release.xcconfig"; path = "Target Support Files/Pods-AxaTestTests/Pods-AxaTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		B7574474C8C9D2163CF2F809 /* Pods-AxaTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxaTest.release.xcconfig"; path = "Target Support Files/Pods-AxaTest/Pods-AxaTest.release.xcconfig"; sourceTree = "<group>"; };
 		BC1C1C46B8494C47849A8A51 /* Pods-AxaTest-AxaTestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxaTest-AxaTestUITests.release.xcconfig"; path = "Target Support Files/Pods-AxaTest-AxaTestUITests/Pods-AxaTest-AxaTestUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				6F03B4CE2842422E0047E456 /* SaveSelectedCharacter.swift */,
 				6F03B4CC284242210047E456 /* GetSelectedCharacter.swift */,
 				6FD717512846215D001202EC /* GetCharactersByNameUseCase.swift */,
+				6FFD34312847C0100072DEB5 /* InvalidateCachedDataUseCase.swift */,
 			);
 			path = usecases;
 			sourceTree = "<group>";
@@ -760,6 +763,7 @@
 				6F03B4E228427FB50047E456 /* FilterViewModel.swift in Sources */,
 				6FD71762284662CE001202EC /* UIViewFromNib.swift in Sources */,
 				6F03B49A283FB4130047E456 /* String+Extensions.swift in Sources */,
+				6FFD34322847C0100072DEB5 /* InvalidateCachedDataUseCase.swift in Sources */,
 				6FD7175828462FD0001202EC /* NSObject+Extensions.swift in Sources */,
 				6F03B4EC2843C7660047E456 /* Filter+Mapper.swift in Sources */,
 				6F03B4A32840EACB0047E456 /* GridViewModel.swift in Sources */,

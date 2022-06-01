@@ -17,14 +17,12 @@ class GridViewController: BaseViewController {
     var viewModel: GridViewModel? { didSet { baseViewModel = viewModel } }
     var navigationFlow: GridNavigationFlow?
     
+    private var refreshControl = UIRefreshControl()
     private let itemsPerRow: CGFloat = 3
-    private let sectionInsets = UIEdgeInsets(
-      top: 16.0,
-      left: 16.0,
-      bottom: 16.0,
-      right: 16.0)
+    private let sectionInsets = UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0)
     private var cellSize = CGSize(width: 0, height: 0)
-    
+    private var resetButton: UIBarButtonItem?
+        
     override func binds() {
 
         super.binds()
@@ -49,7 +47,14 @@ class GridViewController: BaseViewController {
         viewModel?.characters.bind({ characters in
             DispatchQueue.main.async {
                 self.emptyLb.isHidden = characters.isNotEmpty
+                self.refreshControl.endRefreshing()
                 self.collectionView.reloadData()
+            }
+        })
+        
+        viewModel?.isFilterActive.bind({ isActive in
+            DispatchQueue.main.async {
+                self.resetButton?.isEnabled = isActive
             }
         })
         
@@ -67,8 +72,9 @@ class GridViewController: BaseViewController {
         super.customizeView()
         
         let filterButton = UIBarButtonItem(title: "FILTER_ACTION".localized, style: .plain, target: self, action: #selector(didSelectFilter))
-        let resetButton = UIBarButtonItem(title: "FILTER_RESET".localized, style: .plain, target: self, action: #selector(didSelectReset))
-        navigationItem.rightBarButtonItems = [filterButton, resetButton]
+        resetButton = UIBarButtonItem(title: "FILTER_RESET".localized, style: .plain, target: self, action: #selector(didSelectReset))
+        resetButton!.isEnabled = false
+        navigationItem.rightBarButtonItems = [filterButton, resetButton!]
         
         let label = UILabel(frame: CGRect.zero)
         label.translatesAutoresizingMaskIntoConstraints = true
@@ -80,6 +86,11 @@ class GridViewController: BaseViewController {
         emptyLb.isHidden = true
         emptyLb.font = UIFont.regular(withSize: 18)
         emptyLb.textColor = UIColor.gray
+        
+        refreshControl.tintColor = UIColor.black
+        refreshControl.addTarget(self, action: #selector(didRefresh), for: UIControl.Event.valueChanged)
+        refreshControl.attributedTitle = NSAttributedString(string: "GRID_PULL_TO_REFRESH".localized)
+        collectionView.addSubview(refreshControl)
     }
     
     override func localizeView() {
@@ -89,15 +100,23 @@ class GridViewController: BaseViewController {
     }
     
     @objc func didSelectFilter() {
+        
+        collectionView.setContentOffset(.zero, animated: false)
         viewModel?.didSelectFilter()
     }
     
     @objc func didSelectReset() {
+        
+        collectionView.setContentOffset(.zero, animated: true)
         viewModel?.didSelectReset()
     }
     
     @objc func didSelectCharacter() {
         viewModel?.didSelectCharacter(id: 1)
+    }
+    
+    @objc func didRefresh() {
+        viewModel?.didRefresh()
     }
     
     func startLoading() {
