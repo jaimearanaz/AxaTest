@@ -34,14 +34,18 @@ class FilterViewController: BaseViewController {
 
         super.binds()
         viewModel?.transitionTo.bind({ transitionTo in
-            if let transitionTo = transitionTo {
-                self.route(transitionTo: transitionTo)
+            DispatchQueue.main.async {
+                if let transitionTo = transitionTo {
+                    self.route(transitionTo: transitionTo)
+                }
             }
         })
         
         viewModel?.filterConfig.bind({ filterConfig in
-            self.configureFilter(values: filterConfig.filterValues,
-                                 active: filterConfig.filterActive)
+            DispatchQueue.main.async {
+                self.configureFilter(values: filterConfig.filterValues,
+                                     active: filterConfig.filterActive)
+            }
         })
         
         viewModel?.errorMessage.bind({ errorMessage in

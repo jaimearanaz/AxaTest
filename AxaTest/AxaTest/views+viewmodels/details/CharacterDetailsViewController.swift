@@ -36,7 +36,9 @@ class CharacterDetailsViewController: BaseViewController {
         
         super.binds()
         viewModel?.character.bind({ character in
-            self.configCharacter(character)
+            DispatchQueue.main.async {
+                self.configCharacter(character)
+            }
         })
         
         viewModel?.errorMessage.bind({ errorMessage in
@@ -46,8 +48,10 @@ class CharacterDetailsViewController: BaseViewController {
         })
         
         viewModel?.transitionTo.bind({ transitionTo in
-            if let transitionTo = transitionTo {
-                self.route(transitionTo: transitionTo)
+            DispatchQueue.main.async {
+                if let transitionTo = transitionTo {
+                    self.route(transitionTo: transitionTo)
+                }
             }
         })
     }

@@ -10,7 +10,7 @@ import Foundation
 protocol NonPersistentRepositoryProtocol {
     
     func saveCharacters(_ characters: [Character])
-    func getSavedCharacters() -> [Character]
+    func getSavedCharacters() -> [Character]?
     func saveFilterActive(_ filter: Filter)
     func getFilterActive() -> Filter?
     func saveFilterValues(_ filter: Filter)

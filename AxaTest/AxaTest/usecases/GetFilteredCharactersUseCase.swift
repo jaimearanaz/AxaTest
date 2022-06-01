@@ -9,32 +9,37 @@ import Foundation
 
 protocol GetFilteredCharactersUseCase {
     
+    var cachedRepository: CachedRepositoryProtocol { get set }
     var nonPersistentRepository: NonPersistentRepositoryProtocol { get set }
     
-    func execute(completion: @escaping (Result<[Character], Error>) -> Void)
+    func execute() async throws -> [Character]
 }
 
 class DefaultGetFilteredCharactersUseCase: GetFilteredCharactersUseCase {
 
+    var cachedRepository: CachedRepositoryProtocol
     var nonPersistentRepository: NonPersistentRepositoryProtocol
     
-    init(nonPersistentRepository: NonPersistentRepositoryProtocol) {
+    init(cachedRepository: CachedRepositoryProtocol, nonPersistentRepository: NonPersistentRepositoryProtocol) {
+        
+        self.cachedRepository = cachedRepository
         self.nonPersistentRepository = nonPersistentRepository
     }
     
-    func execute(completion: @escaping (Result<[Character], Error>) -> Void) {
-
-        let characters = nonPersistentRepository.getSavedCharacters()
-        let filterActive = nonPersistentRepository.getFilterActive()
+    func execute() async throws -> [Character] {
         
-        if let filterActive = filterActive, characters.isNotEmpty {
-            let filtered = filterCharacters(characters, withFilter: filterActive)
-            completion(.success(filtered))
-        } else {
-            completion(.failure(NonPersistentErrors.noData))
+        do {
+            let characters = try await cachedRepository.getCharacters()
+            if let filterActive = nonPersistentRepository.getFilterActive() {
+                return filterCharacters(characters, withFilter: filterActive)
+            } else {
+                throw NonPersistentErrors.noData
+            }
+        } catch let error {
+            throw error
         }
     }
-    
+
     private func filterCharacters(_ characters: [Character], withFilter filter: Filter) -> [Character] {
 
         return characters

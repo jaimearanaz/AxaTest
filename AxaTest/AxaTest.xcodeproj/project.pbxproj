@@ -45,7 +45,6 @@
 		6F03B4E72843C3B90047E456 /* CharacterDetailsUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F03B4E62843C3B90047E456 /* CharacterDetailsUi.swift */; };
 		6F03B4EC2843C7660047E456 /* Filter+Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F03B4EB2843C7660047E456 /* Filter+Mapper.swift */; };
 		6F03B4F02843CCB00047E456 /* CharacterDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F03B4EF2843CCB00047E456 /* CharacterDetailsViewModel.swift */; };
-		6F03B4F62843D1C20047E456 /* GetCharacterByIdUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F03B4F52843D1C20047E456 /* GetCharacterByIdUseCase.swift */; };
 		6F3BE94F2844D1A100FF619B /* GridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3BE94E2844D1A100FF619B /* GridViewCell.swift */; };
 		6F6E6395283F794B004347DE /* NetworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E6394283F794B004347DE /* NetworkRepository.swift */; };
 		6F6E6397283F79AF004347DE /* GetCharacters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E6396283F79AF004347DE /* GetCharacters.swift */; };
@@ -82,6 +81,8 @@
 		6FFD342828474C9B0072DEB5 /* FilterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD342728474C9B0072DEB5 /* FilterRouter.swift */; };
 		6FFD342A284755A50072DEB5 /* FilterOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD3429284755A50072DEB5 /* FilterOptionsViewController.swift */; };
 		6FFD342C284756A50072DEB5 /* FilterOptionUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD342B284756A50072DEB5 /* FilterOptionUi.swift */; };
+		6FFD342E2847A86F0072DEB5 /* CachedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD342D2847A86F0072DEB5 /* CachedRepository.swift */; };
+		6FFD34302847AAAD0072DEB5 /* CachedRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD342F2847AAAD0072DEB5 /* CachedRepositoryProtocol.swift */; };
 		E77785E24A5ADD8A7CAE2BA1 /* Pods_AxaTest_AxaTestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 620150909DE46FE5C647E2F8 /* Pods_AxaTest_AxaTestUITests.framework */; };
 		F941F6721671F6C5FFF67DD3 /* Pods_AxaTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD34A9E78A22A7D73DDE275 /* Pods_AxaTestTests.framework */; };
 /* End PBXBuildFile section */
@@ -145,7 +146,6 @@
 		6F03B4E62843C3B90047E456 /* CharacterDetailsUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsUi.swift; sourceTree = "<group>"; };
 		6F03B4EB2843C7660047E456 /* Filter+Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Filter+Mapper.swift"; sourceTree = "<group>"; };
 		6F03B4EF2843CCB00047E456 /* CharacterDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewModel.swift; sourceTree = "<group>"; };
-		6F03B4F52843D1C20047E456 /* GetCharacterByIdUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCharacterByIdUseCase.swift; sourceTree = "<group>"; };
 		6F3BE94E2844D1A100FF619B /* GridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewCell.swift; sourceTree = "<group>"; };
 		6F6E6394283F794B004347DE /* NetworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepository.swift; sourceTree = "<group>"; };
 		6F6E6396283F79AF004347DE /* GetCharacters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCharacters.swift; sourceTree = "<group>"; };
@@ -186,6 +186,8 @@
 		6FFD342728474C9B0072DEB5 /* FilterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterRouter.swift; sourceTree = "<group>"; };
 		6FFD3429284755A50072DEB5 /* FilterOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptionsViewController.swift; sourceTree = "<group>"; };
 		6FFD342B284756A50072DEB5 /* FilterOptionUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptionUi.swift; sourceTree = "<group>"; };
+		6FFD342D2847A86F0072DEB5 /* CachedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedRepository.swift; sourceTree = "<group>"; };
+		6FFD342F2847AAAD0072DEB5 /* CachedRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedRepositoryProtocol.swift; sourceTree = "<group>"; };
 		95DF631263566C56E8D5AE08 /* Pods-AxaTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxaTestTests.release.xcconfig"; path = "Target Support Files/Pods-AxaTestTests/Pods-AxaTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		B7574474C8C9D2163CF2F809 /* Pods-AxaTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxaTest.release.xcconfig"; path = "Target Support Files/Pods-AxaTest/Pods-AxaTest.release.xcconfig"; sourceTree = "<group>"; };
 		BC1C1C46B8494C47849A8A51 /* Pods-AxaTest-AxaTestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxaTest-AxaTestUITests.release.xcconfig"; path = "Target Support Files/Pods-AxaTest-AxaTestUITests/Pods-AxaTest-AxaTestUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -284,7 +286,6 @@
 				6F03B4BE284237050047E456 /* ResetActiveFilterUseCase.swift */,
 				6F03B4CE2842422E0047E456 /* SaveSelectedCharacter.swift */,
 				6F03B4CC284242210047E456 /* GetSelectedCharacter.swift */,
-				6F03B4F52843D1C20047E456 /* GetCharacterByIdUseCase.swift */,
 				6FD717512846215D001202EC /* GetCharactersByNameUseCase.swift */,
 			);
 			path = usecases;
@@ -356,6 +357,8 @@
 		6F6E6392283F7911004347DE /* repositories */ = {
 			isa = PBXGroup;
 			children = (
+				6FFD342F2847AAAD0072DEB5 /* CachedRepositoryProtocol.swift */,
+				6FFD342D2847A86F0072DEB5 /* CachedRepository.swift */,
 				6F03B4C0284237880047E456 /* nonpersistent */,
 				6F6E6393283F7924004347DE /* network */,
 			);
@@ -753,7 +756,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F6E6397283F79AF004347DE /* GetCharacters.swift in Sources */,
-				6F03B4F62843D1C20047E456 /* GetCharacterByIdUseCase.swift in Sources */,
 				6F03B4B7284236B40047E456 /* GetFilteredCharactersUseCase.swift in Sources */,
 				6F03B4E228427FB50047E456 /* FilterViewModel.swift in Sources */,
 				6FD71762284662CE001202EC /* UIViewFromNib.swift in Sources */,
@@ -781,12 +783,14 @@
 				6F03B4C928423F2F0047E456 /* GridRouter.swift in Sources */,
 				6FD7174E28461AA9001202EC /* NSAttributedString+Extensions.swift in Sources */,
 				6F03B4DD2842777E0047E456 /* CharacterDetailsViewController.swift in Sources */,
+				6FFD34302847AAAD0072DEB5 /* CachedRepositoryProtocol.swift in Sources */,
 				6F03B4D328424ADB0047E456 /* Filter.swift in Sources */,
 				6FD7175C2846614C001202EC /* AvatarImageView.swift in Sources */,
 				6F03B4E42843C0DB0047E456 /* FilterConfigUi.swift in Sources */,
 				6F03B4BB284236EA0047E456 /* GetActiveFilterUseCase.swift in Sources */,
 				6F03B4F02843CCB00047E456 /* CharacterDetailsViewModel.swift in Sources */,
 				6F03B4AF284230C80047E456 /* GridDI.swift in Sources */,
+				6FFD342E2847A86F0072DEB5 /* CachedRepository.swift in Sources */,
 				6F03B49E283FC6DE0047E456 /* Collection+Extensions.swift in Sources */,
 				6F03B4D928424E0A0047E456 /* NonPersistentErrors+Extensions.swift in Sources */,
 				6F03B4CF2842422E0047E456 /* SaveSelectedCharacter.swift in Sources */,

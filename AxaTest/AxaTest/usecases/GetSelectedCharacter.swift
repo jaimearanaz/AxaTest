@@ -9,32 +9,38 @@ import Foundation
 
 protocol GetSelectedCharacterUseCase {
     
+    var cachedRepository: CachedRepositoryProtocol { get set }
     var nonPersistentRepository: NonPersistentRepositoryProtocol { get set }
     
-    func execute(completion: @escaping (Result<Character, Error>) -> Void)
+    func execute() async throws -> Character
 }
 
 class DefaultGetSelectedCharacterUseCase: GetSelectedCharacterUseCase {
 
+    var cachedRepository: CachedRepositoryProtocol
     var nonPersistentRepository: NonPersistentRepositoryProtocol
     
-    init(nonPersistentRepository: NonPersistentRepositoryProtocol) {
+    init(cachedRepository: CachedRepositoryProtocol, nonPersistentRepository: NonPersistentRepositoryProtocol) {
+        
+        self.cachedRepository = cachedRepository
         self.nonPersistentRepository = nonPersistentRepository
     }
     
-    func execute(completion: @escaping (Result<Character, Error>) -> Void) {
-        
+    func execute() async throws -> Character {
+
         if let id = nonPersistentRepository.getSelectedCharacter() {
-            
-            let characters = nonPersistentRepository.getSavedCharacters()
-            if let oneCharacter = (characters.filter { $0.id == id }).first {
-                completion(.success(oneCharacter))
-            } else {
-                completion(.failure(NonPersistentErrors.noData))
+            do {
+                let characters = try await cachedRepository.getCharacters()
+                if let oneCharacter = (characters.filter { $0.id == id }).first {
+                    return oneCharacter
+                } else {
+                    throw NonPersistentErrors.noData
+                }
+            } catch let error {
+                throw error
             }
-            
         } else {
-            completion(.failure(NonPersistentErrors.noData))
+            throw NonPersistentErrors.noData
         }
     }
 }

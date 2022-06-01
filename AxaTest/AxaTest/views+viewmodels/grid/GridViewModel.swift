@@ -15,7 +15,6 @@ enum GridTransitions: String {
 
 protocol GridViewModelOutput: BaseViewModelOutput {
     
-    var isLoading: Box<Bool> { get set }
     var characters: Box<[CharacterGridUi]> { get set }
     var transitionTo: Box<GridTransitions?> { get set }
 }
@@ -38,7 +37,6 @@ protocol GridViewModel: BaseViewModel, GridViewModelOutput, GridViewModelInput {
 
 class DefaultGridViewModel: BaseViewModel, GridViewModel {
     
-    var isLoading = Box(false)
     var characters = Box([CharacterGridUi]())
     var transitionTo = Box<GridTransitions?>(nil)
     var getCharactersUseCase: GetCharactersUseCase
@@ -61,15 +59,16 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
     }
     
     override func viewDidLoad() {
-
-        isLoading.value = true
-        getCharactersUseCase.execute { result in
-            
-            self.isLoading.value = false
-            switch result {
-            case .success(let characters):
+        
+        super.viewDidLoad()
+        Task.init {
+            do {
+                isLoading.value = true
+                let characters = try await getCharactersUseCase.execute()
+                isLoading.value = false
                 self.characters.value = characters.map { $0.toCharacterGridUi() }
-            case .failure(let error):
+            } catch let error {
+                isLoading.value = false
                 self.errorMessage.value = error.localizedDescription
             }
         }
@@ -77,6 +76,7 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
     
     override func viewDidAppear() {
 
+        super.viewDidAppear()
         if !isLoading.value {
             updateCharacters()
         }
@@ -88,12 +88,14 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
     
     func didSelectReset() {
         
-        resetFilterActiveUserCase.execute { result in
-            
-            switch result {
-            case .success():
-                self.updateCharacters()
-            case .failure(let error):
+        Task.init {
+            do {
+                isLoading.value = true
+                try await resetFilterActiveUserCase.execute()
+                isLoading.value = false
+                updateCharacters()
+            } catch let error {
+                isLoading.value = false
                 self.errorMessage.value = error.localizedDescription
             }
         }
@@ -101,25 +103,22 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
     
     func didSelectCharacter(id: Int) {
         
-        saveSelectedCharacter.execute(id: id) { result in
-            
-            switch result {
-            case .success():
-                self.transitionTo.value = .toCharacter
-            case .failure(let error):
-                self.errorMessage.value = error.localizedDescription
-            }
+        Task.init {
+            await saveSelectedCharacter.execute(id:id)
+            transitionTo.value = .toCharacter
         }
     }
     
     private func updateCharacters() {
         
-        getFilteredCharactersUseCase.execute { result in
-            
-            switch result {
-            case .success(let characters):
+        Task.init {
+            do {
+                isLoading.value = true
+                let characters = try await getFilteredCharactersUseCase.execute()
+                isLoading.value = false
                 self.characters.value = characters.map { $0.toCharacterGridUi() }
-            case .failure(let error):
+            } catch let error {
+                isLoading.value = false
                 self.errorMessage.value = error.localizedDescription
             }
         }

@@ -29,7 +29,6 @@ class GridViewController: BaseViewController {
 
         super.binds()
         viewModel?.isLoading.bind({ isLoading in
-            
             DispatchQueue.main.async {
                 switch isLoading {
                 case true:
@@ -55,8 +54,10 @@ class GridViewController: BaseViewController {
         })
         
         viewModel?.transitionTo.bind({ transitionTo in
-            if let transitionTo = transitionTo {
-                self.route(transitionTo: transitionTo)
+            DispatchQueue.main.async {
+                if let transitionTo = transitionTo {
+                    self.route(transitionTo: transitionTo)
+                }
             }
         })
     }

@@ -52,23 +52,14 @@ class DefaultCharacterDetailsViewModel: BaseViewModel, CharacterDetailsViewModel
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        getSelectedCharacterUseCase.execute { result in
-            
-            switch result {
-            case .success(let character):
-                
-                self.getCharacterDetailsUi(fromCharacter: character) { result in
-                    switch result {
-                    case .success(let character):
-                        self.character.value = character
-                    case .failure(let error):
-                        self.showErrorAndDismiss(error: error)
-                    }
-                }
-                
-            case .failure(let error):
-                self.showErrorAndDismiss(error: error)
-            }
+        Task.init {
+            do {
+                let character = try await getSelectedCharacterUseCase.execute()
+                let characterUi = try await getCharacterDetailsUi(fromCharacter: character)
+                self.character.value = characterUi
+            } catch let error {
+                showErrorAndDismiss(error: error)
+           }
         }
     }
     
@@ -78,32 +69,22 @@ class DefaultCharacterDetailsViewModel: BaseViewModel, CharacterDetailsViewModel
     
     func didSelectFriend(id: Int) {
         
-        saveSelectCharacterUseCase.execute(id: id) { result in
-            
-            switch result {
-            case .success():
-                self.transitionTo.value = .toFriend
-            case .failure(let error):
-                self.errorMessage.value = error.localizedDescription
-            }
+        Task.init {
+            await saveSelectCharacterUseCase.execute(id:id)
+            transitionTo.value = .toFriend
         }
     }
     
-    private func getCharacterDetailsUi(fromCharacter character: Character,
-                                       completion: @escaping (Result<CharacterDetailsUi, Error>) -> Void) {
+    private func getCharacterDetailsUi(fromCharacter character: Character) async throws -> CharacterDetailsUi {
         
-        getCharactersByNameUseCase.execute(names: character.friends) { result in
-            
-            switch result {
-                
-            case .success(let friends):
-                let friends = friends.map { $0.toFriendUi() }
-                var characterUi = character.toCharacterDetailsUi()
-                characterUi.friends = friends
-                completion(.success(characterUi))
-            case .failure(let error):
-                completion(.failure(error))
-            }
+        do {
+            let friends = try await getCharactersByNameUseCase.execute(names: character.friends)
+            let friendsUi = friends.map { $0.toFriendUi() }
+            var characterUi = character.toCharacterDetailsUi()
+            characterUi.friends = friendsUi
+            return characterUi
+        } catch let error {
+            throw error
         }
     }
     

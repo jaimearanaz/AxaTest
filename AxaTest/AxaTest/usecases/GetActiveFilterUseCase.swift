@@ -11,7 +11,7 @@ protocol GetFilterActiveUseCase {
     
     var nonPersistentRepository: NonPersistentRepositoryProtocol { get set }
     
-    func execute(completion: @escaping (Result<Filter, Error>) -> Void)
+    func execute() async throws -> Filter
 }
 
 class DefaultGetFilterActiveUseCase: GetFilterActiveUseCase {
@@ -22,12 +22,11 @@ class DefaultGetFilterActiveUseCase: GetFilterActiveUseCase {
         self.nonPersistentRepository = nonPersistentRepository
     }
     
-    func execute(completion: @escaping (Result<Filter, Error>) -> Void) {
-        
+    func execute() async throws -> Filter {
         if let filterActive = nonPersistentRepository.getFilterActive() {
-            completion(.success(filterActive))
+            return filterActive
         } else {
-            completion(.failure(NonPersistentErrors.noData))
+            throw NonPersistentErrors.noData
         }
     }
 }

@@ -11,7 +11,7 @@ protocol SaveSelectedCharacterUseCase {
     
     var nonPersistentRepository: NonPersistentRepositoryProtocol { get set }
     
-    func execute(id: Int, completion: @escaping (Result<Void, Error>) -> Void)
+    func execute(id: Int) async -> Void
 }
 
 class DefaultSaveSelectedCharacterUseCase: SaveSelectedCharacterUseCase {
@@ -22,9 +22,9 @@ class DefaultSaveSelectedCharacterUseCase: SaveSelectedCharacterUseCase {
         self.nonPersistentRepository = nonPersistentRepository
     }
     
-    func execute(id: Int, completion: @escaping (Result<Void, Error>) -> Void) {
+    func execute(id: Int) async -> Void {
         
         nonPersistentRepository.saveSelectedCharacter(id: id)
-        completion(.success(Void()))
+        return
     }
 }

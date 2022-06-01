@@ -9,26 +9,31 @@ import Foundation
 
 protocol ResetFilterActiveUseCase {
     
+    var cachedRepository: CachedRepositoryProtocol { get set }
     var nonPersistentRepository: NonPersistentRepositoryProtocol { get set }
     
-    func execute(completion: @escaping (Result<Void, Error>) -> Void)
+    func execute() async throws -> Void
 }
 
 class DefaultResetFilterActiveUseCase: ResetFilterActiveUseCase {
 
+    var cachedRepository: CachedRepositoryProtocol
     var nonPersistentRepository: NonPersistentRepositoryProtocol
     
-    init(nonPersistentRepository: NonPersistentRepositoryProtocol) {
+    init(cachedRepository: CachedRepositoryProtocol, nonPersistentRepository: NonPersistentRepositoryProtocol) {
+        
+        self.cachedRepository = cachedRepository
         self.nonPersistentRepository = nonPersistentRepository
     }
     
-    func execute(completion: @escaping (Result<Void, Error>) -> Void) {
+    func execute() async throws -> Void {
         
-        if let filterValues = nonPersistentRepository.getFilterValues() {
+        do {
+            let filterValues = try await cachedRepository.getFilterValues()
             nonPersistentRepository.saveFilterActive(filterValues)
-            completion(.success(Void()))
-        } else {
-            completion(.failure(NonPersistentErrors.noData))
+            return
+        } catch let error {
+            throw error
         }
     }
 }

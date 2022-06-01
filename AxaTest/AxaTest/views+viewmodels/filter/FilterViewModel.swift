@@ -57,25 +57,17 @@ class DefaultFilterViewModel: BaseViewModel, FilterViewModel {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        getFilterValuesUseCase.execute { result in
-            
-            switch result {
-            case .success(let filterValues):
-                
+        Task.init {
+            do {
+                isLoading.value = true
+                let filterValues = try await getFilterValuesUseCase.execute()
+                let filterActive = try await getFilterActiveUseCase.execute()
+                isLoading.value = false
+                self.filterConfig.value = FilterConfigUi(filterValues: filterValues.toFilterUi(),
+                                                         filterActive: filterActive.toFilterUi())
                 self.filterValues = filterValues
-                self.getFilterActiveUseCase.execute { result in
-                    
-                    switch result {
-                    case .success(let filterActive):
-                        self.filterConfig.value = FilterConfigUi(filterValues: filterValues.toFilterUi(),
-                                                                 filterActive: filterActive.toFilterUi())
-                    case .failure(let error):
-                        self.showErrorAndDismiss(error: error)
-                    }
-                }
-
-            case .failure(let error):
+            } catch let error {
+                isLoading.value = false
                 self.showErrorAndDismiss(error: error)
             }
         }
@@ -88,14 +80,9 @@ class DefaultFilterViewModel: BaseViewModel, FilterViewModel {
     
     func didSelectApplyFilter(_ filter: FilterUi) {
 
-        saveFilterActiveUserCase.execute(filter: filter.toFilter()) { result in
-            
-            switch result {
-            case .success():
-                self.transitionTo.value = .dismiss
-            case .failure(let error):
-                self.showErrorAndDismiss(error: error)
-            }
+        Task.init {
+            await saveFilterActiveUserCase.execute(filter: filter.toFilter())
+            transitionTo.value = .dismiss
         }
     }
     

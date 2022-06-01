@@ -9,7 +9,7 @@ import Foundation
 
 class NonPersistentRepository: NonPersistentRepositoryProtocol {
     
-    var characters = [Character]()
+    var characters: [Character]?
     var selectedCharacter: Int?
     var filterValues: Filter?
     var filterActive: Filter?
@@ -18,7 +18,7 @@ class NonPersistentRepository: NonPersistentRepositoryProtocol {
         self.characters = characters
     }
     
-    func getSavedCharacters() -> [Character] {
+    func getSavedCharacters() -> [Character]? {
         return characters
     }
     

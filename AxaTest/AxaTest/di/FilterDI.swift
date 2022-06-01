@@ -12,7 +12,9 @@ extension DependencyInjector {
     
     func injectFilter(withSegue segue: UIStoryboardSegue) {
 
-        let getFilterValuesUseCase = DefaultGetFilterValuesUseCase(nonPersistentRepository: nonPersistentRepository)
+        let networkRepository = NetworkRepository(baseUrl: "https://raw.githubusercontent.com/rrafols/mobile_test/master/data.json")
+        let cachedRepository = CachedRepository(networkRepository: networkRepository, nonPersistentRepository: nonPersistentRepository, useCache: true)
+        let getFilterValuesUseCase = DefaultGetFilterValuesUseCase(cachedRepository: cachedRepository)
         let getFilterActiveUseCase = DefaultGetFilterActiveUseCase(nonPersistentRepository: nonPersistentRepository)
         let saveFilterActiveUseCase = DefaultSaveFilterActiveUseCase(nonPersistentRepository: nonPersistentRepository)
         let viewModel = DefaultFilterViewModel(getFilterValuesUseCase: getFilterValuesUseCase,
