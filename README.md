@@ -22,9 +22,9 @@ The View Models are plain classes called `ViewModel` that are defined through tw
 - `ViewModelOutput`, declares what data the Views can subscribe to
 - `ViewModelInput` defines what view related events the Views can communicate to the View Model. 
 
-View Models work with classes named `UseCases` to manipulate domain data, use domain logic and achieve any other goal needed for Views. View Models are never injected with data, instead the always use the classes `UseCases` to get de data they need.
+View Models work with classes named `UseCases` to manipulate domain data, use domain logic and achieve any other goal needed for Views. View Models are never injected with data, instead they always use the classes `UseCases` to get de data they need.
 
-The Views are both `UIViewControllers` and `UIViews`. A View receive by injection its ViewModel and subscribe to the desired data throught the method `binds()`, where they implement what to do when the data change (usually, the action is to update its own view or their associated ones). View are only responsible to show the data coming from its own View Model and to communicate user interface events to it.
+The Views are both `UIViewControllers` and `UIViews`. A View receive by injection its View Model and subscribe to the desired data throught the method `binds()`, where they implement what to do when the data change (usually, the action is to update its own view or their associated ones). Views are only responsible for showing the data that is updated from its own View Model, and to communicate user interaction events to the same View Model.
 
 
 ## Models and mappers
@@ -38,27 +38,27 @@ For example, Views use its own kind of models suffixed with `Ui` in order to be 
 
 ## Use cases
 
-The use cases define the bussines or domain logic, those what is considered the core of our system and what defines our bussines intention. They obtain data from different sources, manipulate the data, apply its logic to it, and return it to the View Models.
+The use cases define the bussines or domain logic, those what is considered the core of our system and what defines our bussines intention. They obtain data from different sources, manipulate the data, apply its logic to it, and return it to the View Models or send it to a repository.
 
-Use cases are define in plain classes named `UseCases`. They define a method `execute()` that triggers the action they were defined for, clearly expressed in its own class name. They are defined as asynchronous methods, because bussines logic do not know anything about **where data is coming from** (network, data bases, device), and thus we don't know how long the execution is going to take. 
+Use cases are defined in plain classes named `UseCases`. They define a method `execute()` that triggers the action they were defined for, clearly expressed in its own class name. They are defined as asynchronous methods, because bussines logic do not know anything about **where data is coming from** (network, data bases, device), and thus we don't know how long the execution is going to take. 
 
-For this asynchronous nature we use the new Swift featre `async/await`.
+For this asynchronous nature we use the new Swift feature `async/await`.
 
 
-## Sources of data
+## Repositories
 
 The repositories are the sources of data used across the app. In this project are defined two main data sources:
 - `NetworkRepository` is the repository that fetchs the data from its original remote source. 
 - `NonPersistentRepository` is the one used for temporary allocated data, that is, data that is only available during the life cycle of the app, or until it's intentionally invalidated.
 
-In the middle of those repositories, we have a cache manager called `CachedRepository` that retrieves data from network only once, and then stores it and retrieves it from non persistent state.
+In the middle of those repositories, we have a cache manager called `CachedRepository` that retrieves data from network only once, and then stores it and retrieves it from non persistent state in the folling requests.
 
 For networking operations the app uses the new Swift framework `Combine`.
 
 
 ## Dependency injections
 
-A basic tecnhique where every actor in the system receives during its initialization the other actors they need to perform its responsability, instead of create them by its own. Besides this, these elements **depend always on protocols or interfaces**, instead of a particular element.
+This is a basic tecnhique where every actor receives during its initialization the other actors they need to perform its responsability, instead of create them by its own. Besides this, these elements **depend always on protocols or interfaces**, instead of a particular element.
 
 When a new View (usually a `UIViewController`) is going to be presented, it triggers the injection process through a method called `inject(withSegue:)`. The associated View Model and the needed use cases and respositories are instantiated and assignated to each other. This process is always managed by a class suffixed with `DI` (standing for "Dependecy Injection").
 
@@ -67,9 +67,7 @@ When a new View (usually a `UIViewController`) is going to be presented, it trig
 
 The app navigation is primary based in the use of **scenes in a storyboard**, and the defined **segues** to represent the avialable transitions between these scenes.
 
-The View Model defines an observable enumerated property named `transitionTo`, whose values correspond to the **same segues** declared in the storyboard for this scene. When `transitionTo` changes, the View reacts to this change and starts the navigation process. Every scene has an associated file suffixed as `Router` with the methods `route(transitionTo:)` and `prepare(forSegue:)` that trigger the injection process just before the next `UIViewController` is fully loaded.
-
-The final purpose is to uncouple the navigation process from the `UIViewController` and be able to apply dependency injection just where the iOS views life cycle permits.
+The View Model defines an observable enumerated property named `transitionTo`, whose values correspond to the **same segues** declared in the storyboard for this scene. When `transitionTo` changes, the subscribed View reacts to this change and starts the navigation process. Every scene has an associated file suffixed as `Router` with the methods `route(transitionTo:)` and `prepare(forSegue:)` that trigger the injection process just before the next `UIViewController` is fully loaded.
 
 
 ## Third party libraries
