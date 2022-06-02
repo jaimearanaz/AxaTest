@@ -61,9 +61,9 @@ class GridViewController: BaseViewController {
             }
         })
         
-        viewModel?.exitSearch.bind({ exit in
+        viewModel?.isSearching.bind({ isSearching in
             DispatchQueue.main.async {
-                if exit {
+                if !isSearching {
                     self.resetSearchBar()
                 }
             }

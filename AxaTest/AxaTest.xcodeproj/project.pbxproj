@@ -1109,6 +1109,7 @@
 				DEVELOPMENT_TEAM = X7FQ3DUR48;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AxaTest/resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Brastlewark;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1142,6 +1143,7 @@
 				DEVELOPMENT_TEAM = X7FQ3DUR48;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AxaTest/resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Brastlewark;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

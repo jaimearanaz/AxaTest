@@ -18,7 +18,7 @@ protocol GridViewModelOutput: BaseViewModelOutput {
     var characters: Box<[CharacterGridUi]> { get set }
     var isFilterActive: Box<Bool> { get set }
     var transitionTo: Box<GridTransitions?> { get set }
-    var exitSearch: Box<Bool> { get set }
+    var isSearching: Box<Bool> { get set }
 }
 
 protocol GridViewModelInput: BaseViewModelInput {
@@ -47,7 +47,7 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
     var characters = Box([CharacterGridUi]())
     var isFilterActive = Box(false)
     var transitionTo = Box<GridTransitions?>(nil)
-    var exitSearch = Box(true)
+    var isSearching = Box(false)
     var getCharactersUseCase: GetCharactersUseCase
     var getFilterActiveUseCase: GetFilterActiveUseCase
     var getFilterValuesUseCase: GetFilterValuesUseCase
@@ -104,7 +104,7 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
         
     func didSelectFilter() {
         
-        exitSearch.value = true
+        isSearching.value = false
         transitionTo.value = .toFilter
     }
     
@@ -112,7 +112,7 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
         
         Task.init {
             do {
-                exitSearch.value = true
+                isSearching.value = false
                 isLoading.value = true
                 try await resetFilterActiveUserCase.execute()
                 isLoading.value = false
@@ -136,7 +136,7 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
     func didRefresh() {
         
         Task.init {
-            exitSearch.value = true
+            isSearching.value = false
             await invalidateCachedData.execute()
             updateCharacters()
             isFilterActive.value = false
@@ -146,6 +146,7 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
     func didEditSearch(search: String) {
         
         Task.init {
+            isSearching.value = true
             if search.isEmpty {
                 updateCharacters()
             } else {
@@ -163,7 +164,7 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
         
         Task.init {
             do {
-                exitSearch.value = true
+                isSearching.value = false
                 isLoading.value = true
                 let characters = try await getFilteredCharactersUseCase.execute()
                 isLoading.value = false
