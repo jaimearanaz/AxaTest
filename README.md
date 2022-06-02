@@ -2,7 +2,9 @@
 
 This is a mobile technical test for an iOS position made for [Axa](https://www.axa.com/en) in june 2022. The explanation and requisites for the technical test are attached to this repository too in a PDF file called "Brastlewark_mobile_test"
 
-![](brastlewark.gif)
+<p align="center">
+  <img src="brastlewark.gif" alt="animated" />
+</p>
 
 ## Basic architecture
 
