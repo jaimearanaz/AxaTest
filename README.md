@@ -47,18 +47,18 @@ For this asynchronous nature we use the new Swift featre `async/await`.
 
 ## Sources of data
 
-The repositories are the sources of data used across the app. In this project are defined two main data sources: network and non persistent:
+The repositories are the sources of data used across the app. In this project are defined two main data sources:
 - `NetworkRepository` is the repository that fetchs the data from its original remote source. 
 - `NonPersistentRepository` is the one used for temporary allocated data, that is, data that is only available during the life cycle of the app, or until it's intentionally invalidated.
 
-In the middle of those repositories, we have a cache manager called `CachedRepository` that retrieves data from network only once, the first call, and the stores it and retrieves it from non persistent state.
+In the middle of those repositories, we have a cache manager called `CachedRepository` that retrieves data from network only once, and then stores it and retrieves it from non persistent state.
 
 For networking operations the app uses the new Swift framework `Combine`.
 
 
 ## Dependency injections
 
-A basic tecnhique to keep all elements and layers independent from each other, and thus improve code maintainability and encourage testeability, is dependency injection. With this tecnique, every actor in the system receives other actors they need to perform its responsability, instead of create them by its own. Besides, elements **depend always on protocols or interfaces**, instead of a particular element.
+A basic tecnhique where every actor in the system receives during its initialization the other actors they need to perform its responsability, instead of create them by its own. Besides this, these elements **depend always on protocols or interfaces**, instead of a particular element.
 
 When a new View (usually a `UIViewController`) is going to be presented, it triggers the injection process through a method called `inject(withSegue:)`. The associated View Model and the needed use cases and respositories are instantiated and assignated to each other. This process is always managed by a class suffixed with `DI` (standing for "Dependecy Injection").
 
@@ -85,9 +85,9 @@ The following third party libraries are used via Cocoapods in this project:
 
 There are some improvements and new features that could be included in future releases...
 - expect the **city name** in the JSON file as a dynamic property, not always set to the given `brastlewark`, and keeping the rest of JSON structure the same as now.
-- following the later, to **select the city** when the app starts for first time, not always "Brastlewark".
+- following the later, to **select a different city** from a menu when the app starts for first time, not always "Brastlewark".
 - implement the details UI inside of a `UIScrollView`, so if there are more character data in the future, or more friends per character, the user could scroll down to see all of it.
 - implement the filter UI with a `UITableViewController`, and implement different `UITableViewCell` objects for every type of indivudal filter that is needed (i.e., a cell for sliders, a cell for one-single-option tables, a cell for multi-option tables, etc,).
 - include **UI testing**, using the framework `XCUITest` or even **snapshot testing**.
-- more tests in general, not thinking of 100% of coverage (that's not useful, it's just a number), but instead real and useful unit tests and functional tests to coverage the real core of the app.
+- more tests in general, not thinking of 100% of coverage (that's not necessarily useful, it's just a number!), but instead useful unit tests and functional tests to coverage the real core of the app.
 - rethink the whole UI/UX like icons, fonts, colors, interactions, CTAs... I'm trying to be a good developer, not a good designer 😜
