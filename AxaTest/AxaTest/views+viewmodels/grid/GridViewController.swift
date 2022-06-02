@@ -10,6 +10,7 @@ import SDWebImage
 
 class GridViewController: BaseViewController {
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var emptyLb: UILabel!
@@ -49,6 +50,7 @@ class GridViewController: BaseViewController {
             DispatchQueue.main.async {
                 self.emptyLb.isHidden = characters.isNotEmpty
                 self.refreshControl.endRefreshing()
+                self.collectionView.setContentOffset(.zero, animated: true)
                 self.collectionView.reloadData()
             }
         })
@@ -56,6 +58,14 @@ class GridViewController: BaseViewController {
         viewModel?.isFilterActive.bind({ isActive in
             DispatchQueue.main.async {
                 self.resetButton?.isEnabled = isActive
+            }
+        })
+        
+        viewModel?.exitSearch.bind({ exit in
+            DispatchQueue.main.async {
+                if exit {
+                    self.resetSearchBar()
+                }
             }
         })
         
@@ -92,6 +102,8 @@ class GridViewController: BaseViewController {
         refreshControl.addTarget(self, action: #selector(didRefresh), for: UIControl.Event.valueChanged)
         refreshControl.attributedTitle = NSAttributedString(string: "GRID_PULL_TO_REFRESH".localized)
         collectionView.addSubview(refreshControl)
+        
+        searchBar.placeholder = "GRID_SEARCHBAR_PLACEHOLDER".localized
     }
     
     override func localizeView() {
@@ -101,8 +113,6 @@ class GridViewController: BaseViewController {
     }
     
     @objc func didSelectFilter() {
-        
-        collectionView.setContentOffset(.zero, animated: false)
         viewModel?.didSelectFilter()
     }
     
@@ -113,6 +123,8 @@ class GridViewController: BaseViewController {
     }
     
     @objc func didSelectCharacter() {
+        
+        searchBar.resignFirstResponder()
         viewModel?.didSelectCharacter(id: 1)
     }
     
@@ -121,12 +133,27 @@ class GridViewController: BaseViewController {
     }
     
     func startLoading() {
+        
         activityIndicatorView.startAnimating()
         activityIndicatorView.isHidden = false
     }
     
     func stopLoading() {
+        
         activityIndicatorView.stopAnimating()
         activityIndicatorView.isHidden = true
+    }
+    
+    private func resetSearchBar() {
+        
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+    }
+}
+
+extension GridViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel?.didEditSearch(search: searchText)
     }
 }

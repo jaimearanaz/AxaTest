@@ -21,14 +21,15 @@ extension GridViewController: UICollectionViewDelegate {
 extension GridViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel?.characters.value.count ?? 0
+        let num = viewModel?.characters.value.count
+        return num ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let character = viewModel?.characters.value[safe: indexPath.item],
               let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GridViewCell.reuseIdentifier, for: indexPath) as? GridViewCell else {
-            fatalError("cell or item is not available")
+            fatalError("cell or item is not available at indexPath \(indexPath) with \(viewModel?.characters.value.count ?? 0) items")
         }
 
         cell.firstName.text = character.name.firstname()

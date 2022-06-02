@@ -18,6 +18,7 @@ protocol GridViewModelOutput: BaseViewModelOutput {
     var characters: Box<[CharacterGridUi]> { get set }
     var isFilterActive: Box<Bool> { get set }
     var transitionTo: Box<GridTransitions?> { get set }
+    var exitSearch: Box<Bool> { get set }
 }
 
 protocol GridViewModelInput: BaseViewModelInput {
@@ -26,6 +27,7 @@ protocol GridViewModelInput: BaseViewModelInput {
     func didSelectReset()
     func didSelectCharacter(id: Int)
     func didRefresh()
+    func didEditSearch(search: String)
 }
 
 protocol GridViewModel: BaseViewModel, GridViewModelOutput, GridViewModelInput {
@@ -36,6 +38,7 @@ protocol GridViewModel: BaseViewModel, GridViewModelOutput, GridViewModelInput {
     var getFilteredCharactersUseCase: GetFilteredCharactersUseCase { get set }
     var resetFilterActiveUserCase: ResetFilterActiveUseCase { get set }
     var saveSelectedCharacter: SaveSelectedCharacterUseCase { get set }
+    var getSearchedCharactersUseCase: GetSearchedCharactersUseCase { get set }
     var invalidateCachedData: InvalidateCachedDataUseCase { get set }
 }
 
@@ -44,12 +47,14 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
     var characters = Box([CharacterGridUi]())
     var isFilterActive = Box(false)
     var transitionTo = Box<GridTransitions?>(nil)
+    var exitSearch = Box(true)
     var getCharactersUseCase: GetCharactersUseCase
     var getFilterActiveUseCase: GetFilterActiveUseCase
     var getFilterValuesUseCase: GetFilterValuesUseCase
     var getFilteredCharactersUseCase: GetFilteredCharactersUseCase
     var resetFilterActiveUserCase: ResetFilterActiveUseCase
     var saveSelectedCharacter: SaveSelectedCharacterUseCase
+    var getSearchedCharactersUseCase: GetSearchedCharactersUseCase
     var invalidateCachedData: InvalidateCachedDataUseCase
     
     init(getCharactersUseCase: GetCharactersUseCase,
@@ -58,6 +63,7 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
          getFilteredCharactersUseCase: GetFilteredCharactersUseCase,
          resetFilterActiveUserCase: ResetFilterActiveUseCase,
          saveSelectedCharacter: SaveSelectedCharacterUseCase,
+         getSearchedCharactersUseCase: GetSearchedCharactersUseCase,
          invalidateCachedData: InvalidateCachedDataUseCase) {
         
         self.getCharactersUseCase = getCharactersUseCase
@@ -66,6 +72,7 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
         self.getFilteredCharactersUseCase = getFilteredCharactersUseCase
         self.resetFilterActiveUserCase = resetFilterActiveUserCase
         self.saveSelectedCharacter = saveSelectedCharacter
+        self.getSearchedCharactersUseCase = getSearchedCharactersUseCase
         self.invalidateCachedData = invalidateCachedData
     }
     
@@ -96,6 +103,8 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
     }
         
     func didSelectFilter() {
+        
+        exitSearch.value = true
         transitionTo.value = .toFilter
     }
     
@@ -103,6 +112,7 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
         
         Task.init {
             do {
+                exitSearch.value = true
                 isLoading.value = true
                 try await resetFilterActiveUserCase.execute()
                 isLoading.value = false
@@ -126,9 +136,26 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
     func didRefresh() {
         
         Task.init {
+            exitSearch.value = true
             await invalidateCachedData.execute()
             updateCharacters()
             isFilterActive.value = false
+        }
+    }
+    
+    func didEditSearch(search: String) {
+        
+        Task.init {
+            if search.isEmpty {
+                updateCharacters()
+            } else {
+                do {
+                    let characters = try await getSearchedCharactersUseCase.execute(search: search)
+                    self.characters.value = characters.map { $0.toCharacterGridUi() }
+                } catch let error {
+                    errorMessage.value = error.localizedDescription
+                }
+            }
         }
     }
     
@@ -136,6 +163,7 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
         
         Task.init {
             do {
+                exitSearch.value = true
                 isLoading.value = true
                 let characters = try await getFilteredCharactersUseCase.execute()
                 isLoading.value = false
@@ -146,7 +174,6 @@ class DefaultGridViewModel: BaseViewModel, GridViewModel {
             }
         }
     }
-    
     
     private func updateResetButton() {
         

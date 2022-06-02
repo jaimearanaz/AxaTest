@@ -10,7 +10,11 @@ import Foundation
 extension Character {
     
     func toCharacterGridUi() -> CharacterGridUi {
-        return CharacterGridUi(id: id, name: name, thumbnail: thumbnail, age: age)
+        return CharacterGridUi(id: id,
+                               name: name,
+                               thumbnail: thumbnail,
+                               age: age,
+                               professions: professions)
     }
     
     func toCharacterDetailsUi() -> CharacterDetailsUi {

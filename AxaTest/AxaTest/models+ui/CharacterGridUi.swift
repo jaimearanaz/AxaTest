@@ -13,4 +13,5 @@ struct CharacterGridUi {
     var name: CharacterName
     var thumbnail: String
     var age: Int
+    var professions: [String]
 }

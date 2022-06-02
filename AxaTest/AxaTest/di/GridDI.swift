@@ -19,6 +19,9 @@ extension DependencyInjector {
         let getFilteredCharactersUseCase = DefaultGetFilteredCharactersUseCase(cachedRepository: cachedRepository, nonPersistentRepository: nonPersistentRepository)
         let resetFilterActiveUseCase = DefaultResetFilterActiveUseCase(cachedRepository: cachedRepository, nonPersistentRepository: nonPersistentRepository)
         let saveSelectedCharacter = DefaultSaveSelectedCharacterUseCase(nonPersistentRepository: nonPersistentRepository)
+        let getSearchedCharactersUseCase = DefaultGetSearchedCharactersUseCase(cachedRepository: cachedRepository,
+                                                                               nonPersistentRepository: nonPersistentRepository,
+                                                                               getFilteredCharactersUseCase: getFilteredCharactersUseCase)
         let invalidateCachedData = DefaultInvalidateCachedDataUseCase(nonPersistentRepository: nonPersistentRepository)
         let viewModel = DefaultGridViewModel(getCharactersUseCase: getCharactersUseCase,
                                              getFilterActiveUseCase: getFilterActiveUseCase,
@@ -26,6 +29,7 @@ extension DependencyInjector {
                                              getFilteredCharactersUseCase: getFilteredCharactersUseCase,
                                              resetFilterActiveUserCase: resetFilterActiveUseCase,
                                              saveSelectedCharacter: saveSelectedCharacter,
+                                             getSearchedCharactersUseCase: getSearchedCharactersUseCase,
                                              invalidateCachedData: invalidateCachedData)
         
         viewController.viewModel = viewModel

@@ -40,3 +40,5 @@
 "FILTER_OPTION_ALL" = "All";
 
 "GRID_PULL_TO_REFRESH" = "Pull to update characters";
+
+"GRID_SEARCHBAR_PLACEHOLDER" = "Enter name or profession";
