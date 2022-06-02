@@ -12,7 +12,7 @@ extension DependencyInjector {
     
     func injectCharacterDetails(withSegue segue: UIStoryboardSegue) {
         
-        let networkRepository = NetworkRepository(baseUrl: "https://raw.githubusercontent.com/rrafols/mobile_test/master/data.json")
+        let networkRepository = NetworkRepository(baseUrl: APIBaseURL.rawValue, networkStatus: NetworkStatus.self)
         let cachedRepository = CachedRepository(networkRepository: networkRepository, nonPersistentRepository: nonPersistentRepository, useCache: true)
         let getSelectedCharacterUseCase = DefaultGetSelectedCharacterUseCase(cachedRepository: cachedRepository, nonPersistentRepository: nonPersistentRepository)
         let saveSelectedCharacterUseCase = DefaultSaveSelectedCharacterUseCase(nonPersistentRepository: nonPersistentRepository)

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol FilterOptionsDelegate {
+protocol FilterOptionsDelegate: AnyObject {
     
     func didSelectOption(title: String, identifier: FilterOptionsType?)
     func didUnselectOption(title: String, identifier: FilterOptionsType?)
@@ -16,12 +16,12 @@ protocol FilterOptionsDelegate {
     func didUnselectOptionAll(identifier: FilterOptionsType?)
 }
 
-class FilterOptionsViewController: UITableViewController {
+class FilterOptionsTableViewController: UITableViewController {
 
     private let reuseIdentifier = "FilterOptionViewCell"
     private let optionAllTitle = "FILTER_OPTION_ALL".localized
     
-    var delegate: FilterOptionsDelegate?
+    weak var delegate: FilterOptionsDelegate?
     var identifier: FilterOptionsType?
     private var items = [FilterOptionUi]()
     

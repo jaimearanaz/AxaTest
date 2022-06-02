@@ -19,7 +19,7 @@ class GridViewCell: UICollectionViewCell {
     
     override func draw(_ rect: CGRect) {
         
-        firstName.font = UIFont.bold(withSize: 14)
-        surname.font = UIFont.bold(withSize: 12)
+        firstName.font = UIFont.bold_14()
+        surname.font = UIFont.bold_12()
     }
 }

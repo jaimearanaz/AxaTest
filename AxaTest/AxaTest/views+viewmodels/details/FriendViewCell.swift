@@ -20,8 +20,8 @@ class FriendViewCell: UITableViewCell {
     
     override func draw(_ rect: CGRect) {
         
-        firstnameLb.font = UIFont.bold(withSize: 14)
-        surnameLb.font = UIFont.bold(withSize: 12)
+        firstnameLb.font = UIFont.bold_14()
+        surnameLb.font = UIFont.bold_12()
     }
     
     func setupCell(friend: FriendUi) {

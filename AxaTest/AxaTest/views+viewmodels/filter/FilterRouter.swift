@@ -27,14 +27,14 @@ extension FilterViewController {
         switch (segue.identifier) {
             
         case FilterTransitions.toFilterHair.rawValue:
-            let viewController = segue.destination as! FilterOptionsViewController
+            let viewController = segue.destination as! FilterOptionsTableViewController
             let hairOptions = getFilterOptionForHairColors()
             viewController.setItems(hairOptions)
             viewController.delegate = self
             viewController.identifier = FilterOptionsType.hair
             
         case FilterTransitions.toFilterProfession.rawValue:
-            let viewController = segue.destination as! FilterOptionsViewController
+            let viewController = segue.destination as! FilterOptionsTableViewController
             let professionsOptions = getFilterOptionForProfessions()
             viewController.setItems(professionsOptions)
             viewController.delegate = self

@@ -11,7 +11,7 @@ extension DependencyInjector {
     
     func injectGrid(viewController: GridViewController) {
         
-        let networkRepository = NetworkRepository(baseUrl: "https://raw.githubusercontent.com/rrafols/mobile_test/master/data.json")
+        let networkRepository = NetworkRepository(baseUrl: APIBaseURL.rawValue, networkStatus: NetworkStatus.self)
         let cachedRepository = CachedRepository(networkRepository: networkRepository, nonPersistentRepository: nonPersistentRepository, useCache: true)
         let getCharactersUseCase = DefaultGetCharactersUseCase(repository: cachedRepository)
         let getFilterActiveUseCase = DefaultGetFilterActiveUseCase(nonPersistentRepository: nonPersistentRepository)

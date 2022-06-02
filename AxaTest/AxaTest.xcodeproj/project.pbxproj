@@ -54,6 +54,7 @@
 		6FA9FB002848AF5A00883C67 /* characters_for_testing.json in Resources */ = {isa = PBXBuildFile; fileRef = 6FA9FAFF2848AF5A00883C67 /* characters_for_testing.json */; };
 		6FA9FB022848B2AB00883C67 /* ApiURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA9FB012848B2AB00883C67 /* ApiURL.swift */; };
 		6FA9FB042848B7AF00883C67 /* GridCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA9FB032848B7AF00883C67 /* GridCollectionController.swift */; };
+		6FA9FB062848B8D300883C67 /* FriendsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA9FB052848B8D300883C67 /* FriendsTableController.swift */; };
 		6FD09EE2283F724B0015567C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD09EE1283F724B0015567C /* AppDelegate.swift */; };
 		6FD09EE4283F724B0015567C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD09EE3283F724B0015567C /* SceneDelegate.swift */; };
 		6FD09EE6283F724B0015567C /* GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD09EE5283F724B0015567C /* GridViewController.swift */; };
@@ -81,7 +82,7 @@
 		6FD7175E28466178001202EC /* AvatarImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FD7175D28466178001202EC /* AvatarImageView.xib */; };
 		6FD71762284662CE001202EC /* UIViewFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD71761284662CE001202EC /* UIViewFromNib.swift */; };
 		6FFD342828474C9B0072DEB5 /* FilterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD342728474C9B0072DEB5 /* FilterRouter.swift */; };
-		6FFD342A284755A50072DEB5 /* FilterOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD3429284755A50072DEB5 /* FilterOptionsViewController.swift */; };
+		6FFD342A284755A50072DEB5 /* FilterOptionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD3429284755A50072DEB5 /* FilterOptionsTableViewController.swift */; };
 		6FFD342C284756A50072DEB5 /* FilterOptionUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD342B284756A50072DEB5 /* FilterOptionUi.swift */; };
 		6FFD342E2847A86F0072DEB5 /* CachedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD342D2847A86F0072DEB5 /* CachedRepository.swift */; };
 		6FFD34302847AAAD0072DEB5 /* CachedRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD342F2847AAAD0072DEB5 /* CachedRepositoryProtocol.swift */; };
@@ -167,6 +168,8 @@
 		6FA9FAFF2848AF5A00883C67 /* characters_for_testing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = characters_for_testing.json; sourceTree = "<group>"; };
 		6FA9FB012848B2AB00883C67 /* ApiURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiURL.swift; sourceTree = "<group>"; };
 		6FA9FB032848B7AF00883C67 /* GridCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionController.swift; sourceTree = "<group>"; };
+		6FA9FB052848B8D300883C67 /* FriendsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableController.swift; sourceTree = "<group>"; };
+		6FA9FB072848BAE000883C67 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6FD09EDE283F724B0015567C /* AxaTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AxaTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FD09EE1283F724B0015567C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FD09EE3283F724B0015567C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -198,7 +201,7 @@
 		6FD7175D28466178001202EC /* AvatarImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvatarImageView.xib; sourceTree = "<group>"; };
 		6FD71761284662CE001202EC /* UIViewFromNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewFromNib.swift; sourceTree = "<group>"; };
 		6FFD342728474C9B0072DEB5 /* FilterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterRouter.swift; sourceTree = "<group>"; };
-		6FFD3429284755A50072DEB5 /* FilterOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptionsViewController.swift; sourceTree = "<group>"; };
+		6FFD3429284755A50072DEB5 /* FilterOptionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptionsTableViewController.swift; sourceTree = "<group>"; };
 		6FFD342B284756A50072DEB5 /* FilterOptionUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptionUi.swift; sourceTree = "<group>"; };
 		6FFD342D2847A86F0072DEB5 /* CachedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedRepository.swift; sourceTree = "<group>"; };
 		6FFD342F2847AAAD0072DEB5 /* CachedRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -520,7 +523,7 @@
 			isa = PBXGroup;
 			children = (
 				6FFD342728474C9B0072DEB5 /* FilterRouter.swift */,
-				6FFD3429284755A50072DEB5 /* FilterOptionsViewController.swift */,
+				6FFD3429284755A50072DEB5 /* FilterOptionsTableViewController.swift */,
 				6F03B49F2840E6280047E456 /* FilterViewController.swift */,
 				6F03B4E128427FB50047E456 /* FilterViewModel.swift */,
 			);
@@ -532,6 +535,7 @@
 			children = (
 				6FD7175928463D98001202EC /* CharacterDetailsRouter.swift */,
 				6FD7175328462BE1001202EC /* FriendViewCell.swift */,
+				6FA9FB052848B8D300883C67 /* FriendsTableController.swift */,
 				6F03B4DC2842777E0047E456 /* CharacterDetailsViewController.swift */,
 				6F03B4EF2843CCB00047E456 /* CharacterDetailsViewModel.swift */,
 			);
@@ -570,6 +574,7 @@
 		832A7B90200D1F059DED263B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6FA9FB072848BAE000883C67 /* XCTest.framework */,
 				E5A4BD426697A7C2B9A646FA /* Pods_AxaTest.framework */,
 				620150909DE46FE5C647E2F8 /* Pods_AxaTest_AxaTestUITests.framework */,
 				2AD34A9E78A22A7D73DDE275 /* Pods_AxaTestTests.framework */,
@@ -607,6 +612,7 @@
 				6FD09EF0283F724B0015567C /* Sources */,
 				6FD09EF1283F724B0015567C /* Frameworks */,
 				6FD09EF2283F724B0015567C /* Resources */,
+				D1FEB6E401A6B7F710B0E547 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -776,6 +782,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AxaTest-AxaTestUITests/Pods-AxaTest-AxaTestUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D1FEB6E401A6B7F710B0E547 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AxaTestTests/Pods-AxaTestTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AxaTestTests/Pods-AxaTestTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AxaTestTests/Pods-AxaTestTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E2C5FBB2CB67F4F30862E6F1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -848,7 +871,7 @@
 				6F03B4A52840EAF70047E456 /* BaseViewController.swift in Sources */,
 				6F03B4C2284237B70047E456 /* NonPersistentRepositoryProtocol.swift in Sources */,
 				6FD71737284518D1001202EC /* UIImageViewRounded.swift in Sources */,
-				6FFD342A284755A50072DEB5 /* FilterOptionsViewController.swift in Sources */,
+				6FFD342A284755A50072DEB5 /* FilterOptionsTableViewController.swift in Sources */,
 				6F03B4CD284242210047E456 /* GetSelectedCharacter.swift in Sources */,
 				6F03B4CB284240860047E456 /* FilterDI.swift in Sources */,
 				6F03B495283F88FC0047E456 /* City.swift in Sources */,
@@ -877,6 +900,7 @@
 				6FD717522846215D001202EC /* GetCharactersByNameUseCase.swift in Sources */,
 				6FD71739284523D0001202EC /* UIFont+Extensions.swift in Sources */,
 				6F03B4AD284230B00047E456 /* DependencyInjector.swift in Sources */,
+				6FA9FB062848B8D300883C67 /* FriendsTableController.swift in Sources */,
 				6F03B4A02840E6280047E456 /* FilterViewController.swift in Sources */,
 				6F03B4D728424DCC0047E456 /* NonPersistentErrors.swift in Sources */,
 				6F03B4B9284236DB0047E456 /* GetFilterValuesUseCase.swift in Sources */,

@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let attrs = [
             NSAttributedString.Key.foregroundColor: UIColor.black,
-            NSAttributedString.Key.font: UIFont.castle(withSize: 20)
+            NSAttributedString.Key.font: UIFont.special_20()
         ]
         UINavigationBar.appearance().titleTextAttributes = attrs
         

@@ -75,11 +75,11 @@ class FilterViewController: BaseViewController {
         navigationItem.rightBarButtonItems = [applyButton, cleanButton]
         
         let titleLabels = [ageLb, weightLb, heightLb, friendsLb, hairLb, professionsLb]
-        titleLabels.forEach { $0!.font = UIFont.black(withSize: 16) }
+        titleLabels.forEach { $0!.font = UIFont.black_16() }
         let sliders = [ageSlider, weightSlider, heightSlider, friendsSlider]
         sliders.forEach { customizeSlider($0!) }
         let optionLabels = [hairOptionsLb, professionsOptionsLb]
-        optionLabels.forEach { $0!.font = UIFont.regular(withSize: 18) }
+            optionLabels.forEach { $0!.font = UIFont.regular_18() }
         
         let hairLbTapGesture = UITapGestureRecognizer(target: self, action: #selector(didSelectHairColor))
         hairLb.isUserInteractionEnabled = true

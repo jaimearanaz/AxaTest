@@ -64,7 +64,7 @@ class CharacterDetailsViewController: BaseViewController {
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(didSelectBack))
-        friendsLb.font = UIFont.black(withSize: 18)
+        friendsLb.font = UIFont.black_18()
         friendsLb.text = "CHARACTER_FRIENDS".localized
         
         let nib = UINib.init(nibName: FriendViewCell.className, bundle: nil)
@@ -88,7 +88,7 @@ class CharacterDetailsViewController: BaseViewController {
             avatarView.setImage(withUrl: url)
         }
         
-        nameLb.font = UIFont.castle(withSize: 20)
+        nameLb.font = UIFont.special_20()
         nameLb.text = character.name
         
         ageLb.attributedText = attributedSection(title: "CHARACTER_AGE".localized,
@@ -112,45 +112,13 @@ class CharacterDetailsViewController: BaseViewController {
         let attributedString = NSMutableAttributedString(string: string)
         
         let titleRange = NSRange(location: 0, length: title.count + 1)
-        let titleAttributes = [NSAttributedString.Key.font: UIFont.black(withSize: 18)]
+        let titleAttributes = [NSAttributedString.Key.font: UIFont.black_18()]
         attributedString.addAttributes(titleAttributes, range: titleRange)
 
         let valueRange = NSRange(location: titleRange.length, length: value.count)
-        let valueAttributes = [NSMutableAttributedString.Key.font: UIFont.regular(withSize: 16)]
+        let valueAttributes = [NSMutableAttributedString.Key.font: UIFont.regular_16()]
         attributedString.addAttributes(valueAttributes, range: valueRange)
 
         return attributedString.withLineSpacing(8)
-    }
-}
-
-extension CharacterDetailsViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        if let friend = viewModel?.character.value.friends[safe: indexPath.row] {
-            viewModel?.didSelectFriend(id: friend.id)
-        }
-    }
-}
-
-extension CharacterDetailsViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return FriendViewCell.cellHeight
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.character.value.friends.count ?? 0
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let friend = viewModel?.character.value.friends[safe: indexPath.item],
-              let cell = tableView.dequeueReusableCell(withIdentifier: FriendViewCell.reuseIdentifier, for: indexPath) as? FriendViewCell else {
-            fatalError("cell or item is not available")
-        }
-
-        cell.setupCell(friend: friend)
-        return cell
     }
 }
