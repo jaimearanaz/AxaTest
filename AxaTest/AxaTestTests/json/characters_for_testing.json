@@ -1,0 +1,60 @@
+{
+  "Brastlewark": [
+    {
+      "id": 0,
+      "name": "Kinthony Tinkrivet",
+      "thumbnail": "http://www.publicdomainpictures.net/pictures/120000/velka/cactus-1430656432Iug.jpg",
+      "age": 3,
+      "weight": 34.065952,
+      "height": 123.75835,
+      "hair_color": "Black",
+      "professions": ["Miner"],
+      "friends": ["Sarabink Wrongwhistle"]
+    },
+    {
+      "id": 1,
+      "name": "Malbin Gimballauncher",
+      "thumbnail": "http://www.publicdomainpictures.net/pictures/20000/velka/squirrel-in-winter-11298746828jAB.jpg",
+      "age": 5,
+      "weight": 54.065952,
+      "height": 125.75835,
+      "hair_color": "White",
+      "professions": ["Carpenter"],
+      "friends": ["Kinthony Tinkrivet", "Fizwood Chillbuster"]
+    },
+    {
+      "id": 2,
+      "name": "Fizwood Chillbuster",
+      "thumbnail": "http://www.publicdomainpictures.net/pictures/10000/nahled/1-1275897675Dsss.jpg",
+      "age": 6,
+      "weight": 35.065952,
+      "height": 97.75835,
+      "hair_color": "Pink",
+      "professions": ["Wizard"],
+      "friends": ["Malbin Gimballauncher", "Whitwright Switchslicer"]
+    },
+    {
+      "id": 3,
+      "name": "Whitwright Switchslicer",
+      "thumbnail": "http://www.publicdomainpictures.net/pictures/20000/velka/squirrel-in-winter-11298746828jAB.jpg",
+      "age": 7,
+      "weight": 65.065952,
+      "height": 98.75835,
+      "hair_color": "Black",
+      "professions": ["Carpenter"],
+      "friends": []
+    },
+    {
+      "id": 4,
+      "name": "Sarabink Wrongwhistle",
+      "thumbnail": "http://www.publicdomainpictures.net/pictures/20000/nahled/sunset-in-winter.jpg",
+      "age": 10,
+      "weight": 82.065952,
+      "height": 65.75835,
+      "hair_color": "Black",
+      "professions": ["Carpenter"],
+      "friends": ["Fizwood Chillbuster", "Whitwright Switchslicer", "Malbin Gimballauncher", "Kinthony Tinkrivet"]
+    }
+    
+  ]
+}

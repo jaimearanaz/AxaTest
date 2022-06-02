@@ -12,6 +12,10 @@ extension NetworkRepository {
     
     func getCharacters() -> AnyPublisher<[Character], Error> {
         
+        guard networkStatus.isInternetAvailable() else {
+            return Fail(error: NetworkErrors.noNetwork).eraseToAnyPublisher()
+        }
+        
         guard let url = URL(string: url) else {
             return Fail(error: NetworkErrors.wrongUrl).eraseToAnyPublisher()
         }

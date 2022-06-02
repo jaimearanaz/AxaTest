@@ -8,6 +8,7 @@ target 'AxaTest' do
   # Pods for AxaTest
   pod 'SDWebImage'
   pod 'MultiSlider'
+  pod 'Mockingjay', :git => 'https://github.com/kylef/Mockingjay.git', :branch => 'master'
 
   target 'AxaTestTests' do
     inherit! :search_paths
