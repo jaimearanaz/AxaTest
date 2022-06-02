@@ -63,7 +63,7 @@ class DefaultFilterViewModel: BaseViewModel, FilterViewModel {
                 let filterValues = try await getFilterValuesUseCase.execute()
                 let filterActive = try await getFilterActiveUseCase.execute()
                 isLoading.value = false
-                self.filterConfig.value = FilterConfigUi(filterValues: filterValues.toFilterUi(),
+                filterConfig.value = FilterConfigUi(filterValues: filterValues.toFilterUi(),
                                                          filterActive: filterActive.toFilterUi())
                 self.filterValues = filterValues
             } catch let error {
