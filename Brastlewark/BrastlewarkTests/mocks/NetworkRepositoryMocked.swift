@@ -6,7 +6,7 @@
 //
 
 import Combine
-@testable import AxaTest
+@testable import Brastlewark
 
 class NetworkRepositoryMocked: NetworkRepositoryProtocol {
     

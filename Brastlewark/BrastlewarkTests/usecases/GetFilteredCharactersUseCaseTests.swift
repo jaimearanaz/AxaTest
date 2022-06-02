@@ -7,7 +7,7 @@
 
 import Foundation
 import XCTest
-@testable import AxaTest
+@testable import Brastlewark
 
 class GetFilteredCharactersUseCaseTests: XCTestCase {
 

@@ -7,7 +7,7 @@
 
 import XCTest
 import Combine
-@testable import AxaTest
+@testable import Brastlewark
 
 class CachedRepositoryTests: XCTestCase {
     

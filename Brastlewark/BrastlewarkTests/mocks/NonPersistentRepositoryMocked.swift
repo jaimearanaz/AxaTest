@@ -5,7 +5,7 @@
 //  Created by Jaime Aranaz on 1/6/22.
 //
 
-@testable import AxaTest
+@testable import Brastlewark
 
 class NonPersistentMocked: NonPersistentRepositoryProtocol {
     

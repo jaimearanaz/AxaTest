@@ -1,7 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'AxaTest' do
+target 'Brastlewark' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
@@ -9,13 +9,13 @@ target 'AxaTest' do
   pod 'SDWebImage'
   pod 'MultiSlider'
 
-  target 'AxaTestTests' do
+  target 'BrastlewarkTests' do
     inherit! :search_paths
     # Pods for testing
     pod 'Mockingjay', :git => 'https://github.com/kylef/Mockingjay.git', :branch => 'master'
   end
 
-  target 'AxaTestUITests' do
+  target 'BrastlewarkUITests' do
     # Pods for testing
   end
 

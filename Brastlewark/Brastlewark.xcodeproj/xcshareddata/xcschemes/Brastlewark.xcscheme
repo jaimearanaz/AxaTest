@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6FD09EDD283F724B0015567C"
-               BuildableName = "AxaTest.app"
-               BlueprintName = "AxaTest"
-               ReferencedContainer = "container:AxaTest.xcodeproj">
+               BuildableName = "Brastlewark.app"
+               BlueprintName = "Brastlewark"
+               ReferencedContainer = "container:Brastlewark.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6FD09EF3283F724B0015567C"
-               BuildableName = "AxaTestTests.xctest"
-               BlueprintName = "AxaTestTests"
-               ReferencedContainer = "container:AxaTest.xcodeproj">
+               BuildableName = "BrastlewarkTests.xctest"
+               BlueprintName = "BrastlewarkTests"
+               ReferencedContainer = "container:Brastlewark.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6FD09EFD283F724B0015567C"
-               BuildableName = "AxaTestUITests.xctest"
-               BlueprintName = "AxaTestUITests"
-               ReferencedContainer = "container:AxaTest.xcodeproj">
+               BuildableName = "BrastlewarkUITests.xctest"
+               BlueprintName = "BrastlewarkUITests"
+               ReferencedContainer = "container:Brastlewark.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6FD09EDD283F724B0015567C"
-            BuildableName = "AxaTest.app"
-            BlueprintName = "AxaTest"
-            ReferencedContainer = "container:AxaTest.xcodeproj">
+            BuildableName = "Brastlewark.app"
+            BlueprintName = "Brastlewark"
+            ReferencedContainer = "container:Brastlewark.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -82,9 +82,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6FD09EDD283F724B0015567C"
-            BuildableName = "AxaTest.app"
-            BlueprintName = "AxaTest"
-            ReferencedContainer = "container:AxaTest.xcodeproj">
+            BuildableName = "Brastlewark.app"
+            BlueprintName = "Brastlewark"
+            ReferencedContainer = "container:Brastlewark.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
