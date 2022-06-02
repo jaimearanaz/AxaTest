@@ -2,6 +2,7 @@
 
 This is a mobile technical test for an iOS position made for [Axa](https://www.axa.com/en) in june 2022. The explanation and requisites for the technical test are attached to this repository too in a PDF file called "Brastlewark_mobile_test"
 
+![](brastlewark.gif)
 
 ## Basic architecture
 
@@ -75,3 +76,4 @@ There are some improvements and new features that could be included in future re
 - implement the filter UI with a `UITableViewController`, and implement different `UITableViewCell` objects for every type of indivudal filter that is needed (i.e., a cell for sliders, a cell for one-single-option tables, a cell for multi-option tables, etc,).
 - include UI testing, using the framework `XCUITest` or even snapshot testing.
 - more tests in general, not thinking of 100% of coverage (that's not useful, it's just a number), but instead real and useful unit tests and functional tests to coverage the real core of the app.
+- rethink the whole UI/UX like icons, fonts, colors, interactions, CTAs... I'm trying to be a good developer, not a good designer 😜
