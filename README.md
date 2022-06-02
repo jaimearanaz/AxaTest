@@ -1,6 +1,6 @@
 ## Introduction
 
-This is a mobile technical test for an iOS position made for [Axa](https://www.axa.com/en) in june 2022. The explanation and requisites for the technical test are attached to this repository too in a file called "Brastlewark mobile test.docx"
+This is a mobile technical test for an iOS position made for [Axa](https://www.axa.com/en) in june 2022. The explanation and requisites for the technical test are attached to this repository too in a PDF file called "Brastlewark_mobile_test"
 
 
 ## Basic architecture
