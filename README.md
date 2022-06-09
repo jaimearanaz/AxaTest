@@ -1,6 +1,6 @@
 ## Introduction
 
-This is a mobile technical test for an iOS position made for [Axa](https://www.axa.com/en) in june 2022. The explanation and requisites for the technical test are attached to this repository too in a PDF file called "Brastlewark_mobile_test"
+This is a mobile technical test for an iOS position made for [Axa](https://www.axa.com/en) in june 2022. The explanation and requisites for the technical test are attached to this repository too in a PDF file called ["Brastlewark_mobile_test"](https://github.com/jaimearanaz/Brastlewark/blob/main/Brastlewark_mobile_test.pdf)
 
 <p align="center">
   <img src="brastlewark.gif" alt="animated" />
@@ -8,24 +8,47 @@ This is a mobile technical test for an iOS position made for [Axa](https://www.a
 
 ## Basic architecture
 
-The archicture decisions made for this project are based in the following:
-- the **SOLID principles**, the general and basic rules that every code project should follow. Single responsibilities for elements, use of interfaces to comunicate elements or layers, so we could keep hidden for each other, etc. 
-- the **MVVM pattern**, to build the relations between views, data, logic and user interactions. Although other patterns like VIPER are more often in the iOS platform, I personally feel more comfortable with this pattern as it fits better to how I think about programming. 
-- the **Clean Architecture** basis, nicely described by our loved [Uncle Bob](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), where all the elements that build up a software system are divided in three basic layers (**presentation**, **domain** and **data**) and the communication and knowledge of each other existance is clearly limited. Although the folder structure is not setup exactly like that, all project elements follow the criteria for the layer they belong to.
+The archictural decisions made for this project are based in the following:
+- the **[SOLID](https://en.wikipedia.org/wiki/SOLID) principles**, the general and basic rules that every code project should follow: one single responsibility for each element, encourage extension over modification, protocols to communicate elements, where you expose just what you need, etc.
+- the **MVVM pattern**, to build the relations between views, user interactions, data and its logic. Although other patterns like VIPER are more often in the iOS ecosystem, I personally feel more comfortable with this pattern as it fits better to how I think about layers and data flow. 
+- the **Clean Architecture** basis, nicely described by our loved [Uncle Bob](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), where all the elements that build up a software system are divided in three basic layers (**presentation**, **domain** and **data**), and where the communication and knowledge of each other is clearly limited. Although the Xcode folder structure is not setup exactly like that, all project elements follow the criteria for the layer they belong to.
 
 
 ## Views and View Models
 
 To follow the MVVM pattern we must implement its two basic actors: **Views** and **View Models**. This poject uses a custom class called `Box` to represent those types in View Model that can be subscribed by the View using the method `bind()`. In this way, View just reacts when the data changes in View Model.
 
-The View Models are plain classes called `ViewModel` that are defined through two protocols.
-- `ViewModelOutput`, declares what data the Views can subscribe to
-- `ViewModelInput` defines what view related events the Views can communicate to the View Model. 
+The View Models are plain classes called `ViewModel` that are defined through the protocols:
+- `ViewModelOutput`, declares what data the View can subscribe to
+- `ViewModelInput`, defines the view events that the View can communicate to the View Model.
+- `ViewModel`, lists the use cases that are needed to achieve the View Model purpose
 
 View Models work with classes named `UseCases` to manipulate domain data, use domain logic and achieve any other goal needed for Views. View Models are never injected with data, instead they always use the classes `UseCases` to get de data they need.
 
 The Views are both `UIViewControllers` and `UIViews`. A View receive by injection its View Model and subscribe to the desired data throught the method `binds()`, where they implement what to do when the data change (usually, the action is to update its own view or their associated ones). Views are only responsible for showing the data that is updated from its own View Model, and to communicate user interaction events to the same View Model.
 
+
+```swift
+
+class MyViewController: UIViewController {
+
+      var viewModel: MyViewModel?
+
+      override func viewDidLoad() {
+        super.viewDidLoad()
+        binds()
+      }
+
+      func binds() { 
+        viewModel?.data.bind({ data in
+            DispatchQueue.main.async {
+                // update view using data
+            }
+        })
+      }
+}
+
+```
 
 ## Models and mappers
 
@@ -33,14 +56,14 @@ Models are just structs or classes to represent plain data with its basic logic 
 
 To keep layers independent between each other, usually models are different and not shared between layers. Instead, each layer defines its own models, and the translation between them are made by extensions called `Mappers`.
 
-For example, Views use its own kind of models suffixed with `Ui` in order to be absolutely independent for the rest of the app system. In this way, we could change the UI without affect other system models, just the `Ui` ones; or we could redefine the domain or logic models, but if the UI keeps the same, the `Ui` models will be kept too.
+For example, Views use its own kind of models (named with `Ui` suffix) in order to be absolutely independent for the rest of the app system. In this way, we could change the UI without affect other system models, just the `Ui` ones; or we could redefine the domain or logic models, but if the UI keeps the same, the `Ui` models will be kept too.
 
 
 ## Use cases
 
-The use cases define the bussines or domain logic, those what is considered the core of our system and what defines our bussines intention. They obtain data from different sources, manipulate the data, apply its logic to it, and return it to the View Models or send it to a repository.
+The use cases define the bussines or domain logic, those what is considered the core of our system and what defines our bussines intention. They obtain data from different sources called repositories, manipulate the data, apply its logic to it, and return it to the View Models or send it to a particular repository.
 
-Use cases are defined in plain classes named `UseCases`. They define a method `execute()` that triggers the action they were defined for, clearly expressed in its own class name. They are defined as asynchronous methods, because bussines logic do not know anything about **where data is coming from** (network, data bases, device), and thus we don't know how long the execution is going to take. 
+Use cases are defined in plain classes named after `UseCases`. They define a method `execute()` that triggers the action they were defined for, clearly expressed in its own class name. This method is always defined as an asynchronous method, because the clients of the use cases do not know anything about **where data is coming from** (network, data bases, system, etc.), and thus they don't even know how long the execution is going to take. 
 
 For this asynchronous nature we use the new Swift feature `async/await`.
 
@@ -51,7 +74,7 @@ The repositories are the sources of data used across the app. In this project ar
 - `NetworkRepository` is the repository that fetchs the data from its original remote source. 
 - `NonPersistentRepository` is the one used for temporary allocated data, that is, data that is only available during the life cycle of the app, or until it's intentionally invalidated.
 
-In the middle of those repositories, we have a cache manager called `CachedRepository` that retrieves data from network only once, and then stores it and retrieves it from non persistent state in the folling requests.
+In the middle of those repositories, we have a cache manager called `CachedRepository`. This manager retrieves data from network only when it's not available in the non persistent state, then stores it there, and retrieves it from non persistent again in the folling requests.
 
 For networking operations the app uses the new Swift framework `Combine`.
 
@@ -60,14 +83,14 @@ For networking operations the app uses the new Swift framework `Combine`.
 
 This is a basic tecnhique where every actor receives during its initialization the other actors they need to perform its responsability, instead of create them by its own. Besides this, these elements **depend always on protocols or interfaces**, instead of a particular element.
 
-When a new View (usually a `UIViewController`) is going to be presented, it triggers the injection process through a method called `inject(withSegue:)`. The associated View Model and the needed use cases and respositories are instantiated and assignated to each other. This process is always managed by a class suffixed with `DI` (standing for "Dependecy Injection").
+When a new View (usually a `UIViewController`) is going to be presented, it triggers the injection process through a method called `inject(withSegue:)`. The associated View Model and the needed use cases and respositories are instantiated and assignated to each other. This process is always managed by a class named with `DI` suffix.
 
 
 ## Navigation
 
 The app navigation is primary based in the use of **scenes in a storyboard**, and the defined **segues** to represent the avialable transitions between these scenes.
 
-The View Model defines an observable enumerated property named `transitionTo`, whose values correspond to the **same segues** declared in the storyboard for this scene. When `transitionTo` changes, the subscribed View reacts to this change and starts the navigation process. Every scene has an associated file suffixed as `Router` with the methods `route(transitionTo:)` and `prepare(forSegue:)` that trigger the injection process just before the next `UIViewController` is fully loaded.
+The View Model defines an observable enumerated property named `transitionTo`, whose values correspond to the **same segues** declared in the storyboard for this scene. When `transitionTo` changes, the subscribed View reacts to this change and starts the navigation process. Every scene has an associated file named with the suffix `Router` with the methods `route(transitionTo:)` and `prepare(forSegue:)` that trigger the injection process just before the next `UIViewController` is fully loaded.
 
 
 ## Third party libraries
