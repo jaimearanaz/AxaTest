@@ -8,6 +8,7 @@ target 'Brastlewark' do
   # Pods for AxaTest
   pod 'SDWebImage'
   pod 'MultiSlider'
+  pod 'SwinjectStoryboard'
 
   target 'BrastlewarkTests' do
     inherit! :search_paths

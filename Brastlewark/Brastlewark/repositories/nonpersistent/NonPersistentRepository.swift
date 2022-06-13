@@ -13,6 +13,11 @@ class NonPersistentRepository: NonPersistentRepositoryProtocol {
     var selectedCharacter: Int?
     var filterValues: Filter?
     var filterActive: Filter?
+    var identifier = ""
+    
+    init(identifier: String = "") {
+        self.identifier = identifier
+    }
 
     func saveCharacters(_ characters: [Character]) {
         self.characters = characters
