@@ -83,20 +83,23 @@ For networking operations the app uses the new Swift framework `Combine`.
 
 This is a basic tecnhique where every actor receives during its initialization the other actors they need to perform its responsability, instead of create them by its own. Besides this, these elements **depend always on protocols or interfaces**, instead of a particular element.
 
-When a new View (usually a `UIViewController`) is going to be presented, it triggers the injection process through a method called `inject(withSegue:)`. The associated View Model and the needed use cases and respositories are instantiated and assignated to each other. This process is always managed by a class named with `DI` suffix.
+Dependency injections are handled with a third party library called [SwinjectStoryboard](https://github.com/Swinject/SwinjectStoryboard). When a new `UIViewController` is going to be presented from a segue in the storyboard, it starts the injection process through a method called `setup` in the `DependencyInjection` file. All the needed injections (View Controllers, View Models, Use Cases, Repositories) are declared in their corresponding `DI` files.
 
 
 ## Navigation
 
 The app navigation is primary based in the use of **scenes in a storyboard**, and the defined **segues** to represent the avialable transitions between these scenes.
 
-The View Model defines an observable enumerated property named `transitionTo`, whose values correspond to the **same segues** declared in the storyboard for this scene. When `transitionTo` changes, the subscribed View reacts to this change and starts the navigation process. Every scene has an associated file named with the suffix `Router` with the methods `route(transitionTo:)` and `prepare(forSegue:)` that trigger the injection process just before the next `UIViewController` is fully loaded.
+- In one hand, the View Model defines an observable enumerated property named `transitionTo`, whose values correspond to the **same segues** declared in the storyboard for this scene. When `transitionTo` changes, the subscribed View Controller reacts to this change and starts the navigation process.
+
+- In the other hand, as the View Controller subscribes to `transitionTo` in its `binds()` method, it can detect and handle the desired transition using a custom method called `performTransition(to:)`. This method will trigger the associated segue with the native `perfomSegue(withIdentifier):`, and will do any additional operations that are needed for the next View Controller to show.
 
 
 ## Third party libraries
 
 The following third party libraries are used via Cocoapods in this project:
 
+- [SwinjectStoryboard](https://github.com/Swinject/SwinjectStoryboard), a library to handle the dependecy injections when using view controller instantiated from storyboards. 
 - [SDWebImage](https://github.com/SDWebImage/SDWebImage), a well known library to handle with the image downloading and cache.
 - [MultiSlider](https://github.com/yonat/MultiSlider), an useful double slider control used to pick a range of values.
 - [Mockingjay](https://github.com/kylef/Mockingjay), an elegant library to mock HTTP responses and used during unit testing.

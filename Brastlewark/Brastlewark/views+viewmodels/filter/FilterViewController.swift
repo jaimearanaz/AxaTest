@@ -266,7 +266,6 @@ class FilterViewController: BaseViewController {
 
 extension FilterViewController: FilterOptionsDelegate {
     
-    
     func didSelectOption(title: String, identifier: FilterOptionsType?) {
         
         guard let identifier = identifier else {
