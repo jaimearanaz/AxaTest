@@ -49,7 +49,7 @@ class CharacterDetailsViewController: BaseViewController {
         viewModel?.transitionTo.bind({ transitionTo in
             DispatchQueue.main.async {
                 if let transitionTo = transitionTo {
-                    self.prepare(for: transitionTo)
+                    self.performTransition(to: transitionTo)
                 }
             }
         })
@@ -81,7 +81,7 @@ class CharacterDetailsViewController: BaseViewController {
         print("")
     }
     
-    private func prepare(for transitionTo: CharacterDetailsTransitions) {
+    private func performTransition(to transitionTo: CharacterDetailsTransitions) {
         
         switch transitionTo {
         case .toGrid:

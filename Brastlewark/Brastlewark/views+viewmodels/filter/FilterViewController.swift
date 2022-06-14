@@ -38,7 +38,7 @@ class FilterViewController: BaseViewController {
         viewModel?.transitionTo.bind({ transitionTo in
             DispatchQueue.main.async {
                 if let transitionTo = transitionTo {
-                    self.prepare(for: transitionTo)
+                    self.perfomTransition(to: transitionTo)
                 }
             }
         })
@@ -152,7 +152,7 @@ class FilterViewController: BaseViewController {
         viewModel?.didSelectProfessionsOptions()
     }
     
-    private func prepare(for transitionTo: FilterTransitions) {
+    private func perfomTransition(to transitionTo: FilterTransitions) {
         
         switch transitionTo {
         case .dismiss:
@@ -245,7 +245,7 @@ class FilterViewController: BaseViewController {
     
     internal func getFilterOptionForProfessions() -> [FilterOptionUi] {
         
-        guard let viewModel = viewModel else {
+        guard let _ = viewModel else {
             fatalError("view model is no set in view controller")
         }
         return getFilterOptions(withValues: filterValues.profession,
