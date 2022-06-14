@@ -67,6 +67,33 @@ Use cases are defined in plain classes named after `UseCases`. They define a met
 
 For this asynchronous nature we use the new Swift feature `async/await`.
 
+```swift
+
+protocol MyUseCase {
+    
+    var repository: RepositoryProtocol { get set }
+    func execute() async throws
+}
+
+class DefaultMyUseCase: MyUseCase {
+
+    var repository: RepositoryProtocol
+    
+    init(repository: RepositoryProtocol) {
+        self.repository = repository
+    }
+    
+    func execute() async throws {
+        do {
+            try await repository.doStuff()
+        } catch let error {
+            throw error
+        }
+    }
+}
+
+```
+
 
 ## Repositories
 
@@ -89,9 +116,7 @@ Dependency injections are handled with a third party library called [SwinjectSto
 ## Navigation
 
 The app navigation is primary based in the use of **scenes in a storyboard**, and the defined **segues** to represent the avialable transitions between these scenes.
-
 - In one hand, the View Model defines an observable enumerated property named `transitionTo`, whose values correspond to the **same segues** declared in the storyboard for this scene. When `transitionTo` changes, the subscribed View Controller reacts to this change and starts the navigation process.
-
 - In the other hand, as the View Controller subscribes to `transitionTo` in its `binds()` method, it can detect and handle the desired transition using a custom method called `performTransition(to:)`. This method will trigger the associated segue with the native `perfomSegue(withIdentifier):`, and will do any additional operations that are needed for the next View Controller to show.
 
 
