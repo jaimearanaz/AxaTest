@@ -71,7 +71,7 @@ class GridViewController: BaseViewController {
         viewModel?.transitionTo.bind({ transitionTo in
             DispatchQueue.main.async {
                 if let transitionTo = transitionTo {
-                    self.performSegue(withIdentifier: transitionTo.rawValue, sender: self)
+                    self.perfomTransition(to: transitionTo)
                 }
             }
         })
@@ -141,6 +141,10 @@ class GridViewController: BaseViewController {
         
         activityIndicatorView.stopAnimating()
         activityIndicatorView.isHidden = true
+    }
+    
+    private func perfomTransition(to transitionTo: GridTransitions) {
+        self.performSegue(withIdentifier: transitionTo.rawValue, sender: self)
     }
     
     private func resetSearchBar() {
