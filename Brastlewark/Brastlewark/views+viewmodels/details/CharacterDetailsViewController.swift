@@ -22,7 +22,6 @@ class CharacterDetailsViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var viewModel: CharacterDetailsViewModel? { didSet { baseViewModel = viewModel } }
-    var navigationFlow: CharacterDetailsNavigationFlow?
     
     private let itemsPerRow: CGFloat = 3
     private let sectionInsets = UIEdgeInsets(
@@ -50,7 +49,7 @@ class CharacterDetailsViewController: BaseViewController {
         viewModel?.transitionTo.bind({ transitionTo in
             DispatchQueue.main.async {
                 if let transitionTo = transitionTo {
-                    self.route(transitionTo: transitionTo)
+                    self.performTransition(to: transitionTo)
                 }
             }
         })
@@ -80,6 +79,16 @@ class CharacterDetailsViewController: BaseViewController {
     
     @objc func didSelectMyButton() {
         print("")
+    }
+    
+    private func performTransition(to transitionTo: CharacterDetailsTransitions) {
+        
+        switch transitionTo {
+        case .toGrid:
+            navigationController?.popToRootViewController(animated: true)
+        default:
+            self.performSegue(withIdentifier: transitionTo.rawValue, sender: self)
+        }
     }
 
     private func configCharacter(_ character: CharacterDetailsUi) {

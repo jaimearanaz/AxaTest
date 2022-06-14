@@ -38,7 +38,7 @@ class FilterViewController: BaseViewController {
         viewModel?.transitionTo.bind({ transitionTo in
             DispatchQueue.main.async {
                 if let transitionTo = transitionTo {
-                    self.route(transitionTo: transitionTo)
+                    self.perfomTransition(to: transitionTo)
                 }
             }
         })
@@ -100,6 +100,29 @@ class FilterViewController: BaseViewController {
         professionsOptionsLb.addGestureRecognizer(professionsOptionsTapGesture)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+        switch (segue.identifier) {
+            
+        case FilterTransitions.toFilterHair.rawValue:
+            let viewController = segue.destination as! FilterOptionsTableViewController
+            let hairOptions = getFilterOptionForHairColors()
+            viewController.setItems(hairOptions)
+            viewController.delegate = self
+            viewController.identifier = FilterOptionsType.hair
+            
+        case FilterTransitions.toFilterProfession.rawValue:
+            let viewController = segue.destination as! FilterOptionsTableViewController
+            let professionsOptions = getFilterOptionForProfessions()
+            viewController.setItems(professionsOptions)
+            viewController.delegate = self
+            viewController.identifier = FilterOptionsType.professions
+            
+        default:
+            break
+        }
+    }
+    
     @objc func didSelectClean() {
         viewModel?.didSelectReset()
     }
@@ -127,6 +150,18 @@ class FilterViewController: BaseViewController {
         filterValues.profession.removeAll(where: { $0 == "PROFESSION_NONE".localized } )
         filterValues.profession.insert("PROFESSION_NONE".localized, at: 0)
         viewModel?.didSelectProfessionsOptions()
+    }
+    
+    private func perfomTransition(to transitionTo: FilterTransitions) {
+        
+        switch transitionTo {
+        case .dismiss:
+            navigationController?.popToRootViewController(animated: true)
+        case .toFilterHair:
+            performSegue(withIdentifier: transitionTo.rawValue, sender: self)
+        case .toFilterProfession:
+            performSegue(withIdentifier: transitionTo.rawValue, sender: self)
+        }
     }
     
     private func customizeSlider(_ slider: MultiSlider) {
@@ -210,7 +245,7 @@ class FilterViewController: BaseViewController {
     
     internal func getFilterOptionForProfessions() -> [FilterOptionUi] {
         
-        guard let viewModel = viewModel else {
+        guard let _ = viewModel else {
             fatalError("view model is no set in view controller")
         }
         return getFilterOptions(withValues: filterValues.profession,
@@ -230,7 +265,6 @@ class FilterViewController: BaseViewController {
 }
 
 extension FilterViewController: FilterOptionsDelegate {
-    
     
     func didSelectOption(title: String, identifier: FilterOptionsType?) {
         

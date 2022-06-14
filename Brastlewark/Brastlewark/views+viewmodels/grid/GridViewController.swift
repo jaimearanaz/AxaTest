@@ -16,7 +16,6 @@ class GridViewController: BaseViewController {
     @IBOutlet weak var emptyLb: UILabel!
     
     var viewModel: GridViewModel? { didSet { baseViewModel = viewModel } }
-    var navigationFlow: GridNavigationFlow?
     
     let collectionItemsPerRow: CGFloat = 3
     let collectionSectionInsets = UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0)
@@ -72,7 +71,7 @@ class GridViewController: BaseViewController {
         viewModel?.transitionTo.bind({ transitionTo in
             DispatchQueue.main.async {
                 if let transitionTo = transitionTo {
-                    self.route(transitionTo: transitionTo)
+                    self.performSegue(withIdentifier: transitionTo.rawValue, sender: self)
                 }
             }
         })
